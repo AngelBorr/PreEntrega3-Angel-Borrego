@@ -1,30 +1,9 @@
 import express from 'express';
-import fs from 'fs'
 import ProductManager from './products.js';
 
 const app = express();
 
 const manager = new ProductManager;
-
-
-
-/* let ruta = './assets/products.json'
-
-const getData = () => {
-    const getProductsJson = async () => {
-        try {
-            const data = await fs.promises.readFile(ruta, 'utf8');            
-            return data
-            
-        } catch (error) {
-            throw new Error('Se produjo un error al mostrar los datos desde el Json')
-        }
-    }
-
-    return getProductsJson()
-} */
-
-
 
 //trae los productos con send desde el json
 app.get('/products', (req, res) => {
@@ -37,6 +16,23 @@ app.get('/products', (req, res) => {
         }
     })();    
     
+});
+
+app.get('/products/:id', (req, res) => {    
+    (async () => {
+        try {
+            const productId = Number(req.params.id);
+            const product = await manager.getProductById(productId);
+            console.log(product)
+            if (product) {
+            return res.send(product);
+            } else {
+            return res.status(404).send('Producto no encontrado');
+            }
+        } catch (error) {
+            return res.status(500).send('Error al obtener el producto');
+        }
+    })();
 });
 
 app.listen(5000, () => {

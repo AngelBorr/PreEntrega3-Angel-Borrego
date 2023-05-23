@@ -99,7 +99,7 @@ try {
 (async () => {  
     try {
         const deletedProduct = manager.deleteProduct(2);
-        return console.log(`Producto eliminado: ${deletedProduct}`);
+        return `Producto eliminado: ${deletedProduct}`;
     } catch (error) {
         throw new Error('No se pudo eliminar el producto solicitado')
     }

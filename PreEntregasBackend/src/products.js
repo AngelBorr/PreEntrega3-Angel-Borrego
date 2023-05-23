@@ -8,7 +8,7 @@ export default class ProductManager {
     }
 
     //retorna los prod
-    getProducts() {
+    async getProducts() {
         const getData = async () => {
             try {
                 const data = await fs.promises.readFile(this.path, 'utf8');
@@ -23,7 +23,11 @@ export default class ProductManager {
                 
             }
         }
-        return getData()
+        try {
+            return await getData();
+        } catch (error_2) {
+            throw error_2;
+        }
     }
 
     //generador de id
@@ -120,9 +124,8 @@ export default class ProductManager {
     //busca un prod por su id
     async getProductById(id) {
         try {
-            const data = await this.getProducts();
-            let productJson = data;
-            let product = productJson.find((product) => product.id === id);
+            const data = await this.getProducts();            
+            let product = data.find((product) => product.id === id);
             if(!product){
                 return `No se ha encontrado Productos con este id:(${id}), verifique que los datos ingresados sean los correctos y vuelve a intentarlo`;
             }
@@ -151,5 +154,8 @@ export default class ProductManager {
     }
 
 }
+
+
+
 
 
