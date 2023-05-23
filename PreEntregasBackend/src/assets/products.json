@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "Remera",
+        "description": "Remera 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
+        "price": 1500,
+        "thumbnail": "Sin imagen",
+        "code": "R-123",
+        "stock": 20
+    },
+    {
+        "id": 2,
+        "title": "Pantalon",
+        "description": "Pantalo de Gabardina \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
+        "price": 8500,
+        "thumbnail": "Sin imagen",
+        "code": "R-124",
+        "stock": 30
+    },
+    {
+        "id": 3,
+        "title": "Remera",
+        "description": "Remera 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
+        "price": 1500,
+        "thumbnail": "Sin imagen",
+        "code": "R-125",
+        "stock": 30
+    },
+    {
+        "id": 4,
+        "title": "buso",
+        "description": "buso 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
+        "price": 2500,
+        "thumbnail": "Sin imagen",
+        "code": "R-126",
+        "stock": 10
+    }
+]
