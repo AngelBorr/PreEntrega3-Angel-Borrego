@@ -72,7 +72,8 @@ try {
         const updatedProduct = await manager.updateProduct(4, { stock: 10 });
         return `Producto actualizado: ${updatedProduct}`;
     } catch (error) {
-        throw new Error('la actualizacion del producto no se pudo realizar')
+        //throw new Error('la actualizacion del producto no se pudo realizar')
+        console.log(error)
     }
 })();
 
@@ -82,7 +83,8 @@ try {
         const product = manager.getProductById(2);
         return `El producto solicitado es el siguiente: ${product}`
     } catch (error) {
-        throw new Error('El producto solicitado no existe')
+        //throw new Error('El producto solicitado no existe')
+        console.log(error)
     };
 })();
 

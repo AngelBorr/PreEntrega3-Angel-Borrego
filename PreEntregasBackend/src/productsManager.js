@@ -12,7 +12,7 @@ export default class ProductManager {
         const getData = async () => {
             try {
                 const data = await fs.promises.readFile(this.path, 'utf8');
-                return [JSON.parse(data)]
+                return JSON.parse(data)
             } catch (error) {
                 try {
                     await fs.promises.writeFile(this.path, '[]');
@@ -125,7 +125,7 @@ export default class ProductManager {
     async getProductById(id) {
         try {
             const data = await this.getProducts();            
-            let product = data.find((product) => product.id === id);
+            let product = data.find((product) => Number(product.id) === Number(id));
             if(!product){
                 return `No se ha encontrado Productos con este id:(${id}), verifique que los datos ingresados sean los correctos y vuelve a intentarlo`;
             }
@@ -144,7 +144,8 @@ export default class ProductManager {
             return `No se encontró ningún producto con id ${id}.`;
             } else{
                 data.splice(productIndex, 1);
-                await fs.promises.writeFile(this.path, JSON.stringify(data, null, 2));
+                this.products = data
+                await fs.promises.writeFile(this.path, JSON.stringify(this.products, null, 2));
                 return `Producto eliminado con id: ${id}`;
             }
             
