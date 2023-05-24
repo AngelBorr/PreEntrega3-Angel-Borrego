@@ -3,8 +3,7 @@ import fs from 'fs'
 export default class ProductManager {  
     constructor() {
         this.products = [];
-        this.path = "./assets/products.json";
-        
+        this.path = "./src/assets/products.json"; // no reconocio la ruta relativa a este archivo, pero la toma desde la raiz del proyecto.
     }
 
     //retorna los prod
@@ -88,10 +87,13 @@ export default class ProductManager {
         if(newProduct){
             this.products.push(newProduct);
             try {
+                console.log({products: this.products})
                 await fs.promises.writeFile(this.path, JSON.stringify(this.products), 'utf8')
                 return newProduct;
             } catch (error) {
-                throw new Error('Se produjo un error al imprimir los datos desde el Json')
+                console.error(error.message) // con este mensaje se puede ver el error en consola "no such file or directory"
+                // y ahi note que this.path tenia el valor incorrecto.
+                throw new Error('Se produjo un error al imprimir los datos desde el Json');
             }
         }
 
