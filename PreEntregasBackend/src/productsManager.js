@@ -4,7 +4,7 @@ export default class ProductManager {
     constructor() {
         this.products = [];
         this.path = "./assets/products.json";
-        
+                
     }
 
     //retorna los prod
@@ -32,12 +32,8 @@ export default class ProductManager {
 
     //generador de id
     generateId() {
-        let id = this.products.length;
-        if (id === 0) {
-            return Number(1); 
-        } else{        
-            return Number(id + 1);
-        }
+        let id = this.products.length > 0 ? this.products[this.products.length - 1].id + 1 : 1;
+        return id;       
         
     }
     
@@ -89,8 +85,9 @@ export default class ProductManager {
             this.products.push(newProduct);
             try {
                 await fs.promises.writeFile(this.path, JSON.stringify(this.products), 'utf8')
-                return newProduct;
+                //
             } catch (error) {
+                console.error(error.message);
                 throw new Error('Se produjo un error al imprimir los datos desde el Json')
             }
         }

@@ -4,7 +4,7 @@ const manager = new ProductManager
 
 //agregando productos al json
 try {
-    const product1 = manager.addProduct({
+    await manager.addProduct({        
         title: "Remera",
         description: "Remera 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
         price: 1500,
@@ -13,11 +13,12 @@ try {
         stock: 20
     });
 } catch (error) {
-    throw new Error('Se produjo al cargar el producto')
+    console.log(error);
+    //throw new Error('Se produjo al cargar el producto', error);
 }
 
 try {
-    const product2 = manager.addProduct({
+    await manager.addProduct({
         title: "Pantalon",
         description: "Pantalo de Gabardina \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
         price: 2500,
@@ -30,7 +31,7 @@ try {
 }
     
 try {
-    const product3 = manager.addProduct({
+    await manager.addProduct({
         title: "Remera",
         description: "Remera 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
         price: 1500,
@@ -43,7 +44,7 @@ try {
 }
 
 try {
-    const product3 = manager.addProduct({
+    await manager.addProduct({
         title: "buso",
         description: "buso 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
         price: 2500,
@@ -56,53 +57,45 @@ try {
 }
 
 // utilizando updateProduct en prod 2 y 4 
-(async () => {
-    try {
-        await manager.getProducts();
-        const updatedProduct = await manager.updateProduct(2, { price: 8500 });
-        return `Producto actualizado: ${updatedProduct}`;
-    } catch (error) {
-        throw new Error('la actualizacion del producto no se pudo realizar')
-    }
-})();
+try {
+    const id = 2
+    let product = manager.getProductById(id);
+    const updatedProduct = manager.updateProduct(id, { price: 8500 });
+    console.log(`Producto actualizado: ${updatedProduct}`);
+} catch (error) {
+    throw new Error(`la actualizacion del producto no se pudo realizar:  ${error.message}`)
+}
 
-(async () => {
-    try {
-        await manager.getProducts();
-        const updatedProduct = await manager.updateProduct(4, { stock: 10 });
-        return `Producto actualizado: ${updatedProduct}`;
-    } catch (error) {
-        //throw new Error('la actualizacion del producto no se pudo realizar')
-        console.log(error)
-    }
-})();
+try {
+    const id = 4
+    let product = manager.getProductById(id);
+    const updatedProduct = manager.updateProduct(id, { price: 8500 });
+    console.log(`Producto actualizado: ${updatedProduct}`);
+} catch (error) {
+    throw new Error(`la actualizacion del producto no se pudo realizar:  ${error.message}`)
+}
+
 
 //utilizando getProductById
-(async () => {
-    try {
-        const product = manager.getProductById(2);
-        return `El producto solicitado es el siguiente: ${product}`
-    } catch (error) {
-        //throw new Error('El producto solicitado no existe')
-        console.log(error)
-    };
-})();
+try {
+    const product = manager.getProductById(2);
+    console.log (`El producto solicitado es el siguiente: ${product}`)
+} catch (error) {
+    throw new Error('El producto solicitado no existe')
+};
 
-(async () => {
-    try {
-        const product = manager.getProductById(4);        
-        return `El producto solicitado es el siguiente: ${product}`
-    } catch (error) {
-        throw new Error('El producto solicitado no existe')
-    };
-})();
+try {
+    const product = manager.getProductById(4);        
+    console.log(`El producto solicitado es el siguiente: ${product}`)
+} catch (error) {
+    throw new Error('El producto solicitado no existe')
+};
 
 // utilizando deleteProduct
-(async () => {  
-    try {
-        const deletedProduct = manager.deleteProduct(2);
-        return `Producto eliminado: ${deletedProduct}`;
-    } catch (error) {
-        throw new Error('No se pudo eliminar el producto solicitado')
-    }
-})();
+
+try {
+    const deletedProduct = await manager.deleteProduct(2);
+    console.log(`Producto eliminado: ${deletedProduct}`);
+} catch (error) {
+    throw new Error('No se pudo eliminar el producto solicitado')
+}
