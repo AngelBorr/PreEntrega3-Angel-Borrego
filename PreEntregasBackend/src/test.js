@@ -10,7 +10,9 @@ try {
         price: 1500,
         thumbnail: "Sin imagen",
         code: "R-123",
-        stock: 20
+        stock: 20,
+        category: 'Indumentaria',
+        status: true
     });
 } catch (error) {
     console.log(error);
@@ -24,7 +26,9 @@ try {
         price: 2500,
         thumbnail: "Sin imagen",
         code: "R-124",
-        stock: 30
+        stock: 30,
+        category: 'Indumentaria',
+        status: true
     });
 } catch (error) {
     throw new Error('Se produjo al cargar el producto')
@@ -37,7 +41,9 @@ try {
         price: 1500,
         thumbnail: "Sin imagen",
         code: "R-125",
-        stock: 30
+        stock: 30,
+        category: 'Indumentaria',
+        status: true
     });
 } catch (error) {
     throw new Error('Se produjo un error al cargar el producto')
@@ -50,7 +56,9 @@ try {
         price: 2500,
         thumbnail: "Sin imagen",
         code: "R-126",
-        stock: 30
+        stock: 30,
+        category: 'Indumentaria',
+        status: true
     });
 } catch (error) {
     throw new Error('Se produjo un error al cargar el producto')

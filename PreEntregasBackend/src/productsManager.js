@@ -38,7 +38,7 @@ export default class ProductManager {
     }
     
     //agrega los prod a products y muestra por consola el code existente
-    async addProduct({title, description, price, thumbnail, code, stock}) {
+    async addProduct({title, description, price, thumbnail, code, stock, status, category}) {
         //validaciones de propiedades
         if (this.products.some(product => product.code === code)) {
             let error = `El code ingresado ya existe en otro Producto: (${code})`;
@@ -71,21 +71,32 @@ export default class ProductManager {
             throw new Error("El stock debe ser un número entero no negativo.");
         }
 
+        if (typeof category !== "string" || category.trim() === "") {
+            throw new Error("No se pudo agregar el producto, falta la categoria del producto.")
+        } 
+
+        if (typeof status !== "boolean" || category.trim() === "") {
+            throw new Error("No se pudo agregar el producto, falta el status del producto que debe ser un booleano (true o false).")
+        }
+
         const newProduct = {
             id: this.generateId(),
             title: title.trim(),
             description: description.trim(),
             price: parsedPrice,
-            thumbnail: thumbnail.trim(),
+            thumbnail: thumbnail.trim(),            
             code: code.trim(),
-            stock: parsedStock
+            stock: parsedStock,
+            category: category,
+            status: status
+
         };
 
         if(newProduct){
             this.products.push(newProduct);
             try {
                 await fs.promises.writeFile(this.path, JSON.stringify(this.products), 'utf8')
-                //
+                
             } catch (error) {
                 console.error(error.message);
                 throw new Error('Se produjo un error al imprimir los datos desde el Json')

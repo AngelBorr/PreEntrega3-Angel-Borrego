@@ -1,12 +1,14 @@
 [
-    {
+  {
     "id": 1,
     "title": "Remera",
     "description": "Remera 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
     "price": 1500,
     "thumbnail": "Sin imagen",
     "code": "R-123",
-    "stock": 20
+    "stock": 20,
+    "category": "Indumentaria",
+    "status": true
   },
   {
     "id": 3,
@@ -15,7 +17,9 @@
     "price": 1500,
     "thumbnail": "Sin imagen",
     "code": "R-125",
-    "stock": 30
+    "stock": 30,
+    "category": "Indumentaria",
+    "status": true
   },
   {
     "id": 4,
@@ -24,6 +28,8 @@
     "price": 8500,
     "thumbnail": "Sin imagen",
     "code": "R-126",
-    "stock": 30
+    "stock": 30,
+    "category": "Indumentaria",
+    "status": true
   }
 ]
