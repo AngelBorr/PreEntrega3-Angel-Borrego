@@ -1,6 +1,6 @@
-import Carts from "./carts.js";
+import CartsManager from "./cartsManager.js";
 
-const carts = new Carts;
+const carts = new CartsManager;
 
 //agregando produtc al carrito
 try {

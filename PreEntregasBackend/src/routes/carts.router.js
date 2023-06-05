@@ -1,40 +1,62 @@
 import { Router } from "express";
-import Carts from "../carts.js";
+import CartsManager from "../cartsManager.js";
 import ProductManager from "../productsManager.js";
 
-const manager = new ProductManager;
 
+const manager = new ProductManager;
+const carts = new CartsManager;
 const router = Router ();
-const carts = new Carts;
-//muestra cada carrito
+
+
+//ruta post / donde debe crear un carrito con id y products
+router.post('/', async (req, res) => {
+    try {
+        const cartsLenght = carts.productsCarts.length;
+        const newCart = await carts.addCarts();
+        const cartsInCarts = await carts.getProductsCarts();
+        
+        if(cartsInCarts.length > cartsLenght){
+            return res.send('se ha agregado exitosamente un nuevo carrito');
+        }else{
+            return res.status(404).send(`No pudo agregrarse con exito un nuevo carrito`);
+        }
+        
+    } catch (error) {
+        return res.status(500).send(`Error al intentar crear el carrito`, error);
+    }
+})
+
+//muestra cada carrito con sus productos correspondientes
 router.get('/:id', async (req, res) => {
     try {
-        const productId = Number(req.params.id);
-        const product = await carts.getProductsByIdCarts(productId);        
-        if (product) {
-        return res.send(product);
+        const cartId = Number(req.params.id);
+        const cart = await carts.getByIdCarts(cartId);
+        
+        if (cart) {
+        return res.send(cart);
         } else {
-        return res.status(404).send('Producto no encontrado');
+        return res.status(404).send('Carrito no encontrado');
         }
     } catch (error) {
-        return res.status(500).send('Error al obtener el producto');
+        return res.status(500).send('Error al obtener el Carrito');
     } 
     
 });
 
-router.post('/:idCarts/:idProduct', async (req, res) => {
-    const idCarts = Number(req.params.idCarts);
-    const idProduct = Number(req.params.idProduct);
-    
+// ruta post/:idCart/:idProduct debe agregar un product al carrito solicitado
+router.post('/:idCart/product/:idProduct', (req, res) => {
     try {
-        const cart = await carts.getProductsByIdCarts(idCarts);
-        const product = await manager.getProductById(idProduct);
-        carts.addProductsCarts(cart.id, product.id);        
-        res.send({status: 'success'});
+        const idCart = req.params.idCart;
+        const idProduct = req.params.idProduct;
+
+        const newProductInCart = carts.addProductsCarts(idCart, idProduct);
+
+        console.log(newProductInCart);
+
+        res.send(newProductInCart); 
     } catch (error) {
-        return res.status(500).send('Error al obtener el producto para ingresarlo al carrito');
-    }  
-    
+        res.status(500).send('Error al agregar producto al carrito');
+    }    
     
 });
 

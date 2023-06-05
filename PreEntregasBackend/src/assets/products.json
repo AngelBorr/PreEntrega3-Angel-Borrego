@@ -1,35 +1,46 @@
 [
-  {
-    "id": 1,
-    "title": "Remera",
-    "description": "Remera 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
-    "price": 1500,
-    "thumbnail": "Sin imagen",
-    "code": "R-123",
-    "stock": 20,
-    "category": "Indumentaria",
-    "status": true
-  },
-  {
-    "id": 3,
-    "title": "Remera",
-    "description": "Remera 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
-    "price": 1500,
-    "thumbnail": "Sin imagen",
-    "code": "R-125",
-    "stock": 30,
-    "category": "Indumentaria",
-    "status": true
-  },
-  {
-    "id": 4,
-    "title": "buso",
-    "description": "buso 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
-    "price": 8500,
-    "thumbnail": "Sin imagen",
-    "code": "R-126",
-    "stock": 30,
-    "category": "Indumentaria",
-    "status": true
-  }
+    {
+        "id": 1,
+        "title": "campera",
+        "description": "campera 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
+        "price": 4500,
+        "thumbnail": "Sin imagen",
+        "code": "R-127",
+        "stock": 15,
+        "category": "Indumentaria",
+        "status": true
+    },
+    {
+        "id": 2,
+        "title": "pantalon",
+        "description": "pantalon 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
+        "price": 2500,
+        "thumbnail": "Sin imagen",
+        "code": "R-126",
+        "stock": 10,
+        "category": "Indumentaria",
+        "status": true
+    },
+    {
+        "id": 3,
+        "title": "remera",
+        "description": "remera 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
+        "price": 1500,
+        "thumbnail": "Sin imagen",
+        "code": "R-125",
+        "stock": 18,
+        "category": "Indumentaria",
+        "status": true
+    },
+    {
+        "id": 4,
+        "title": "buso",
+        "description": "buso 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
+        "price": 3500,
+        "thumbnail": "Sin imagen",
+        "code": "R-124",
+        "stock": 25,
+        "category": "Indumentaria",
+        "status": true
+    }
 ]
