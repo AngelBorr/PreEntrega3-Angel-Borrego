@@ -89,7 +89,7 @@ export default class CartsManager{
                         }
                         cart.products.push(newProducts)                        
                         await fs.promises.writeFile(this.pathCarts, JSON.stringify(this.productsCarts), 'utf8');
-                        console.log(`producto N° ${idProduct}, agregado al carrito N° ${idCart}`)
+                        return cart;
                     }else{  
                         const cartIndex = this.productsCarts.findIndex(prod => prod.id === idCart);
                         const cartInCarts = this.productsCarts[cartIndex];
