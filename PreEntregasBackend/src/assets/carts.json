@@ -1,15 +1,56 @@
 [
     {
-        "id": 2,
+        "id": 1,
         "products": [
+            {
+                "id": 2,
+                "title": "Pantalon",
+                "description": "Pantalo de Gabardina \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
+                "price": 8500,
+                "thumbnail": "Sin imagen",
+                "code": "R-124",
+                "stock": 30,
+                "category": "Indumentaria",
+                "status": true,
+                "quantity": 1
+            },
             {
                 "id": 4,
                 "title": "buso",
                 "description": "buso 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
-                "price": 3500,
+                "price": 8500,
                 "thumbnail": "Sin imagen",
-                "code": "R-124",
-                "stock": 25,
+                "code": "R-126",
+                "stock": 30,
+                "category": "Indumentaria",
+                "status": true,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "products": [
+            {
+                "id": 3,
+                "title": "Remera",
+                "description": "Remera 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
+                "price": 1500,
+                "thumbnail": "Sin imagen",
+                "code": "R-125",
+                "stock": 30,
+                "category": "Indumentaria",
+                "status": true,
+                "quantity": 1
+            },
+            {
+                "id": 5,
+                "title": "campera",
+                "description": "buso 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
+                "price": 2500,
+                "thumbnail": "Sin imagen",
+                "code": "R-130",
+                "stock": 30,
                 "category": "Indumentaria",
                 "status": true,
                 "quantity": 1
@@ -20,25 +61,13 @@
         "id": 3,
         "products": [
             {
-                "id": 1,
+                "id": 5,
                 "title": "campera",
-                "description": "campera 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
-                "price": 4500,
+                "description": "buso 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
+                "price": 2500,
                 "thumbnail": "Sin imagen",
-                "code": "R-127",
-                "stock": 15,
-                "category": "Indumentaria",
-                "status": true,
-                "quantity": 2
-            },
-            {
-                "id": 3,
-                "title": "remera",
-                "description": "remera 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
-                "price": 1500,
-                "thumbnail": "Sin imagen",
-                "code": "R-125",
-                "stock": 18,
+                "code": "R-130",
+                "stock": 30,
                 "category": "Indumentaria",
                 "status": true,
                 "quantity": 1
@@ -47,10 +76,10 @@
                 "id": 4,
                 "title": "buso",
                 "description": "buso 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
-                "price": 3500,
+                "price": 8500,
                 "thumbnail": "Sin imagen",
-                "code": "R-124",
-                "stock": 25,
+                "code": "R-126",
+                "stock": 30,
                 "category": "Indumentaria",
                 "status": true,
                 "quantity": 1
@@ -62,12 +91,12 @@
         "products": [
             {
                 "id": 1,
-                "title": "campera",
-                "description": "campera 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
-                "price": 4500,
+                "title": "Remera",
+                "description": "Remera 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
+                "price": 1500,
                 "thumbnail": "Sin imagen",
-                "code": "R-127",
-                "stock": 15,
+                "code": "R-123",
+                "stock": 20,
                 "category": "Indumentaria",
                 "status": true,
                 "quantity": 2

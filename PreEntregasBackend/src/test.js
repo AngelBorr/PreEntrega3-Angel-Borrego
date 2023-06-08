@@ -107,3 +107,32 @@ try {
 } catch (error) {
     throw new Error('No se pudo eliminar el producto solicitado')
 }
+
+try {
+    await manager.addProduct({
+        title: "campera",
+        description: "buso 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
+        price: 2500,
+        thumbnail: "Sin imagen",
+        code: "R-130",
+        stock: 30,
+        category: 'Indumentaria',
+        status: true
+    });
+} catch (error) {
+    throw new Error('Se produjo un error al cargar el producto')
+}
+try {
+    await manager.addProduct({
+        title: "pantalon",
+        description: "buso 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
+        price: 2500,
+        thumbnail: "Sin imagen",
+        code: "R-131",
+        stock: 30,
+        category: 'Indumentaria',
+        status: true
+    });
+} catch (error) {
+    throw new Error('Se produjo un error al cargar el producto')
+}

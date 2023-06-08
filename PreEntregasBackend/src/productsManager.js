@@ -40,6 +40,7 @@ export default class ProductManager {
     //agrega los prod a products y muestra por consola el code existente
     async addProduct({title, description, price, thumbnail, code, stock, status, category}) {
         //validaciones de propiedades
+        
         if (this.products.some(product => product.code === code)) {
             let error = `El code ingresado ya existe en otro Producto: (${code})`;
             return error;
@@ -47,15 +48,15 @@ export default class ProductManager {
         
         const parsedPrice = parseFloat(price);
         if (isNaN(parsedPrice) || parsedPrice <= 0) {
-            throw new Error("No se pudo agregar el producto, falta su precio y/o el formato no es el correcto. El precio debe ser un número positivo.");
+            throw new Error(`No se pudo agregar el producto, falta su precio y/o el formato no es el correcto. El precio debe ser un número positivo.${parsedPrice}`);
         }
 
         if (typeof title !== "string" || title.trim() === "") {
-            throw new Error("No se pudo agregar el producto, falta y/o existe producto con ese titulo");
+            throw new Error(`No se pudo agregar el producto, falta y/o existe producto con ese titulo, ${title}`);
         }
 
         if (typeof description !== "string" || description.trim() === "") {
-            throw new Error("No se pudo agregar el producto, falta su descripcion");
+            throw new Error(`No se pudo agregar el producto, falta su descripcion, ${description}`);
         }
 
         if (typeof thumbnail !== "string" || thumbnail.trim() === "") {
@@ -73,9 +74,11 @@ export default class ProductManager {
 
         if (typeof category !== "string" || category.trim() === "") {
             throw new Error("No se pudo agregar el producto, falta la categoria del producto.")
-        } 
+        }
 
-        if (typeof status !== "boolean" || category.trim() === "") {
+        const statusBoolean = Boolean(status);
+        
+        if (typeof statusBoolean !== "boolean") {
             throw new Error("No se pudo agregar el producto, falta el status del producto que debe ser un booleano (true o false).")
         }
 
@@ -88,12 +91,17 @@ export default class ProductManager {
             code: code.trim(),
             stock: parsedStock,
             category: category,
-            status: status
+            status: statusBoolean
 
         };
 
         if(newProduct){
+            //const productsInProduct = this.products
             this.products.push(newProduct);
+            /* this.products = [
+                ...productsInProduct,
+                newProduct
+            ]; */
             try {
                 await fs.promises.writeFile(this.path, JSON.stringify(this.products), 'utf8')
                 

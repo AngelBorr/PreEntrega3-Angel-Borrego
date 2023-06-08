@@ -65,14 +65,16 @@ export default class CartsManager{
 
     async addProductsCarts(idCart, idProduct){
         try {
-            //paso id de carts y recorro this.productsCarts
-            const cart = this.productsCarts.find(carts => carts.id === idCart)
             
-            if(cart){
-                //crear array carrito con id y products
+            const carts = await this.getProductsCarts();
+            const cartIndex = carts.findIndex(carts => Number(carts.id) === Number(idCart))
+            
+            if(cartIndex !== -1){
+                
                 try {
                     const product = await manager.getProductById(idProduct);
-                    const productInCart = cart.products.find(prod => prod.id === product.id);
+
+                    const productInCart = carts[cartIndex].products.find(prod => prod.id === product.id);
 
                     if(!productInCart){                        
                         const newProducts = {
@@ -86,28 +88,36 @@ export default class CartsManager{
                         category: product.category,
                         status: product.status,
                         quantity: 1                    
-                        }
-                        cart.products.push(newProducts)                        
+                        };
+                        
+                        carts[cartIndex].products.push(newProducts);
+
+                        this.productsCarts = carts                       
+                        
                         await fs.promises.writeFile(this.pathCarts, JSON.stringify(this.productsCarts), 'utf8');
-                        return cart;
+                        return this.productsCarts;
                     }else{  
-                        const cartIndex = this.productsCarts.findIndex(prod => prod.id === idCart);
-                        const cartInCarts = this.productsCarts[cartIndex];
-                        const productInCartIndex = cartInCarts.products.findIndex(prod => prod.id === product.id);
+                        const cartInCarts = carts[cartIndex];                        
+                        const productInCartIndex = cartInCarts.products.findIndex(prod => prod.id === idProduct);                        
                         const productInCartProduct = cartInCarts.products[productInCartIndex];
+                        
                         if(productInCartIndex !== -1){
-                            productInCartProduct.quantity += 1 
-                            
+                            productInCartProduct.quantity = productInCartProduct.quantity + 1;                            
+                            this.productsCarts = carts
+                            await fs.promises.writeFile(this.pathCarts, JSON.stringify(this.productsCarts), 'utf8');
+                            return this.productsCarts
                         }
                     }
 
                 } catch (error) {
                     throw new Error(`Se produjo un error al cargar el producto con el id: ${idProduct} al carrito con el id: ${idCart}`, error);
                 }
+            }else{
+                throw new Error(`El carrito con el id: (${idCart}) no existe, verifique los datos ingrersados`);
             }
 
         }catch (error) {
-            throw new Error(`Se produjo un error al cargar el carrito con el id: ${idCart}`, error);
+            throw new Error(`Se produjo un error al cargar el carrito con el id: ${idCart}`, error.message);
         }
         
 
@@ -150,6 +160,7 @@ export default class CartsManager{
         try {
             const data = await this.getProductsCarts();
             const cartIndex = data.findIndex(c => c.id === idCart);
+            
             if (cartIndex === -1) {
                 return `No se encontró ningún carrito con id: ${idCart}.`;
             } else {                
@@ -171,11 +182,9 @@ export default class CartsManager{
                     await fs.promises.writeFile(this.pathCarts, JSON.stringify(this.productsCarts, null, idCart));        
                     return this.productsCarts[cartInCarts];
                 }else{
-                    console.log('estamos aca y mostramos')
+                    
                     data[cartIndex].products.splice(productInCartIndex, 1);
                     this.productsCarts = data;
-                    console.log('borrando',this.productsCarts)
-
                     await fs.promises.writeFile(this.pathCarts, JSON.stringify(this.productsCarts, null, 2));
 
                     return console.log(`se ha eliminado correctamente el products con id: (${idProduct}), del carrito id: (${idCart})`)

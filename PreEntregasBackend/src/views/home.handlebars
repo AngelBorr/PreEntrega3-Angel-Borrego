@@ -1,0 +1,32 @@
+<div class="containerProducts">
+    <h1>Lista de Productos</h1>
+    <table class='table table-striped'>
+        <thead>
+            <tr>
+                <th>IdProd</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Code</th>
+                <th>Stock</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+            <tr>
+                <td>{{this.id}}</td>
+                <td>{{this.title}}</td>
+                <td class="tdDescription">{{this.description}}</td>
+                <td>$ {{this.price}}</td>
+                <td>{{this.code}}</td>
+                <td>{{this.stock}}</td>
+                <td>{{this.category}}</td>
+                <td><button id={{this.id}} class="btn btn-danger" onClick="">Eliminar</button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+

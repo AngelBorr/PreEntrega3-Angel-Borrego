@@ -1,12 +1,49 @@
+.formAddProducts{
+    width: 50% !important;
+    height: 300px !important;
+}
+
+.formProduct {
+    height: 35px !important;
+}
+
+.formThumbnail{
+    height: 50px !important;
+    padding: 15px !important;
+}
+
+.divForm{
+    height: 70px !important;
+}
+tr{
+    text-align: center;
+}
+
+table tbody tr td{
+    border: 1px solid rgb(163, 157, 157);
+}
+
+table thead tr th{
+    background: rgb(236, 193, 112) !important;
+}
+
+.containerProducts{
+    padding: 15px !important;
+    width: 80%;    
+    margin-right: auto;
+    margin-left: auto;
+}
 .container {
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
+    display: flex !important;
+    justify-content: center !important;
+    padding: 15px !important;
+    width: 100%;    
     margin-right: auto;
     margin-left: auto;
 }
 
 .table {
+    border: 1px solid rgb(163, 157, 157);
     width: 100%;
     margin-bottom: 1rem;
     color: #212529;
@@ -17,6 +54,9 @@
     background-color: rgba(0, 0, 0, 0.05);
 }
 
+.tdDescription{
+    width: 550px;
+}
 .btn {
     display: inline-block;
     font-weight: 400;

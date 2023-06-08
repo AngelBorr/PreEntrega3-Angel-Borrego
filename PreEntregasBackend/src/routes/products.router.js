@@ -33,20 +33,23 @@ router.get('/:id', async (req, res) => {
 });
 
 // crear ruta post que debera agregar un producto con todos los campos (propiedades)
+//ahora la ruta post recibe el producto desde formAddProducts.handlebars
 
-router.post('/', async (req, res) => {    
+router.post('/', async (req, res) => {   
     try {
         const newProduct = req.body
-        await manager.addProduct(req.body);
+        
+        const product = await manager.addProduct(newProduct);
         const productInProducts = await manager.getProducts();
-        const productConfirm = productInProducts.find(p => p.code === newProduct.code)
+        
+        const productConfirm = productInProducts.find(p => p.code === product.code)
         if (productConfirm) {
-        return res.send(`${newProduct}, se ha agregado exitosamente`);
+        return res.send({status:"success"});
         } else {
-        return res.status(404).send(`El producto ${newProduct}, no pudo agregrarse con exito`);
+        return res.status(404).send(`El producto no pudo agregrarse con exito`);
         }
     } catch (error) {
-        return res.status(500).send(`Error al obtener el producto ${newProduct}, verifique los datos`);
+        return res.status(500).send(`Error al obtener el producto, verifique los datos`);
     }   
 });
 

@@ -1,5 +1,4 @@
 import { Router } from "express";
-import fs from "fs";
 import CartsManager from "../cartsManager.js";
 import ProductManager from "../productsManager.js";
 
@@ -51,9 +50,9 @@ router.post('/:idCart/product/:idProduct', async (req, res) => {
         const idCart = Number(req.params.idCart);
         const idProduct = Number(req.params.idProduct);
 
-        const newProductInCart = await carts.addProductsCarts(idCart, idProduct);
+        const newProductInCart = carts.addProductsCarts(idCart, idProduct);
         
-        res.status(200).send(newProductInCart);
+        res.status(200).send(`Producto con el id: (${idProduct}), agregado con exito`);
     } catch (error) {
         res.status(500).send('Error al agregar producto al carrito');
     }
