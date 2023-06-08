@@ -1,5 +1,5 @@
 .formAddProducts{
-    width: 50% !important;
+    width: 80% !important;
     height: 300px !important;
 }
 
@@ -29,11 +29,11 @@ table thead tr th{
 
 .containerProducts{
     padding: 15px !important;
-    width: 80%;    
+    width: 100%;    
     margin-right: auto;
     margin-left: auto;
 }
-.container {
+.containerForm {
     display: flex !important;
     justify-content: center !important;
     padding: 15px !important;
@@ -42,6 +42,13 @@ table thead tr th{
     margin-left: auto;
 }
 
+.container {
+    width: 90% !important;
+    margin-left: 40px !important;
+    margin-right: 40px !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+}
 .table {
     border: 1px solid rgb(163, 157, 157);
     width: 100%;

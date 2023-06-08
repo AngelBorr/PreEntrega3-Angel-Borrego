@@ -5,6 +5,7 @@ const manager = new ProductManager;
 
 const router = Router ();
 
+// vista estatica contiene la lista de productos
 router.get('/', async (req, res) =>{
     try {
         const products = await manager.getProducts();
@@ -24,8 +25,10 @@ router.get('/', async (req, res) =>{
     
 });
 
+// vista con formulario conectado a la ruta post de products.router.js
+//este formulario otorga el newProduct a req.body de la ruta post de products.router
 router.get('/addProducts', async (req, res) =>{
-    //este formulario otorga el newProduct a req.body de la ruta post de products.router
+    
     try {
         res.status(200).render('formAddProducts', {
                 style:"index.css",
@@ -38,5 +41,14 @@ router.get('/addProducts', async (req, res) =>{
     }   
     
 });
+
+//ruta handlebars con socket
+router.get('/realtimeproducts', (req, res) => {
+    res.render('realTimeProducts', {
+        style:"index.css",
+        styleBoostrap:"bootstrap.min.css",
+        title: "realTimeProducts"
+    });
+})
 
 export default router

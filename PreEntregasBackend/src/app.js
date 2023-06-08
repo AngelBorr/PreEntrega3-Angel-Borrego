@@ -5,25 +5,41 @@ import handlerbars from 'express-handlebars';
 import __dirname from './utils.js'
 import CartsManager from './cartsManager.js';
 import ProductManager from './productsManager.js';
-import viewsRouter from './routes/views.router.js'
+import viewsRouter from './routes/views.router.js';
+import { Server } from 'socket.io';
 
 const carts = new CartsManager;
 const manager = new ProductManager;
 
 const app = express();
 
+//configuracion plantillas y handlebars
 app.engine('handlebars', handlerbars.engine());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
 app.use(express.static(__dirname + '/public'));
+app.use('/', viewsRouter);
 
+
+
+//configuracion express
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
-app.use('/', viewsRouter);
+//rutas
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
 
-const server = app.listen(8080, () => {
+//server en puerto 8080
+const httpServer = app.listen(8080, () => {
     console.log('servidor escuchando en el puerto 8080')
 })
+
+//para poder utilizar socket hay que declarar el entorno http siempre antes de llamr a socket
+//creando un servidor con socket
+const socketServer = new Server(httpServer)
+
+//servidor con socket
+socketServer.on('connection', socket =>{
+    console.log(socket)
+});
