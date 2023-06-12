@@ -42,13 +42,18 @@ router.get('/addProducts', async (req, res) =>{
     
 });
 
-//ruta handlebars con socket
-router.get('/realtimeproducts', (req, res) => {
-    res.render('realTimeProducts', {
-        style:"index.css",
-        styleBoostrap:"bootstrap.min.css",
-        title: "realTimeProducts"
-    });
+//ruta handlebars con socket contiene planilla que nuestra en tiempo real los productos
+router.get('/realtimeproducts', async (req, res) => {
+    try {
+        res.status(200).render('realTimeProducts', {
+                style:"index.css",
+                styleBoostrap:"bootstrap.min.css",
+                title: "realTimeProducts"
+            });        
+        
+    } catch (error) {
+        return res.status(500).render('Error al obtener los producto desde products.json');
+    } 
 })
 
 export default router

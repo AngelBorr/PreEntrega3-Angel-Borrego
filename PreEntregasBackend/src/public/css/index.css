@@ -46,8 +46,8 @@ table thead tr th{
     width: 90% !important;
     margin-left: 40px !important;
     margin-right: 40px !important;
-    display: grid !important;
-    grid-template-columns: 1fr 1fr;
+    display: flex !important;
+    justify-content: center;
 }
 .table {
     border: 1px solid rgb(163, 157, 157);

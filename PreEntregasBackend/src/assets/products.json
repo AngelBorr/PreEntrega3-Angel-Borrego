@@ -11,21 +11,10 @@
         "status": true
     },
     {
-        "id": 2,
-        "title": "Pantalon",
-        "description": "Pantalo de Gabardina \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
-        "price": 8500,
-        "thumbnail": "Sin imagen",
-        "code": "R-124",
-        "stock": 30,
-        "category": "Indumentaria",
-        "status": true
-    },
-    {
         "id": 3,
-        "title": "Remera",
-        "description": "Remera 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
-        "price": 1500,
+        "title": "Sweater",
+        "description": "100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
+        "price": 3000,
         "thumbnail": "Sin imagen",
         "code": "R-125",
         "stock": 30,

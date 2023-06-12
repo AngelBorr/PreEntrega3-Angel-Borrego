@@ -1,11 +1,11 @@
 import ProductManager from '../productsManager.js';
 import { Router } from 'express';
 import fs from 'fs';
+import { updateProducts } from '../public/js/socket.js';
 
 const router = Router();
 
 const manager = new ProductManager;
-//const productsData = manager.products;
 
 //traer todos los products
 router.get('/', async (req, res) => {
@@ -17,6 +17,7 @@ router.get('/', async (req, res) => {
     }    
     
 });
+
 // debera traer solamente el producto solicitado con el id del producto
 router.get('/:id', async (req, res) => {    
     try {
@@ -43,10 +44,12 @@ router.post('/', async (req, res) => {
         const productInProducts = await manager.getProducts();
         
         const productConfirm = productInProducts.find(p => p.code === product.code)
+        
         if (productConfirm) {
-        return res.send({status:"success"});
+            updateProducts(req.app.get('io'));
+            return res.send({status:"success"});
         } else {
-        return res.status(404).send(`El producto no pudo agregrarse con exito`);
+            return res.status(404).send(`El producto no pudo agregrarse con exito`);
         }
     } catch (error) {
         return res.status(500).send(`Error al obtener el producto, verifique los datos`);
@@ -63,7 +66,7 @@ router.put('/:id', async (req, res) => {
         const productsData = await manager.getProducts();
         
         let product = productsData.find(p => Number(p.id) === productId);
-                        
+        
         if (!product) {
             return res.status(404).send('Producto no encontrado y/o inexistente');
                     
@@ -82,7 +85,8 @@ router.put('/:id', async (req, res) => {
                     ...product
                 };
 
-                await fs.promises.writeFile(manager.path, JSON.stringify(productsData, 'utf8'));        
+                await fs.promises.writeFile(manager.path, JSON.stringify(productsData, 'utf8'));
+                updateProducts(req.app.get('io'));       
                 res.send({status: "success"})
             } catch (error) {
                 throw new Error(`Error al actualizar el producto: ${error.message}`);
@@ -93,15 +97,18 @@ router.put('/:id', async (req, res) => {
         return res.status(500).send('Error al obtener el producto desde la base de datos');
     }   
 });
+
 //debera eliminar el producto con el id indicado
 router.delete('/:id', async (req, res) => {    
     try {
         const productId = Number(req.params.id);
         const product = await manager.deleteProduct(productId);        
+        
         if (product) {
-        return res.send(`${product}, eliminado correctamente`);
+            updateProducts(req.app.get('io'));
+            return res.send(`${product}, eliminado correctamente`);
         } else {
-        return res.status(404).send('Producto no encontrado');
+            return res.status(404).send('Producto no encontrado');
         }
     } catch (error) {
         return res.status(500).send('Error al borrar el producto');

@@ -95,13 +95,9 @@ export default class ProductManager {
 
         };
 
-        if(newProduct){
-            //const productsInProduct = this.products
+        if(newProduct){            
             this.products.push(newProduct);
-            /* this.products = [
-                ...productsInProduct,
-                newProduct
-            ]; */
+            
             try {
                 await fs.promises.writeFile(this.path, JSON.stringify(this.products), 'utf8')
                 

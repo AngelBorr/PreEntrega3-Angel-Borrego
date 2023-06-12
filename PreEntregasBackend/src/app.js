@@ -7,6 +7,7 @@ import CartsManager from './cartsManager.js';
 import ProductManager from './productsManager.js';
 import viewsRouter from './routes/views.router.js';
 import { Server } from 'socket.io';
+import { updateProducts } from './public/js/socket.js';
 
 const carts = new CartsManager;
 const manager = new ProductManager;
@@ -37,9 +38,13 @@ const httpServer = app.listen(8080, () => {
 
 //para poder utilizar socket hay que declarar el entorno http siempre antes de llamr a socket
 //creando un servidor con socket
-const socketServer = new Server(httpServer)
+const io = new Server(httpServer)
+
+app.set('io', io);
 
 //servidor con socket
-socketServer.on('connection', socket =>{
-    console.log(socket)
+io.on('connection', socket =>{
+    console.log("Nuevo cliente conectado", socket.id);
+    updateProducts(io)
+    
 });
