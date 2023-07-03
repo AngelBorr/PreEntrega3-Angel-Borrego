@@ -8,6 +8,7 @@ import ProductManager from './productsManager.js';
 import viewsRouter from './routes/views.router.js';
 import { Server } from 'socket.io';
 import { updateProducts } from './public/js/socket.js';
+import mongoose from 'mongoose';
 
 const carts = new CartsManager;
 const manager = new ProductManager;
@@ -36,6 +37,12 @@ const httpServer = app.listen(8080, () => {
     console.log('servidor escuchando en el puerto 8080')
 })
 
+//conection a mongoose server
+
+const rutaMongo = "mongodb+srv://angelBorrego:angelBorrego@cluster1.fdpxvdz.mongodb.net/products?retryWrites=true&w=majority";
+//const connection = mongoose.connect(rutaMongo);
+mongoose.connect(rutaMongo).then(() => console.log('conectado a mongo')).catch((err) => {console.error(err)});
+//connection.then(() => console.log('conectado a mongo')).catch((err) => {console.error(err)});
 //para poder utilizar socket hay que declarar el entorno http siempre antes de llamr a socket
 //creando un servidor con socket
 const io = new Server(httpServer)

@@ -19,7 +19,7 @@ try {
     //throw new Error('Se produjo al cargar el producto', error);
 }
 
-try {
+/* try {
     await manager.addProduct({
         title: "Pantalon",
         description: "Pantalo de Gabardina \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
@@ -136,3 +136,4 @@ try {
 } catch (error) {
     throw new Error('Se produjo un error al cargar el producto')
 }
+ */

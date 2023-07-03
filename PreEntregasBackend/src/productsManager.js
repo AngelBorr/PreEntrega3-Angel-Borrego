@@ -1,9 +1,12 @@
 import fs from 'fs'
+import productsModel from './models/products.models.js';
 
-export default class ProductManager {  
+export default class ProductManager {
+    productsModel; 
     constructor() {
-        this.products = [];
-        this.path = "./assets/products.json";
+        this.productsModel = productsModel
+        /* this.products = [];
+        this.path = "./assets/products.json"; */
                 
     }
 
@@ -11,15 +14,19 @@ export default class ProductManager {
     async getProducts() {
         const getData = async () => {
             try {
-                const data = await fs.promises.readFile(this.path, 'utf8');
+                console.log('estas aca')
+                const data = await productsModel.find({})
+                //const data = await fs.promises.readFile(this.path, 'utf8');
                 return JSON.parse(data)
             } catch (error) {
-                try {
+                /* try {
                     await fs.promises.writeFile(this.path, '[]');
                     return []
                 } catch (error) {
                     throw new Error('Se produjo un error al mostrar los datos desde el Json');
-                }
+                } */
+
+                console.log(error.message)
                 
             }
         }
@@ -38,76 +45,15 @@ export default class ProductManager {
     }
     
     //agrega los prod a products y muestra por consola el code existente
-    async addProduct({title, description, price, thumbnail, code, stock, status, category}) {
-        //validaciones de propiedades
+    async addProduct(bodyProduct){//{title, description, price, thumbnail, code, stock, status, category}) {
         
-        if (this.products.some(product => product.code === code)) {
-            let error = `El code ingresado ya existe en otro Producto: (${code})`;
-            return error;
-        }       
-        
-        const parsedPrice = parseFloat(price);
-        if (isNaN(parsedPrice) || parsedPrice <= 0) {
-            throw new Error(`No se pudo agregar el producto, falta su precio y/o el formato no es el correcto. El precio debe ser un número positivo.${parsedPrice}`);
-        }
-
-        if (typeof title !== "string" || title.trim() === "") {
-            throw new Error(`No se pudo agregar el producto, falta y/o existe producto con ese titulo, ${title}`);
-        }
-
-        if (typeof description !== "string" || description.trim() === "") {
-            throw new Error(`No se pudo agregar el producto, falta su descripcion, ${description}`);
-        }
-
-        if (typeof thumbnail !== "string" || thumbnail.trim() === "") {
-            throw new Error("No se pudo agregar el producto, falta una imagen.");
-        }
-
-        if (typeof code !== "string" || code.trim() === "") {
-            throw new Error("No se pudo agregar el producto, falta codigo producto.");
-        }
-
-        const parsedStock = parseInt(stock);
-        if (isNaN(parsedStock) || parsedStock < 0) {
-            throw new Error("El stock debe ser un número entero no negativo.");
-        }
-
-        if (typeof category !== "string" || category.trim() === "") {
-            throw new Error("No se pudo agregar el producto, falta la categoria del producto.")
-        }
-
-        const statusBoolean = Boolean(status);
-        
-        if (typeof statusBoolean !== "boolean") {
-            throw new Error("No se pudo agregar el producto, falta el status del producto que debe ser un booleano (true o false).")
-        }
-
-        const newProduct = {
-            id: this.generateId(),
-            title: title.trim(),
-            description: description.trim(),
-            price: parsedPrice,
-            thumbnail: thumbnail.trim(),            
-            code: code.trim(),
-            stock: parsedStock,
-            category: category,
-            status: statusBoolean
-
-        };
-
-        if(newProduct){            
-            this.products.push(newProduct);
-            
-            try {
-                await fs.promises.writeFile(this.path, JSON.stringify(this.products), 'utf8')
-                
-            } catch (error) {
-                console.error(error.message);
-                throw new Error('Se produjo un error al imprimir los datos desde el Json')
-            }
-        }
-
-        return newProduct;          
+        try {
+            const newProduct = await productsModel.create(bodyProduct)
+            console.log(newProduct)
+            return newProduct; 
+        } catch (error) {
+            console.log('error al crear un nuevo producto '+ error)
+        }                 
         
     }
 
