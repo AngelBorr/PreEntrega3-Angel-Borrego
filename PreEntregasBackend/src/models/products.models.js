@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const productsCollection = 'products';
 
-const productsSchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
     title:{
         type: String,
         required: true,
@@ -17,7 +17,7 @@ const productsSchema = new mongoose.Schema({
     },
     thumbnail:{
         type: String, // por ahora string mas adelante file
-        //reqired: true,
+        required: true,
     },
     code:{
         type: String,
@@ -40,6 +40,6 @@ const productsSchema = new mongoose.Schema({
 
 });
 
-const productsModel = mongoose.model(productsCollection, productsSchema);
+const productsModel = mongoose.model(productsCollection, productSchema);
 
 export default productsModel

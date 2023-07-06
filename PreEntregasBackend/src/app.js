@@ -3,15 +3,11 @@ import productsRouter from './routes/products.router.js';
 import cartsRouter from './routes/carts.router.js';
 import handlerbars from 'express-handlebars';
 import __dirname from './utils.js'
-import CartsManager from './cartsManager.js';
-import ProductManager from './productsManager.js';
 import viewsRouter from './routes/views.router.js';
 import { Server } from 'socket.io';
 import { updateProducts } from './public/js/socket.js';
 import mongoose from 'mongoose';
-
-const carts = new CartsManager;
-const manager = new ProductManager;
+import displayRoutes from "express-routemap";
 
 const app = express();
 
@@ -34,17 +30,22 @@ app.use('/api/carts', cartsRouter);
 
 //server en puerto 8080
 const httpServer = app.listen(8080, () => {
+    displayRoutes(app);
     console.log('servidor escuchando en el puerto 8080')
 })
 
 //conection a mongoose server
+const USER_MONGO = "angel3";
+const PASS_MONGO = "FPJQI2hsDZFwif90";
+const DB_NAME = "Ecommerce";
 
-const rutaMongo = "mongodb+srv://angelBorrego:angelBorrego@cluster1.fdpxvdz.mongodb.net/products?retryWrites=true&w=majority";
-//const connection = mongoose.connect(rutaMongo);
-mongoose.connect(rutaMongo).then(() => console.log('conectado a mongo')).catch((err) => {console.error(err)});
-//connection.then(() => console.log('conectado a mongo')).catch((err) => {console.error(err)});
-//para poder utilizar socket hay que declarar el entorno http siempre antes de llamr a socket
-//creando un servidor con socket
+const rutaMongo = `mongodb+srv://${USER_MONGO}:${PASS_MONGO}@cluster0.wd5qrnn.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`;
+
+mongoose.connect(rutaMongo, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => console.log('conectado a mongo')).catch((err) => {console.error(err)});
+
 const io = new Server(httpServer)
 
 app.set('io', io);

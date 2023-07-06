@@ -9,6 +9,7 @@ const router = Router ();
 router.get('/', async (req, res) =>{
     try {
         const products = await manager.getProducts();
+        
         if(!products){
             return res.status(404).render("El listado de productos esta vacio.");
         }else{

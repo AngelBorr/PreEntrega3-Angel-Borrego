@@ -1,9 +1,20 @@
+import productsModel from "../models/products.models.js";
 import ProductManager from "../productsManager.js";
 
 const manager = new ProductManager
 
 //agregando productos al json
 try {
+    const product = {        
+        title: "Remera",
+        description: "Remera 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
+        price: 1500,
+        thumbnail: "Sin imagen",
+        code: "R-123",
+        stock: 20,
+        category: 'Indumentaria',
+        status: true
+    }
     await manager.addProduct({        
         title: "Remera",
         description: "Remera 100% algodon \n colores: Blanco, Negro, Azul y Amarillo \n Talles: XXL, XL, L, M y S",
