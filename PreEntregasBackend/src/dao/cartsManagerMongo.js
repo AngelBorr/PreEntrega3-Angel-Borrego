@@ -1,5 +1,5 @@
-import cartsModel from './models/carts.models.js'
-import ProductManager from './productsManager.js';
+import cartsModel from '../dao/models/carts.models.js'
+import ProductManager from '../dao/productsManager.js';
 
 const manager = new ProductManager
 

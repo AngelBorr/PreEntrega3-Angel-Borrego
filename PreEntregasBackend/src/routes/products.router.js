@@ -1,4 +1,4 @@
-import ProductManager from '../productsManager.js';
+import ProductManager from '../dao/productsManager.js';
 import { Router } from 'express';
 import { updateProducts } from '../public/js/socket.js';
 

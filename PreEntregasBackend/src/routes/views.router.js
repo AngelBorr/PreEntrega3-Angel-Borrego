@@ -1,4 +1,4 @@
-import ProductManager from '../productsManager.js';
+import ProductManager from '../dao/productsManager.js';
 import { Router } from 'express';
 
 const manager = new ProductManager;
@@ -55,6 +55,14 @@ router.get('/realtimeproducts', async (req, res) => {
     } catch (error) {
         return res.status(500).render('Error al obtener los producto desde products.json');
     } 
+})
+
+router.get('/chat', (req, res) => {
+    try {
+        res.status(200).render('chat')
+    } catch (error) {
+        return res.status(500).render('Error al obtener los messages desde la base de datos');
+    }
 })
 
 export default router

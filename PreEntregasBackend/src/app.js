@@ -5,9 +5,10 @@ import handlerbars from 'express-handlebars';
 import __dirname from './utils.js'
 import viewsRouter from './routes/views.router.js';
 import { Server } from 'socket.io';
-import { updateProducts } from './public/js/socket.js';
+import { chatSocket, updateProducts } from './public/js/socket.js';
 import mongoose from 'mongoose';
 import displayRoutes from "express-routemap";
+import chatRouter from './routes/chat.router.js'
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(express.urlencoded({ extended: true }))
 //rutas
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
+app.use('/api/chat', chatRouter);
 
 //server en puerto 8080
 const httpServer = app.listen(8080, () => {
@@ -50,9 +52,13 @@ const io = new Server(httpServer)
 
 app.set('io', io);
 
+//base de datos message
+const messages = []
+
 //servidor con socket
 io.on('connection', socket =>{
     console.log("Nuevo cliente conectado", socket.id);
-    updateProducts(io)
+    updateProducts(io);
+    chatSocket(socket, io)   
     
 });
