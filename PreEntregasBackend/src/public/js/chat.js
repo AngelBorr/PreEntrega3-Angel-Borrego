@@ -37,10 +37,11 @@ chatbox.addEventListener('keyup', e => {
     }
 })
 
-socket.on('messageLogs', data => {
+socket.on('messageLogs', (data) => {
     if(!user){
         return
     }
+    console.log('1', data)
     let log = document.getElementById('messageLogs');
     let messages = '';
     data.forEach(message => {

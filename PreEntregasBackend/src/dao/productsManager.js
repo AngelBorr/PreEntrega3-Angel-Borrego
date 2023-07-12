@@ -8,11 +8,57 @@ class ProductManager {
     }
 
     //retorna los prod
-    async getProducts() {
+    async getProducts(limit = 5, page = 1, sort, category) {
         const getData = async () => {
-            try {
-                const data = await productsModel.find({})                
-                return data
+            try { 
+                let data = productsModel.find();                
+                
+                if(sort){
+                    if(sort === 'asc'){
+                        data = data.sort({price:1});                        
+                    } else if (sort === 'desc'){
+                        data = data.sort({price:-1});
+                    } else {
+                        throw new Error('la opcion ingresada es incorrecta debe ser "asc" o "desc"')
+                    }                    
+                }
+                console.log('1', category)
+                if(category){
+                    if(category === 'indumentaria'){
+                        productsModel.aggregate({ $match: {category: 'indumentaria'} },
+                        { $project: { title: 1, description: 1, price: 1, thumbnail: 1, code: 1, stock: 1, status: 1, category: 1 } }
+                        ).exec().then(function(result) {
+                            data = result
+                            return data
+                        }).catch(function(err) {
+                            console.log(err);
+                        });
+                        
+                    }else if(category === 'accesorios'){
+                        await productsModel.aggregate([{ $match: {category: 'accesorios'} },
+                        { $project: { title: 1, description: 1, price: 1, thumbnail: 1, code: 1, stock: 1, status: 1, category: 1 } }]
+                        ).exec().then(function(result) {
+                            data = result
+                            return data
+                        }).catch(function(err) {
+                            console.log(err);
+                        });
+                                                
+                    }
+                }
+                console.log('2', data)
+                
+                const products = await productsModel.paginate(data, {
+                    lean:true,
+                    limit: parseInt(limit),
+                    page: parseInt(page),
+                    customLabels: {
+                        docs: 'products',
+                        totalDocs: 'totalProducts',
+                    }
+                })
+                console.log('3', products)                
+                return products
             } catch (error) {
                 console.log(error.message)                
             }

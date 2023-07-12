@@ -35,27 +35,21 @@ router.get('/:cid', async (req, res) => {
         }
     } catch (error) {
         return res.status(500).json('Error al obtener el Carrito');
-    } 
-    
+    }    
 });
 
 // ruta post/:idCart/:idProduct debe agregar un product al carrito solicitado
 router.post('/:cid/product/:pid', async (req, res) => {
     try {
-        //paso id de carts y recorro this.productsCarts
         const idCart = req.params.cid;
         const idProduct = req.params.pid;
 
-        const newProductInCart = carts.addProductsCart(idCart, idProduct);
+        const newProductInCart = await carts.addProductsCart(idCart, idProduct);
 
-        console.log(idCart)
-        console.log(idProduct)
-        
         res.status(200).json(`Producto con el id: (${idProduct}), agregado con exito`);
     } catch (error) {
         res.status(500).json('Error al agregar producto al carrito');
-    }
-    
+    }    
 });
 
 router.delete('/:cid', async (req, res) => {
@@ -77,7 +71,7 @@ router.delete('/:cid/product/:pid', async (req, res) => {
         const idCart = req.params.cid;
         const idProduct = req.params.pid;
         const cartDelete = await carts.deleteProductInCart(idCart, idProduct)
-        console.log('1', idCart, idProduct)
+        
         if (cartDelete) {            
             return res.json(`se ha eliminado correctamente el producto con id: ${idProduct}, del carrito con el id: ${idCart}`);
         } else {

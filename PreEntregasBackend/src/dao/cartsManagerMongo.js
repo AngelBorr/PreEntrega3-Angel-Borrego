@@ -23,7 +23,7 @@ class CartsManager{
 
     async getCartById(id){
         try {
-            const data = await this.cartsModel.findOne({_id:id});            
+            const data = await this.cartsModel.findOne({_id:id}).lean();            
             if(!data){
                 return `No se ha encontrado carritos con este id:(${id}), verifique que los datos ingresados sean los correctos y vuelve a intentarlo`;
             }
@@ -68,7 +68,7 @@ class CartsManager{
             } else {
                 cart.products.push({ product: idProduct, quantity: 1 });
             }
-            await cart.save();
+            await cart.save();            
             return cart;
         } catch (error) {
             throw new Error(`Se produjo un error al cargar el carrito con el id: ${idCart}`, error.message);
@@ -87,24 +87,26 @@ class CartsManager{
     async deleteProductInCart (idCart, idProduct){
         try {            
             const cart = await this.cartsModel.findOne({_id:idCart})
+
             if(!cart){
                 throw new Error(`El carrito con el id: (${idCart}) no existe, verifique los datos ingrersados`);
             }else{
-                const productInCart = cart.products.find(prod => prod.product.toString() === idProduct)
+                const productInCart = cart.products.find(prod => prod.product._id.toString() === idProduct)
+
                 if(!productInCart){
                     throw new Error(`Se produjo un error al borrar el producto con id: ${idProduct} del carrito con el id: ${idCart}, verifique su existencia`, error);
                 }else{
                     if(productInCart.quantity > 1){
                         productInCart.quantity -= 1                        
                     }else{
-                        cart.products = cart.products.filter((prod) => prod.product.toString() !== idProduct);
+                        cart.products = cart.products.filter((prod) => prod.product._id.toString() !== idProduct);
                     }                    
                 }                
             }
             await cart.save()
             return cart
         } catch (error) {
-            
+            throw new Error(`Error al eliminar el producto: ${idProduct}, del carrito: ${idCart}, ${error}`);
         }
     }
 }

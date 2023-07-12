@@ -13,10 +13,10 @@ import chatRouter from './routes/chat.router.js'
 const app = express();
 
 //configuracion plantillas y handlebars
-app.engine('handlebars', handlerbars.engine());
+app.engine('handlebars', handlerbars.engine()); 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));  
 app.use('/', viewsRouter);
 
 
