@@ -1,5 +1,8 @@
 <div class="containerProducts">
-    <h1>Lista de Productos</h1>
+    <h1>Bienvenido: {{user.name}}</h1>
+    <h3>Rol: {{user.rol}}</h3>
+    <button class='btnLogout btn btn-danger'>Logout</button>    
+    <h2>Lista de Productos</h2>
     <table class='table table-striped'>
         <thead>
             <tr>
@@ -45,5 +48,6 @@
 </div>
 
 <script src="/js/products.js"></script>
+<script src="/js/session.logout.js"></script>
 
 

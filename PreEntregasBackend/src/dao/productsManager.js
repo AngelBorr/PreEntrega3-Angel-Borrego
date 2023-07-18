@@ -44,19 +44,21 @@ class ProductManager {
                             console.log(err);
                         });                                                
                     }
+                }else{
+                    const products = await productsModel.paginate(data, {
+                        lean:true,
+                        limit: parseInt(limit),
+                        page: parseInt(page),
+                        customLabels: {
+                            docs: 'products',
+                            totalDocs: 'totalProducts',
+                        }
+                    })
+                    
+                    return products
                 }                
                 
-                const products = await productsModel.paginate(data, {
-                    lean:true,
-                    limit: parseInt(limit),
-                    page: parseInt(page),
-                    customLabels: {
-                        docs: 'products',
-                        totalDocs: 'totalProducts',
-                    }
-                })
                 
-                return products
             } catch (error) {
                 console.log(error.message)                
             }
