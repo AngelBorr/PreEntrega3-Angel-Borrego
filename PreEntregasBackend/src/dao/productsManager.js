@@ -21,25 +21,23 @@ class ProductManager {
                     } else {
                         throw new Error('la opcion ingresada es incorrecta debe ser "asc" o "desc"')
                     }                    
-                }
-                //console.log('1', data)
+                }                
                 if(category){
                     if(category === 'indumentaria'){
                         productsModel.aggregate({ $match: {category: 'indumentaria'} },
                         { $project: { title: 1, description: 1, price: 1, thumbnail: 1, code: 1, stock: 1, status: 1, category: 1 } }
                         ).exec().then((result) => {
-                            data = result
-                            return data
+                            const products = result
+                            return products
                         }).catch((err) => {
                             console.log(err);
-                        }); 
-                        
+                        });                         
                     }else if(category === 'accesorios'){
                         await productsModel.aggregate([{ $match: {category: 'accesorios'} },
                         { $project: { title: 1, description: 1, price: 1, thumbnail: 1, code: 1, stock: 1, status: 1, category: 1 } }]
                         ).exec().then((result) => {
-                            data = result
-                            return data
+                            const products = result
+                            return products
                         }).catch((err) => {
                             console.log(err);
                         });                                                

@@ -12,6 +12,9 @@ import chatRouter from './routes/chat.router.js'
 import sessionsRouter from './routes/sessions.router.js'
 import MongoStore from 'connect-mongo';
 import session from 'express-session';
+import passport from 'passport';
+import initializePassport from './config/passport.config.js';
+import initializePassportForGithub from './config/passport.configGithub.js';
 
 const app = express();
 
@@ -37,6 +40,11 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }))
+//configuracion passport
+initializePassportForGithub();
+initializePassport();
+app.use(passport.initialize());
+app.use(passport.session()); 
 
 //configuracion express
 app.use(express.json());

@@ -1,6 +1,5 @@
 const btnAdmin = document.getElementById('btnadmin');
 
-
 const formLogin = document.getElementById('loginUser');
 
 formLogin.addEventListener("submit", function(event) {

@@ -1,6 +1,6 @@
 <div class="text-center container">
     <main class="form-signin">
-        <h1 class="h3 mb-3 fw-normal">Login</h1>
+        <h1 class="h2 mb-3 fw-normal">Login</h1>
         <form  id='loginUser' {{!-- action="/api/sessions/login" method="post" --}}>            
 
             <div class="form-floating">
@@ -21,6 +21,10 @@
 
             <button class="w-100 btn btn-lg btn-primary" type="submit">Enviar</button>
             <p>¿No estás registrado? <a href="/register">Regístrate aquí</a></p>
+            <p>¿Has olvidado tu contraseña? <a href="/resetPassword">Restaurar</a></p>
+            <h2 class="h4 mb-3 fw-normal">Ingresa con:</h2>            
+            <a href="/api/sessions/github">GitHub</a>
+
         </form>
     </main>
 </div>

@@ -22,7 +22,7 @@ router.get('/products', privateAccess, async (req, res) =>{
     try {
         const {limit = 5, page = 1, sort='desc', category=''} = req.query;       
         const {products, hasPrevPage, hasNextPage, nextPage, prevPage} = await manager.getProducts(limit, page, sort, category);        
-        
+        console.log('8', req.session.user)
         if(!products){
             return res.status(404).render("El listado de productos esta vacio.");
         }else{
@@ -116,10 +116,23 @@ router.get('/login', publicAccess, async (req, res) => {
         res.status(200).render('loginUser', {
                 style:"index.css",
                 styleBoostrap:"bootstrap.min.css",
-                title: "loginUser"
+                title: "loginUser",
+                imgSrc:'/img/github.png'
             }); 
     } catch (error) {
         return res.status(500).render('Error al renderizar el login');
+    }
+})
+//ruta resetPassword
+router.get('/resetPassword', publicAccess, async (req, res) => {
+    try {
+        res.status(200).render('resetPassword', {
+                style:"index.css",
+                styleBoostrap:"bootstrap.min.css",
+                title: "resetPassword"
+            }); 
+    } catch (error) {
+        return res.status(500).render('Error al renderizar resetPassword');
     }
 })
 

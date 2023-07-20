@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
-const userCollection = 'user';
+const userGithubCollection = 'userGithub';
 
-const userSchema = new mongoose.Schema({
+const userGithubSchema = new mongoose.Schema({
     firstName:{
         type: String,
-        required: true,
+        required: true
     },
     lastName:{
         type: String,
-        required: true,
+        required: false
     },
     email:{
         type: String,
@@ -19,14 +19,14 @@ const userSchema = new mongoose.Schema({
     },
     age:{
         type: Number,
-        required: true,
+        required: false,
     },
     password:{
         type: String,
-        required: true
+        required: false
     }
 });
 
-const userModel = mongoose.model(userCollection, userSchema);
+const userGithubModel = mongoose.model(userGithubCollection, userGithubSchema);
 
-export default userModel
+export default userGithubModel

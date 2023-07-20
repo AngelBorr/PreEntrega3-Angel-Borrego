@@ -2,7 +2,6 @@ import ProductManager from '../dao/productsManager.js';
 import { Router } from 'express';
 import { updateProducts } from '../public/js/socket.js';
 
-
 const router = Router();
 
 const manager = new ProductManager;
