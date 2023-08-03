@@ -1,13 +1,16 @@
 import passport from 'passport';
 import GitHubStrategy from 'passport-github2';
 import UserGithubManager from '../dao/userGithubManager.js';
+import env from '../config.js'
 
 const userGithubManager = new UserGithubManager
+const clienteGitHub = env.gitHubId
+const clienteGitHubSecret = env.gitHubSecret
 
 const initializePassportForGithub = () => {
     passport.use('github', new GitHubStrategy({
-        clientID: 'Iv1.fcf542960af80c4b',
-        clientSecret: '2631bbc4ff38152bc4a09453bd65e568bcbe1181',
+        clientID: `${clienteGitHub}`,
+        clientSecret: `${clienteGitHubSecret}`,
         callbackURL: 'http://localhost:8080/api/sessions/githubcallback'
         }, async(accessToken, refreshToken, profile, done) => {
             try {
@@ -16,7 +19,7 @@ const initializePassportForGithub = () => {
 
                 console.log('1', profile)                
                 let user = await userGithubManager.getUserGithub(profileEmail);                                
-                if(!user/*  || user !== typeof(Object) */){
+                if(!user){
                     const newUser = { 
                         firstName: profile._json.name,
                         lastName: '',
@@ -36,7 +39,6 @@ const initializePassportForGithub = () => {
     ));    
 
     passport.serializeUser((user, done) => {
-        console.log('6', user)
         done(null, user._id);
     });
 

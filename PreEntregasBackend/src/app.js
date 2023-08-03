@@ -15,13 +15,19 @@ import session from 'express-session';
 import passport from 'passport';
 import initializePassport from './config/passport.config.js';
 import initializePassportForGithub from './config/passport.configGithub.js';
+import env from './config.js'
+//import { port } from './config/config.js'
 
 const app = express();
 
 //data MONGODB
-const USER_MONGO = "angel3";
-const PASS_MONGO = "FPJQI2hsDZFwif90";
-const DB_NAME = "Ecommerce";
+const PORT = env.port; 
+const USER_MONGO = env.userMongo;
+const PASS_MONGO = env.passMongo;
+const DB_NAME = env.dbColecction;
+
+//data session
+const secret = env.secret
 
 const rutaMongo = `mongodb+srv://${USER_MONGO}:${PASS_MONGO}@cluster0.wd5qrnn.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`;
 
@@ -36,7 +42,7 @@ app.use(session({
         mongoUrl: rutaMongo,
         ttl: 3600
     }),
-    secret: "sessionSecret",
+    secret: `${secret}`,
     resave: false,
     saveUninitialized: false
 }))
@@ -58,7 +64,7 @@ app.use('/api/chat', chatRouter);
 app.use('/api/sessions', sessionsRouter);
 
 //server en puerto 8080
-const httpServer = app.listen(8080, () => {
+const httpServer = app.listen(`${PORT}`, () => {
     displayRoutes(app);
     console.log('servidor escuchando en el puerto 8080')
 })
@@ -79,4 +85,4 @@ io.on('connection', socket =>{
     updateProducts(io);
     chatSocket(socket, io)   
     
-});
+}); 
