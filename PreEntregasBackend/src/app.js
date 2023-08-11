@@ -61,7 +61,7 @@ app.use('/', viewsRouter);
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
 app.use('/api/chat', chatRouter);
-app.use('/api/sessions', sessionsRouter);
+app.use('/api/sessions', sessionsRouter); 
 
 //server en puerto 8080
 const httpServer = app.listen(`${PORT}`, () => {

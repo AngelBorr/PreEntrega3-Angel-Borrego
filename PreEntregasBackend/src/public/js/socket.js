@@ -1,18 +1,18 @@
-import ProductManager from "../../dao/productsManager.js";
-import MessageManager from "../../dao/messageManagerMongo.js";
+import ProductsService from "../../services/service.products.js";
+import ChatService from "../../services/service.chat.js";
 
-const messageManager = new MessageManager;
-const manager = new ProductManager;
+const chatService = new ChatService
+const productsService = new ProductsService
 
 const updateProducts = async (io) => {
-    const products = await manager.getProducts();
+    const products = await productsService.getProducts()
     io.emit('updateProducts', products);
     
 }
 
 const chatSocket = async (socket, io) => {
     socket.on('authenticated', async (data) => {
-        const messages = await messageManager.getMessages();
+        const messages = await chatService.getMessagesChat()
         socket.emit('messageLogs', messages); 
         socket.broadcast.emit('newUserConnected', data);
     });
@@ -20,8 +20,8 @@ const chatSocket = async (socket, io) => {
     socket.on('message', async (data) => {
         const user = data.user;
         const messages = data.message;        
-        const newMessage = await messageManager.addMessage(user, messages);
-        const message = await messageManager.getMessages();
+        const newMessage = await chatService.addMessagesChat(user, messages);
+        const message = await chatService.getMessagesChat()        
         io.emit('messageLogs', messages); 
     });
 };

@@ -1,9 +1,9 @@
 import passport from 'passport';
 import GitHubStrategy from 'passport-github2';
-import UserGithubManager from '../dao/userGithubManager.js';
 import env from '../config.js'
+import UsersGitHubService from '../services/service.userGitHub.js';
 
-const userGithubManager = new UserGithubManager
+const userServiceGitHub = new UsersGitHubService
 const clienteGitHub = env.gitHubId
 const clienteGitHubSecret = env.gitHubSecret
 
@@ -15,10 +15,8 @@ const initializePassportForGithub = () => {
         }, async(accessToken, refreshToken, profile, done) => {
             try {
                 const profileEmail = profile._json.email
-                const profileName = profile._json.name
-
-                console.log('1', profile)                
-                let user = await userGithubManager.getUserGithub(profileEmail);                                
+                const profileName = profile._json.name               
+                let user = await userServiceGitHub.getUserGitHub(profileEmail);
                 if(!user){
                     const newUser = { 
                         firstName: profile._json.name,
@@ -26,8 +24,8 @@ const initializePassportForGithub = () => {
                         email: profile._json.email,
                         age: 0,
                         password: '',
-                    };            
-                    user = await userGithubManager.addUserGithub(newUser);
+                    };
+                    user = await userServiceGitHub.addUserGitHub(newUser);
                     done(null, user)                    
                 }else{
                     done(null, user)
@@ -44,7 +42,7 @@ const initializePassportForGithub = () => {
 
     passport.deserializeUser(async (_id, done) => {
         try {
-            const user = await userGithubManager.getUserGithubById({_id});
+            const user = await userServiceGitHub.getUserGitHubById({_id});
             return done(null, user);
         } catch {
             return done({ message: "Se produjo un error al deserializa el usuario" });

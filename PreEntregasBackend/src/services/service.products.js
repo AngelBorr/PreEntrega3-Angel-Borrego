@@ -1,17 +1,17 @@
-import productsModel from '../dao/models/products.models.js';
+import ProductsManager from "../dao/managers/products.mongo.js";
+import productsModel from "../dao/models/products.models.js";
 
-class ProductManager {
-    productsModel; 
-    constructor() {
-        this.productsModel = productsModel
-        
+class ProductsService{
+    productsModel;
+    constructor(){
+        this.products = new ProductsManager
     }
-
-    //retorna los prod
+    
+    //retorna los products
     async getProducts(limit = 5, page = 1, sort, category) {
         const getData = async () => {
             try { 
-                let data = productsModel.find();                
+                let data = this.products.getProducts();                
                 
                 if(sort){
                     if(sort === 'asc'){
@@ -22,8 +22,9 @@ class ProductManager {
                         throw new Error('la opcion ingresada es incorrecta debe ser "asc" o "desc"')
                     }                    
                 }                
-                if(category){
+                /* if(category){
                     if(category === 'indumentaria'){
+                        data.f
                         productsModel.aggregate({ $match: {category: 'indumentaria'} },
                         { $project: { title: 1, description: 1, price: 1, thumbnail: 1, code: 1, stock: 1, status: 1, category: 1 } }
                         ).exec().then((result) => {
@@ -33,7 +34,7 @@ class ProductManager {
                             console.log(err);
                         });                         
                     }else if(category === 'accesorios'){
-                        await productsModel.aggregate([{ $match: {category: 'accesorios'} },
+                        await data.aggregate([{ $match: {category: 'accesorios'} },
                         { $project: { title: 1, description: 1, price: 1, thumbnail: 1, code: 1, stock: 1, status: 1, category: 1 } }]
                         ).exec().then((result) => {
                             const products = result
@@ -43,19 +44,19 @@ class ProductManager {
                         });                                                
                     }
                 }else{
-                    const products = await productsModel.paginate(data, {
-                        lean:true,
-                        limit: parseInt(limit),
-                        page: parseInt(page),
-                        customLabels: {
-                            docs: 'products',
-                            totalDocs: 'totalProducts',
-                        }
-                    })
                     
-                    return products
-                }                
-                
+                }  */               
+                const products = await productsModel.paginate(data, {
+                    lean:true,
+                    limit: parseInt(limit),
+                    page: parseInt(page),
+                    customLabels: {
+                        docs: 'products',
+                        totalDocs: 'totalProducts',
+                    }
+                })
+                    
+                return products
                 
             } catch (error) {
                 console.log(error.message)                
@@ -68,39 +69,10 @@ class ProductManager {
         }
     }
 
-    /* //generador de id
-    generateId() {
-        let id = this.products.length > 0 ? this.products[this.products.length - 1].id + 1 : 1;
-        return id;       
-        
-    } */
-    
-    //agrega los prod a products y muestra por consola el code existente
-    async addProduct(bodyProduct){        
-        try {
-            const newProduct = await this.productsModel.create(bodyProduct)
-            return newProduct; 
-        } catch (error) {
-            console.log('error al crear un nuevo producto '+ error)
-        }                 
-        
-    }
-
-    //modificar un producto
-    async updateProduct(id, updateBodyProduct) {
-        try {
-            const updateProduct = await this.productsModel.updateOne({_id:id},updateBodyProduct)
-            return updateProduct
-        } catch (error) {
-            throw new Error(`Error al actualizar el producto: ${error.message}`);
-        }
-        
-    }
-
-    //busca un prod por su id
+    //retorna los products por su id
     async getProductById(id) {
         try {
-            const data = await this.productsModel.findOne({_id:id});            
+            const data = await this.products.getProductById({_id:id});            
             if(!data){
                 return `No se ha encontrado Productos con este id:(${id}), verifique que los datos ingresados sean los correctos y vuelve a intentarlo`;
             }
@@ -110,17 +82,46 @@ class ProductManager {
         }
     }
 
-    //elimina un producto
+    //agrega new products a products
+    async addProduct(bodyProduct){        
+        try {
+            const newProduct = await this.products.addProduct(bodyProduct)
+            return newProduct; 
+        } catch (error) {
+            console.log('error al crear un nuevo producto '+ error)
+        }                 
+        
+    }
+
+    //update products
+    async updateProduct(id, updateBodyProduct) {
+        try {
+            const existingProduct = await this.products.getProductById(id);
+            if(!existingProduct){
+                throw new Error(`El producto que se desea actualizar no existe: ${error.message}`);
+            }
+            const updateProduct = await this.products.updateProduct(id,updateBodyProduct)
+            return updateProduct
+        } catch (error) {
+            throw new Error(`Error al actualizar el producto: ${error.message}`);
+        }
+        
+    }
+
+    //delete products
     async deleteProduct(id) {                
         try {
-            const productDelete = await this.productsModel.deleteOne({_id:id});
+            const existingProduct = await this.products.getProductById(id);
+            if(!existingProduct){
+                throw new Error(`El producto que se desea eliminar no existe: ${error.message}`);
+            }
+            const productDelete = await this.products.deleteProduct(id);
             return productDelete;
                         
         } catch (error) {
             throw new Error(`Error al eliminar el producto: ${error}`);
         }
     }
-
 }
 
-export default ProductManager
+export default ProductsService

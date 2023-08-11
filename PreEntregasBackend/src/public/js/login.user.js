@@ -12,11 +12,12 @@ formLogin.addEventListener("submit", function(event) {
 
     fetch('/api/sessions/login', {
         method: 'POST',
-        body: JSON.stringify(user),
+        body: JSON.stringify(user),        
         headers:{
             'Content-Type':'application/json'
         }
-    }).then(result=>{
+    }).then(result=>{   
+        console.log(result)
         if(result.status===200){
             window.location.replace('/products');
         }
