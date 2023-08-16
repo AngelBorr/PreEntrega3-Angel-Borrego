@@ -3,8 +3,7 @@ import UsersService from "../services/service.users.js";
 const usersService = new UsersService
 
 export const registerUser = async (req, res) => {
-    return res.status(200).send({status: 'success', message:'Usuario registrado'})
-    
+    return res.status(200).send({status: 'success', message:'Usuario registrado'})    
 }
 
 export const failRegister = async (req, res) => {
@@ -21,8 +20,7 @@ export const loginUser = async (req, res) => {
         email: req.user.email,
         age: req.user.age,
         //rol: req.user.admin            
-    }
-    console.log('req.user', req.user)    
+    }   
     return res.status(200).send({status:'usuario autenticado', payload: req.user})
 }
 
@@ -44,22 +42,17 @@ export const logoutSession = async (req, res) => {
 
 export const resetPassword = async (req, res) => {
     try {
-        const {email, newpassword} = req.body;
-        
+        const {email, newpassword} = req.body;        
         if(!email || !newpassword){
             return res.status(400).send('Email y/o Contraseña no ingresados, son requeridos')
         }
         const user = await usersService.getUsers(email); 
         if (!user){
             return res.status(404).send("Usuario incorrectos y/o inexistente")
-        };       
-        
+        };
         //modificar el manager
         const result = await usersService.updateUser(email, newpassword);
-
         if (result) res.status(200).send('contraseña restaurada exitosamente')
-        
-        
     } catch (error) {
         return res.status(500).send('Se produjo un error al que obtener los datos para restaurar la contraseña', error.message)
     }

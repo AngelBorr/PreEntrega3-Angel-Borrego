@@ -1,3 +1,4 @@
 /PreEntregasBackend/node_modules
 .env
 /PreEntregasBackend/src/dao/othersManagers
+/PreEntregasBackend/src/config/othersPassport

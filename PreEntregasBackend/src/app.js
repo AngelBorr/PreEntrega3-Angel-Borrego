@@ -14,9 +14,7 @@ import MongoStore from 'connect-mongo';
 import session from 'express-session';
 import passport from 'passport';
 import initializePassport from './config/passport.config.js';
-import initializePassportForGithub from './config/passport.configGithub.js';
 import env from './config.js'
-//import { port } from './config/config.js'
 
 const app = express();
 
@@ -25,11 +23,12 @@ const PORT = env.port;
 const USER_MONGO = env.userMongo;
 const PASS_MONGO = env.passMongo;
 const DB_NAME = env.dbColecction;
+const DB_CLUSTER =  env.dbCluster
 
 //data session
 const secret = env.secret
 
-const rutaMongo = `mongodb+srv://${USER_MONGO}:${PASS_MONGO}@cluster0.wd5qrnn.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`;
+const rutaMongo = `mongodb+srv://${USER_MONGO}:${PASS_MONGO}@${DB_CLUSTER}/${DB_NAME}?retryWrites=true&w=majority`;
 
 //configuracion plantillas y handlebars
 app.engine('handlebars', handlerbars.engine()); 
@@ -47,7 +46,6 @@ app.use(session({
     saveUninitialized: false
 }))
 //configuracion passport
-initializePassportForGithub();
 initializePassport();
 app.use(passport.initialize());
 app.use(passport.session()); 

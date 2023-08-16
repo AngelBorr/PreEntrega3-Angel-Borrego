@@ -14,9 +14,7 @@ class UsersManager{
 
     //trae al usuario por su id
     async getUserId(id){
-        console.log(id)
         const user = await this.userModel.findById({_id:id})
-        console.log('user', user)
         return user
     }
 

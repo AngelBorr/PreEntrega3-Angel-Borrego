@@ -5,24 +5,21 @@ const productsService = new ProductsService
 const cartsService = new CartService
 
 //configuracion vistas publicas y privadas
-export const publicAccess = (req, res, next) => {
+export const publicAccess = async (req, res, next) => {
     if (req.session.user) return res.redirect('/products');
     next();
 }
 
-export const privateAccess = (req, res, next) => {
-    console.log('reqsession', req.session.user)
+export const privateAccess = async (req, res, next) => {
     if (!req.session.user) return res.redirect('/login');
     next();
 }
 
 //vista products contiene lista de productos
 export const getViewProducts = async (req, res) =>{
-    try {
-        console.log('user2', req.user)
+    try {        
         const {limit = 5, page = 1, sort='desc', category=''} = req.query;       
         const {products, hasPrevPage, hasNextPage, nextPage, prevPage} = await productsService.getProducts(limit, page, sort, category);        
-        console.log('req', req.session.user)
         if(!products){
             return res.status(404).render("El listado de productos esta vacio.");
         }else{

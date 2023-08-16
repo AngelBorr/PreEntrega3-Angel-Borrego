@@ -10,5 +10,6 @@ export default {
     keyPrivate: process.env.PRIVATE_KEY,
     secret: process.env.DATASESSION,
     gitHubId: process.env.CLIENTE_GITHUB,
-    gitHubSecret: process.env.CLIENTE_GITHUB_SECRET
+    gitHubSecret: process.env.CLIENTE_GITHUB_SECRET,
+    dbCluster: process.env.DB_CLUSTER
 }
