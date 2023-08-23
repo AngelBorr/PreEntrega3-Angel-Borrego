@@ -1,4 +1,4 @@
-import productsModel from "../models/products.models.js";
+import productsModel from "../../models/products.models.js";
 
 class ProductsManager{
     productsModel;
@@ -20,7 +20,7 @@ class ProductsManager{
     }
 
     //agregar un nuevo product
-    addProduct(bodyProduct){
+    createProduct(bodyProduct){
         const newProduct = bodyProduct
         const product = this.productsModel.create(newProduct)
         return product

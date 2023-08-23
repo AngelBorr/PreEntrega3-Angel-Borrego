@@ -1,12 +1,11 @@
-import ProductsManager from "../dao/managers/products.mongo.js";
-import CartsManager from "../dao/managers/carts.mongo.js";
+import CartsRepository from "../repositories/cart.repository.js";
+import ProductsRepository from '../repositories/product.repository.js'
 
-const manager = new ProductsManager();
-const cartsManager = new CartsManager();
+const manager = new ProductsRepository
 
 class CartService {
     constructor() {
-        this.carts = new CartsManager();
+        this.carts = new CartsRepository
     }
     //muestra todos los cariitos
     async getCarts() {

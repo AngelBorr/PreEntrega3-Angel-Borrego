@@ -1,15 +1,15 @@
-import UsersManager from "../dao/managers/users.mongo.js";
+import UsersRepository from "../repositories/user.repository.js";
 import { createHash } from "../utils.js";
 
 class UsersService{    
     constructor(){
-        this.users = new UsersManager
+        this.users = new UsersRepository
     }
 
     //retorna el usuario
     async getUsers(email){
         try {
-            const user = await this.users.getUser(email);                        
+            const user = await this.users.getUsers(email);
             return user;
         } catch (error) {
             throw new Error('Se produjo un error al leer el E-mail ingresado')
@@ -18,7 +18,7 @@ class UsersService{
 
     async getUserById(id){
         try {
-            const user = await this.users.getUserId(id);                        
+            const user = await this.users.getUserById(id);                        
             return user;
         } catch (error) {
             throw new Error('Se produjo un error al leer el id ingresado')
@@ -26,7 +26,7 @@ class UsersService{
     }
 
     //crea usuario
-    async addUser(bodyUser){
+    async createUser(bodyUser){
         try {
             if(typeof(bodyUser) !== Object){
                 throw new Error('Se produjo un error al cargar los datos del nuevo usuario, verifique si los campos estan correctamente completados')
@@ -41,7 +41,7 @@ class UsersService{
     //modificar user password
     async updateUser(email, newpassword){
         try {
-            const user = await this.users.getUser(email)
+            const user = await this.users.getUsers(email)
             if(!user){
                 throw new Error(`No se ha encontrado Usuario resgistrado con este E-mail:(${email}), verifique que los datos ingresados sean los correctos y vuelve a intentarlo`);
             }else{

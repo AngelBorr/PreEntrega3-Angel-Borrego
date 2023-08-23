@@ -1,4 +1,4 @@
-import userGithubModel from '../models/userGithub.models.js'
+import userGithubModel from '../../models/userGithub.models.js'
 
 class UserGitHubManager{
     constructor(){

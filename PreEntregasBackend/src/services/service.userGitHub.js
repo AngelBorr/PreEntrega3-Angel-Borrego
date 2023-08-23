@@ -1,8 +1,8 @@
-import UserGitHubManager from "../dao/managers/usersGitHub.mongo.js";
+import UsersGitHubRepository from "../repositories/userGitHub.repository.js";
 
 class UsersGitHubService{
     constructor(){
-        this.usersGitHub = new UserGitHubManager
+        this.usersGitHub = new UsersGitHubRepository
     }
 
     //trae a los usuarios gitHub por email

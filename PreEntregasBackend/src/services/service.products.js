@@ -1,10 +1,8 @@
-import ProductsManager from "../dao/managers/products.mongo.js";
-import productsModel from "../dao/models/products.models.js";
+import ProductsRepository from "../repositories/product.repository.js";
 
-class ProductsService{
-    productsModel;
+class ProductsService{    
     constructor(){
-        this.products = new ProductsManager
+        this.products = new ProductsRepository
     }
     
     //retorna los products
@@ -45,8 +43,8 @@ class ProductsService{
                     }
                 }else{
                     
-                }  */               
-                const products = await productsModel.paginate(data, {
+                }  */ //productsModel.paginate               
+                const products = await this.products.getProducts(data, {
                     lean:true,
                     limit: parseInt(limit),
                     page: parseInt(page),
@@ -72,7 +70,7 @@ class ProductsService{
     //retorna los products por su id
     async getProductById(id) {
         try {
-            const data = await this.products.getProductById({_id:id});            
+            const data = await this.products.getProductById(id);            
             if(!data){
                 return `No se ha encontrado Productos con este id:(${id}), verifique que los datos ingresados sean los correctos y vuelve a intentarlo`;
             }
@@ -85,7 +83,7 @@ class ProductsService{
     //agrega new products a products
     async addProduct(bodyProduct){        
         try {
-            const newProduct = await this.products.addProduct(bodyProduct)
+            const newProduct = await this.products.createProduct(bodyProduct)
             return newProduct; 
         } catch (error) {
             console.log('error al crear un nuevo producto '+ error)

@@ -1,8 +1,8 @@
-import MessageManager from "../dao/managers/messages.mongo.js";
+import MessageRepository from "../repositories/message.repository.js";
 
 class ChatService{
     constructor(){
-        this.chats = new MessageManager
+        this.chats = new MessageRepository
     }
 
     //trae todos los mensajes del chat
