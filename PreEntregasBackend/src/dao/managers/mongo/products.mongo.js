@@ -1,14 +1,41 @@
 import productsModel from "../../models/products.models.js";
+import env from '../../../config.js'
 
-class ProductsManager{
-    productsModel;
+class ProductsManager{    
     constructor(){
         this.productsModel = productsModel
     }
 
     //retornar todos los products
-    getProducts(){
-        const products = this.productsModel.find()
+    async getProducts(limit, page, sort, category){        
+        const data = this.productsModel.find()
+
+        let products = await this.productsModel.paginate(data, {
+            limit: parseInt(limit) || env.paginate.limit,
+            page: parseInt(page) || env.paginate.page,
+            lean: true,
+            customLabels: {
+                docs: 'products',
+                totalDocs: 'totalProducts', 
+            }
+        })
+        
+        if(sort){
+            products.products = products.products.sort((a,b) => {
+                if(sort === 'asc'){
+                    return a.price - b.price;
+                } else if (sort === 'desc'){
+                    return b.price - a.price; 
+                } else {
+                    throw new Error('la opcion ingresada es incorrecta debe ser "asc" o "desc"')
+                }
+            });                                          
+        }
+
+        if(category){
+            products.products = products.products.filter(product => product.category === category);
+        }
+
         return products
     }
 

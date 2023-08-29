@@ -7,8 +7,8 @@ class ProductsRepository{
     constructor(){}
 
     //retorna el usuario
-    async getProducts(){        
-        const data = await products.getProducts()
+    async getProducts(limit, page, sort, category){        
+        const data = await products.getProducts(limit, page, sort, category)
         return data
     }
 

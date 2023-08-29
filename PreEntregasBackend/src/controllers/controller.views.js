@@ -18,9 +18,10 @@ export const privateAccess = async (req, res, next) => {
 //vista products contiene lista de productos
 export const getViewProducts = async (req, res) =>{
     try {        
-        const {limit = 5, page = 1, sort='desc', category=''} = req.query;       
-        const {products, hasPrevPage, hasNextPage, nextPage, prevPage} = await productsService.getProducts(limit, page, sort, category);        
-        if(!products){
+        const {limit = 5, page = 1, sort='asc', category} = req.query;
+        const data = await productsService.getProducts(limit, page, sort, category);
+        let products = data.products
+        if(!data){
             return res.status(404).render("El listado de productos esta vacio.");
         }else{
             res.status(200).render('products', {
@@ -29,10 +30,10 @@ export const getViewProducts = async (req, res) =>{
                 style:"index.css",
                 styleBoostrap:"bootstrap.min.css",
                 title: "ProductsList",
-                hasPrevPage,
-                hasNextPage,
-                prevPage,
-                nextPage
+                hasPrevPage: data.hasPrevPage,
+                hasNextPage: data.hasNextPage,
+                prevPage: data.prevPage,
+                nextPage: data.nextPage
             })            
         }        
     } catch (error) {

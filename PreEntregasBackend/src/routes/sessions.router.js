@@ -1,8 +1,10 @@
 import { Router } from "express";
 import passport from "passport";
-import { failLogin, failRegister, gitHubCallBack, loginGitHub, loginUser, logoutSession, registerUser, resetPassword } from "../controllers/controller.users.js";
+import { failLogin, failRegister, gitHubCallBack, loginGitHub, loginUser, logoutSession, registerUser, resetPassword, usersCurrent } from "../controllers/controller.users.js";
+import cookieParser from "cookie-parser";
 
 const router = Router();
+router.use(cookieParser());
 
 //ruta post para el registerUser
 router.post('/register', passport.authenticate('register', {failureRedirect:'/api/sessions/failRegister'}), registerUser)
@@ -24,5 +26,8 @@ router.put('/resetPassword', resetPassword)
 router.get('/github', passport.authenticate('github', { scope: ['user:email'] }), loginGitHub);
 
 router.get('/githubcallback', passport.authenticate('github', { failureRedirect: '/login' }), gitHubCallBack);
+
+//ruta current
+router.get('/current', passport.authenticate ('current', { session: false }), usersCurrent)
 
 export default router

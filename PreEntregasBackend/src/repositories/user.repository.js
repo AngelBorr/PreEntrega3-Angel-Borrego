@@ -18,8 +18,8 @@ class UsersRepository{
     }
 
     //crea usuario
-    async createUser(bodyUser){
-        const user = await users.createUser(bodyUser);
+    async createUser(bodyUser){        
+        const user = await users.createUser(bodyUser);        
         return user
     }
 

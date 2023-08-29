@@ -28,9 +28,10 @@ class UsersService{
     //crea usuario
     async createUser(bodyUser){
         try {
-            if(typeof(bodyUser) !== Object){
+            if(typeof(bodyUser) != 'object'){
                 throw new Error('Se produjo un error al cargar los datos del nuevo usuario, verifique si los campos estan correctamente completados')
             }
+            
             const user = await this.users.createUser(bodyUser);
             return user            
         } catch (error) {

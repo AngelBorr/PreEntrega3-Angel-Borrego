@@ -8,7 +8,6 @@ class UsersManager{
 
     //trae al usuario por su email
     async getUser(email){
-        console.log('email3', email)
         const user = await this.userModel.findOne({email})
         return user
     }

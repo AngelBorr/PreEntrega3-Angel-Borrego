@@ -19,9 +19,10 @@ export const loginUser = async (req, res) => {
         name: `${req.user.firstName} ${req.user.lastName}`,
         email: req.user.email,
         age: req.user.age,
-        //rol: req.user.admin            
+        role: req.user.role            
     }   
-    return res.status(200).send({status:'usuario autenticado', payload: req.user})
+    //return res.status(200).send({status:'usuario autenticado', payload: req.user})
+    return res.cookie('cookieToken', req.user, { httpOnly: true }).send({status:'usuario autenticado', message: 'cookie set'})
 }
 
 export const failLogin = async (req, res) => {    
@@ -69,4 +70,10 @@ export const gitHubCallBack = async (req, res) => {
         age: req.user.age                    
     }
     res.redirect('/products');
+}
+
+//current
+export const usersCurrent = async (req, res) => {
+    //usar el dto
+    res.send(req.user);    
 }

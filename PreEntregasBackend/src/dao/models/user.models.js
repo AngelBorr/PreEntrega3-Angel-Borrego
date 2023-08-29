@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const userCollection = 'user';
 
@@ -24,6 +24,19 @@ const userSchema = new mongoose.Schema({
     password:{
         type: String,
         required: true
+    },
+    birth_date:{
+        type: Date,
+        required: true,
+    },
+    cart:{
+        type: Schema.Types.ObjectId, //referencias al modelo de Carrito (Carts), en este
+        ref:'Carts',
+        require:false        
+    }, 
+    role:{
+        type: String,
+        required: false //default user
     }
 });
 

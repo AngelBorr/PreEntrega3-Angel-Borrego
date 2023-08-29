@@ -1,24 +1,42 @@
 import passport from 'passport';
 import local from 'passport-local';
-import { createHash, isValidPassword } from "../utils.js";
+import { PRIVATE_KEY, cookieExtractor, createHash, generateToken, isValidPassword } from "../utils.js";
 import UsersService from '../services/service.users.js';
 import GitHubStrategy from 'passport-github2';
 import env from '../config.js'
 import UsersGitHubService from '../services/service.userGitHub.js';
+import jwt from 'passport-jwt'
+import CartService from '../services/service.carts.js';
+import JWT from 'jsonwebtoken'
 
+const cartService = new CartService
 const usersService = new UsersService
 const LocalStrategy = local.Strategy
 const userServiceGitHub = new UsersGitHubService
 const clienteGitHub = env.gitHubId
 const clienteGitHubSecret = env.gitHubSecret
+const JWTStrategy = jwt.Strategy;
+const ExtractJWT = jwt.ExtractJwt;
 
 
 const initializePassport = () => {
+    passport.use('current', new JWTStrategy({
+        jwtFromRequest: ExtractJWT.fromExtractors([cookieExtractor]),
+        secretOrKey: PRIVATE_KEY
+    }, async (jwt_payload, done) => {
+        try {
+            return done(null, jwt_payload);
+        } catch (error) {
+            done(error);
+        }
+    }))
+
     passport.use('register', new LocalStrategy({
         passReqToCallback:true,
         usernameField:'email'
         }, async(req, username, password, done) => {
-            const { firstName, lastName, email, age } = req.body;
+            const { firstName, lastName, email, age, birth_date, role } = req.body;
+            console.log('2', req.body) 
             try {
                 const existingUser = await usersService.getUsers(username) 
                 if(existingUser !== typeof(Object)){
@@ -27,9 +45,12 @@ const initializePassport = () => {
                         lastName,
                         email,
                         age,
-                        password: createHash(password)
-                    };            
-                    const newUser = await usersService.addUser(user);
+                        password: createHash(password), 
+                        birth_date,
+                        role
+                    };
+                    console.log('1', user)
+                    const newUser = await usersService.createUser(user);
                     if(newUser){
                         return done(null, newUser)
                     }else {
@@ -48,7 +69,7 @@ const initializePassport = () => {
         async (username, password, done) =>{
             try {
                 //no incorpora el roll
-                const user = await usersService.getUsers( username );
+                let user = await usersService.getUsers( username );
                 if (!user){
                     return done(null, false, {message:"Usuario incorrectos y/o inexistente"})
                 };
@@ -56,11 +77,13 @@ const initializePassport = () => {
                 if(!isValidPassword(user, password)){
                     return done(null, false, {message: "Contraseña incorrecta, verifique los datos ingresados"})
                 };                
-                return done(null, user)
+                const { password: pass, ...userNoPass } = user._doc;
+                const userJwt = generateToken(userNoPass);                
+                return done(null, userJwt)
             } catch (error) {
-                return done({message:'Error al Logearse'})
+                return done({message:'Error al Logearse'}) 
             }
-        })
+        }) 
     );
     
     passport.use('github', new GitHubStrategy({
@@ -90,20 +113,39 @@ const initializePassport = () => {
             }
         }
     ))
-    
-
+    //hago la serializeUser utilizando el token creado en la estrategia jwt
     passport.serializeUser((user, done) => {
+        console.log('2', user)
+        const token = JWT.sign( { id: user._id }, PRIVATE_KEY);
+        console.log('3', token)
+        done(null, token);
+    });
+
+    passport.deserializeUser(async (token, done) => {
+        try {            
+            const decoded = JWT.verify(token, PRIVATE_KEY)
+            console.log('4', decoded)
+            
+            return done(null, decoded);
+        } catch{
+            return done({ message: "Se produjo un error al deserializa el usuario" })
+        }
+    });
+
+
+    /* passport.serializeUser((user, done) => { 
+        console.log('2', user)       
         done(null, user._id);
     });
 
     passport.deserializeUser(async (_id, done) => {
-        try {       
+        try {
             const user = await usersService.getUserById(_id);            
             return done(null, user);
         } catch {
             return done({ message: "Se produjo un error al deserializa el usuario" });
         }
-    });
+    }); */
 
 }
 
