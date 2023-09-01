@@ -136,3 +136,16 @@ export const getViewResetPass = async (req, res) => {
         return res.status(500).render('Error al renderizar resetPassword');
     }
 }
+
+//vista current
+export const getViewCurrent = async (req, res) => {
+    try {
+        res.status(200).render('current', {
+                style:"",
+                styleBoostrap:"",
+                title: "current"
+            }); 
+    } catch (error) {
+        return res.status(500).render('Error al renderizar resetPassword');
+    }
+}

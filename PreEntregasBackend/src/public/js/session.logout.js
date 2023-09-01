@@ -1,6 +1,9 @@
 const sessionLogout = async (event) =>{
     await fetch('/api/sessions/logout', {
-        method: 'POST'                
+        method: 'POST',
+        headers:{
+            'Autorization':`Bearer ${localStorage.getItem('token')}`
+        }                
     }).then(result=>{
         if(result.status===200){
             window.location.replace('/login');

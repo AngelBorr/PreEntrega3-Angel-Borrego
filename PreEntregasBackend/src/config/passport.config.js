@@ -7,7 +7,7 @@ import env from '../config.js'
 import UsersGitHubService from '../services/service.userGitHub.js';
 import jwt from 'passport-jwt'
 import CartService from '../services/service.carts.js';
-import JWT from 'jsonwebtoken'
+import UserDTO from '../dto/user.dto.js';
 
 const cartService = new CartService
 const usersService = new UsersService
@@ -36,7 +36,6 @@ const initializePassport = () => {
         usernameField:'email'
         }, async(req, username, password, done) => {
             const { firstName, lastName, email, age, birth_date, role } = req.body;
-            console.log('2', req.body) 
             try {
                 const existingUser = await usersService.getUsers(username) 
                 if(existingUser !== typeof(Object)){
@@ -69,17 +68,18 @@ const initializePassport = () => {
         async (username, password, done) =>{
             try {
                 //no incorpora el roll
-                let user = await usersService.getUsers( username );
+                const user = await usersService.getUsers( username );
+                console.log('user', user)
                 if (!user){
                     return done(null, false, {message:"Usuario incorrectos y/o inexistente"})
                 };
                 
                 if(!isValidPassword(user, password)){
                     return done(null, false, {message: "Contraseña incorrecta, verifique los datos ingresados"})
-                };                
-                const { password: pass, ...userNoPass } = user._doc;
-                const userJwt = generateToken(userNoPass);                
-                return done(null, userJwt)
+                };
+                const userNoPass = new UserDTO(user)
+                const token = generateToken(userNoPass);                
+                return done(null, user, token)//porque token no es enviado al font?
             } catch (error) {
                 return done({message:'Error al Logearse'}) 
             }
@@ -113,28 +113,8 @@ const initializePassport = () => {
             }
         }
     ))
-    //hago la serializeUser utilizando el token creado en la estrategia jwt
+
     passport.serializeUser((user, done) => {
-        console.log('2', user)
-        const token = JWT.sign( { id: user._id }, PRIVATE_KEY);
-        console.log('3', token)
-        done(null, token);
-    });
-
-    passport.deserializeUser(async (token, done) => {
-        try {            
-            const decoded = JWT.verify(token, PRIVATE_KEY)
-            console.log('4', decoded)
-            
-            return done(null, decoded);
-        } catch{
-            return done({ message: "Se produjo un error al deserializa el usuario" })
-        }
-    });
-
-
-    /* passport.serializeUser((user, done) => { 
-        console.log('2', user)       
         done(null, user._id);
     });
 
@@ -145,7 +125,7 @@ const initializePassport = () => {
         } catch {
             return done({ message: "Se produjo un error al deserializa el usuario" });
         }
-    }); */
+    });
 
 }
 

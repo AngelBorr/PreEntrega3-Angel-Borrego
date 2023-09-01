@@ -1,10 +1,9 @@
-import { Router } from 'express'
+import MyOwnRouter from './router.js';
 import { addMessageChat, getMessageChat } from '../controllers/controller.chat.js';
 
-const router = Router ();
-
-router.get('/', getMessageChat);
-
-router.post('/', addMessageChat);
-
-export default router
+export default class ChatRouter extends MyOwnRouter{
+    init(){
+        this.get('/', ['PUBLIC'], getMessageChat);
+        this.post('/', ['USER'], addMessageChat)
+    }
+}

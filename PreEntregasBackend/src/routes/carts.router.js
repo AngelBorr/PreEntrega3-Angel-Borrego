@@ -1,27 +1,27 @@
-import { Router } from "express";
+import MyOwnRouter from './router.js';
 import { addArrayInCart, addProductToCart, createCart, deleteProductToCart, emptyCart, getDataCartById, updateQuantityProductInCart } from "../controllers/controller.carts.js";
 
-const router = Router ();
+export default class CartsRouter extends MyOwnRouter{
+    init(){
+        //ruta post / donde debe crear un carrito con id y products
+        this.post('/', ['USER'], createCart)
 
-//ruta post / donde debe crear un carrito con id y products
-router.post('/', createCart)
+        //muestra cada carrito con sus productos correspondientes
+        this.get('/:cid',  ['ADMIN'], getDataCartById);
 
-//muestra cada carrito con sus productos correspondientes
-router.get('/:cid', getDataCartById);
+        // ruta post/:idCart/:idProduct debe agregar un product al carrito solicitado
+        this.post('/:cid/product/:pid', ['USER'], addProductToCart);
 
-// ruta post/:idCart/:idProduct debe agregar un product al carrito solicitado
-router.post('/:cid/product/:pid', addProductToCart);
+        //vacia el carrito
+        this.delete('/:cid', ['USER'], emptyCart);
 
-//vacia el carrito
-router.delete('/:cid', emptyCart);
+        //elimina el producto del carrito
+        this.delete('/:cid/product/:pid', ['USER'], deleteProductToCart);
 
-//elimina el producto del carrito
-router.delete('/:cid/product/:pid', deleteProductToCart);
+        //actualiza la quantity de prod
+        this.put('/:cid/product/:pid', ['USER'], updateQuantityProductInCart);
 
-//actualiza la quantity de prod
-router.put('/:cid/product/:pid', updateQuantityProductInCart);
-
-//actualiza el carrito al insertar un array de products desde el body
-router.put('/:cid', addArrayInCart)
-
-export default router;
+        //actualiza el carrito al insertar un array de products desde el body
+        this.put('/:cid', ['USER'], addArrayInCart)
+    }
+}

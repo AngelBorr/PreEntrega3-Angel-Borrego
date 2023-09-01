@@ -1,22 +1,26 @@
-import { Router } from 'express';
+import MyOwnRouter from './router.js';
 import { createDataProduct, deleteDataProduct, getDataProductById, getDataProducts, updateDataProduct } from '../controllers/controller.products.js';
 
-const router = Router();
+export default class ProductsRouter extends MyOwnRouter{
+    init(){
+        //debera traer todos los products
+        this.get('/', getDataProducts);
+        // debera traer solamente el producto solicitado con el id del producto
+        this.get('/:pid', ['ADMIN', 'USER'], getDataProductById);
 
-//traer todos los products
-router.get('/', getDataProducts);
+        //ahora la ruta post recibe el producto desde formAddProducts.handlebars
+        this.post('/', ['ADMIN'], createDataProduct);
 
-// debera traer solamente el producto solicitado con el id del producto
-router.get('/:pid', getDataProductById);
+        // la ruta put debera actualizar las propiedades del productos con los campos dados desde el body
+        this.put('/:pid', ['ADMIN'], updateDataProduct);
 
-//ahora la ruta post recibe el producto desde formAddProducts.handlebars
-router.post('/', createDataProduct);
+        //debera eliminar el producto con el id indicado
+        this.delete('/:pid', ['ADMIN'], deleteDataProduct);
+    }
+}
 
-// la ruta put debera actualizar las propiedades del productos con los campos dados desde el body
-router.put('/:pid', updateDataProduct);
 
-//debera eliminar el producto con el id indicado
-router.delete('/:pid', deleteDataProduct);
 
-export default router
+
+
 

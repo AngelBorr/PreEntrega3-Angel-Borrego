@@ -1,4 +1,5 @@
 import UsersService from "../services/service.users.js";
+import UserDTO from "../dto/user.dto.js";
 
 const usersService = new UsersService
 
@@ -11,10 +12,11 @@ export const failRegister = async (req, res) => {
     res.status(404).send({error:'Fallo'})
 }
 
-export const loginUser = async (req, res) => {    
+export const loginUser = async (req, res) => {
     if(!req.user){
         return res.status(400).send({status:'Error', error:'Credenciales Invalidas'})
-    }    
+    }   
+    
     req.session.user = {
         name: `${req.user.firstName} ${req.user.lastName}`,
         email: req.user.email,
@@ -22,7 +24,7 @@ export const loginUser = async (req, res) => {
         role: req.user.role            
     }   
     //return res.status(200).send({status:'usuario autenticado', payload: req.user})
-    return res.cookie('cookieToken', req.user, { httpOnly: true }).send({status:'usuario autenticado', message: 'cookie set'})
+    return res.cookie('cookieToken', req.authInfo,{ httpOnly: true }).send({status:'usuario autenticado', message: 'cookie set', payload: req.authInfo})
 }
 
 export const failLogin = async (req, res) => {    
@@ -73,7 +75,7 @@ export const gitHubCallBack = async (req, res) => {
 }
 
 //current
-export const usersCurrent = async (req, res) => {
-    //usar el dto
-    res.send(req.user);    
+export const usersCurrent = async (req, res, next) => {    
+    const user = new UserDTO(req.user)    
+    res.send(user);    
 }
