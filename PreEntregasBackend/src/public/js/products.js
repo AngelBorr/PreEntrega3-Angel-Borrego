@@ -1,24 +1,14 @@
-//const token = localStorage.getItem('token');
-fetch('/products',{
-    method:'GET',
-    headers:{
-        'Content-Type':'application/json',
-        'autorization':`Bearer ${localStorage.getItem('token')}`
-        //'autorization':`Bearer ${token}`//por que no envia el req.headers con la peticion?
-    }
-}).then(response=>{    
-    if(response.status===401){
-        console.log('resProducts2', response)
-        window.location.replace('/login')
-    }else{
-        console.log("resProductsElse", response);
-        return response.json();
-    }
-})
-
 const addProductInCart = async (event) => {
-    const productId = event.target.dataset.id;    
-    const idCart = '64a5fda9331d448f7738fb34';    
+    const productId = event.target.dataset.id;
+    const token = localStorage.getItem('token')
+    const getUser = await fetch('/api/sessions/current', {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+    })
+    const user = await getUser.json()
+    const idCart = user.cart;    
     if (!idCart) {
         console.error('ID del carrito no especificado');
         return;
@@ -33,11 +23,36 @@ const addProductInCart = async (event) => {
     
     if(confirm){
         return console.log(confirm)
-    }
-    
+    }    
 };
+
+const redirecToCartPage = async (event) => {
+    const token = localStorage.getItem('token')
+    console.log('token', token)
+    const getUser = await fetch('/api/sessions/current', {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+    })
+    const user = await getUser.json()
+    const idCart = user.cart;
+    const routerCart = await fetch(`/carts/${idCart}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+    }).then(result => {
+        if(result.status === 200){
+            window.location.replace(`/carts/${idCart}`)
+        } 
+    })
+}
 
 const btnAddProducts = document.querySelectorAll('.btnAddProduct');
 btnAddProducts.forEach(btn => {
     btn.addEventListener('click', addProductInCart);
 });
+
+const btnCarrito = document.querySelector('.btnCart')
+btnCarrito.addEventListener('click', redirecToCartPage)

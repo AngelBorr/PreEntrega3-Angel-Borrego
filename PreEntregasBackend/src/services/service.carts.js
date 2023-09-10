@@ -19,7 +19,21 @@ class CartService {
     //muestra un carrito por su id
     async getCartById(idCart) {
         try {
-            const data = await this.carts.getCartById(idCart);
+            const data = await this.carts.getCartById(idCart);           
+            const products = data.products
+            const newProducts = []
+            for (const prod of products) {
+                const multiply = await prod.quantity * prod.product.price                
+                const newProd = {                    
+                    ...prod,
+                    ...prod.quantity,
+                    subtotal: multiply,
+                }
+                newProducts.push(newProd)
+            }
+            data.products = newProducts
+            const total = data.products.reduce((acc, curr) => acc + curr.subtotal, 0)
+            data.total = total
             if (!data) {
                 return `No se ha encontrado carritos con este id:(${id}), verifique que los datos ingresados sean los correctos y vuelve a intentarlo`;
             }

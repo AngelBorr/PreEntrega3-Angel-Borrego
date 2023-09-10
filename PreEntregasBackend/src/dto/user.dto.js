@@ -4,6 +4,7 @@ export default class UserDTO {
         this.last_name = user.lastName;
         this.email = user.email;
         this.birth_date = user.birth_date;
-        this.role = user.role      
+        this.role = user.role
+        this.cart = user.cart
     }
 }

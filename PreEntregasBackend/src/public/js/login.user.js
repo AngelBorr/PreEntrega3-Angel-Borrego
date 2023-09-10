@@ -13,25 +13,17 @@ formLogin.addEventListener("submit", function(event) {
         headers:{
             'Content-Type':'application/json'
         }
-    }).then(result=>{
-        if(result.status===200){
-            result.json().then(json => {
-                localStorage.setItem('token', json.payload)                
-            })
-        }
-        window.location.replace('/products')
-    })
-    fetch('/products',{
-        method:'GET',
-        headers:{
-            'Autorization':`Bearer ${localStorage.getItem('token')}`
-        }
-    }).then(response=>{
-        console.log('resProducts', response)
-        if(response.status===401){
-            window.location.replace('/login')
-        }else{
-            window.location.replace('/products')
-        }
+    }).then(result => result.json()).then(json => {
+        try {
+            const result = json.payload
+            localStorage.setItem('token', result)
+            const token = localStorage.getItem('token')
+            console.log('token', token)
+            if(token){
+                window.location.replace('/products') 
+            }         
+        } catch (error) {
+            console.log(error.message)
+        }        
     })
 })

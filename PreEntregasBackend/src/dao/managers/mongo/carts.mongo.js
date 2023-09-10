@@ -18,7 +18,7 @@ class CartsManager{
     //trae un carrito por su id
     getCartById(id){
         const mongoId = {_id:id}
-        const data = this.cartsModel.findOne(mongoId)
+        const data = this.cartsModel.findOne(mongoId).lean()
         return data
     }
 

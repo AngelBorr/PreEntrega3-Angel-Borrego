@@ -30,16 +30,4 @@ export const cookieExtractor = (req) => {
     return token;
 };
 
-/* export const authToken = (req, res, next) => {
-    const authHeader = req.authInfo;
-    console.log(authHeader)
-    if (!authHeader) return console.log({ status: "error", error: "Unauthorized" })
-    
-    const token = authHeader.split(' ')[1];
-    jwt.verify(token, PRIVATE_KEY, (error, credentials) => {
-        console.log(error);
-        if (error) return console.log({ status: "error", error: "Unauthorized" })
-        req.user = credentials.user;
-        next();
-    })
-} */
+

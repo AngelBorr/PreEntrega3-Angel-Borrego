@@ -3,12 +3,14 @@ import ProductsManager from "./managers/mongo/products.mongo.js";
 import CartsManager from "./managers/mongo/carts.mongo.js";
 import MessageManager from "./managers/mongo/messages.mongo.js";
 import UserGitHubManager from "./managers/mongo/usersGitHub.mongo.js";
+import TicketsManager from './managers/mongo/tickets.mongo.js'
 
 import UsersManagerFile from "./managers/file/users.file.js";
 import ProductsManagerFile from "./managers/file/products.file.js";
 import CartsManagerFile from "./managers/file/carts.file.js";
 import MessageManagerFile from "./managers/file/messages.file.js";
 import UserGitHubManagerFile from "./managers/file/userGitHub.file.js";
+import TicketManagerFile from "./managers/file/tickets.file.js";
 
 class DaosFactory{
     constructor(){}
@@ -70,6 +72,18 @@ class DaosFactory{
                 return new MessageManagerFile
             default:
                 return new MessageManager
+        }
+    }
+
+    TicketDao (){
+        const dao = process.env.PERSISTENCE || 'mongo'
+        switch (dao) {
+            case 'mongo':
+                return new TicketsManager
+            case 'file':
+                return new TicketManagerFile
+            default:
+                return new TicketsManager
         }
     }
 }

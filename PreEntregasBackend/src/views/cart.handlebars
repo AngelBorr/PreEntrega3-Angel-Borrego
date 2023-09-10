@@ -1,12 +1,16 @@
 <div class="containerProducts">    
-    <h1>Carritos de compras: {{cart._id}}</h1>    
+    <h1>Carritos de compras: {{cart._id}}</h1>
+    <br>
+    <button class='btnComprar btn btn-primary'>Comprar</button>
+    <br>
+    <br>    
     <table class='table table-striped'>
         <thead>
             <tr>
                 <th>IdProd</th>
                 <th>Title</th>
                 <th>Category</th>                
-                <th>Price</th>
+                <th>Price/unit</th>
                 <th>Quantity</th>
                 <th>SubTotal</th>
                 
@@ -21,14 +25,25 @@
                     <td>{{this.product.category}}</td>
                     <td>$ {{this.product.price}}</td>
                     <td>{{this.quantity}}</td>
-                    <td>$ ({{this.product.price}}*{{this.quantity}})</td>
+                    <td>$ {{this.subtotal}}</td>
                     
                     <td><button class="btnDeleteProductCart btn btn-danger" data-id={{this.product._id}}  onClick= >Eliminar</button></td>
-                </tr>
+                </tr>                
                 {{/each}}
-            {{/if}}            
+            {{/if}}
+            <tr>
+                    <td class="tableVacio"></td>
+                    <td class="tableVacio"></td>
+                    <td class="tableVacio"></td>
+                    <td class="tableVacio"></td>
+                    <td class="tableTotal">Total</td>
+                    <td>$ {{cart.total}}</td>
+            </tr>            
         </tbody>
-    </table>    
+    </table>
+    <br>
+    <button class='btnContinueBuing btn btn-success'>Seguir Comprando</button>
+    <br>    
 </div>
 
 <script src="/js/cart.js"></script>

@@ -14,7 +14,7 @@ export default class SessionsRouter extends MyOwnRouter{
 
         this.get('/failRegister', ['PUBLIC'], failRegister)
 
-        //ruta login
+        //ruta loginSA
         this.post('/login', ['PUBLIC'], passport.authenticate('login', {failureRedirect:'/api/sessions/failLogin'}) , loginUser)
 
         this.get('/failLogin', ['PUBLIC'], failLogin)

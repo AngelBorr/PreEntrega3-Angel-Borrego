@@ -34,7 +34,7 @@ export const getViewProducts = async (req, res) =>{
                 hasNextPage: data.hasNextPage,
                 prevPage: data.prevPage,
                 nextPage: data.nextPage
-            })            
+            })
         }        
     } catch (error) {
         return res.status(500).render('Error al obtener los producto desde products.json');
@@ -45,15 +45,15 @@ export const getViewProducts = async (req, res) =>{
 export const getViewCartById = async (req, res) =>{
     try {
         const idCart = req.params.cid
-        const cart = await cartsService.getCartById(idCart);        
+        const cart = await cartsService.getCartById(idCart);
         if(!cart){
             return res.status(404).render("El carrito esta vacio.");
         }else{
             res.status(200).render('cart', {
                 cart: cart,
                 style:"index.css",
-                styleBoostrap:"bootstrap.min.css",
-                title: "CartList", 
+                styleBoostrap:"bootstrap.min.css", 
+                title: "CartList",                
             })            
         }        
     } catch (error) {

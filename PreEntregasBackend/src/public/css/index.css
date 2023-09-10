@@ -118,3 +118,14 @@ table thead tr th{
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+.tableTotal{
+    font-weight: normal  !important;
+
+}
+
+.tableVacio{
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}

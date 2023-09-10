@@ -4,7 +4,7 @@ import { createDataProduct, deleteDataProduct, getDataProductById, getDataProduc
 export default class ProductsRouter extends MyOwnRouter{
     init(){
         //debera traer todos los products
-        this.get('/', getDataProducts);
+        this.get('/', ['ADMIN', 'USER'], getDataProducts);
         // debera traer solamente el producto solicitado con el id del producto
         this.get('/:pid', ['ADMIN', 'USER'], getDataProductById);
 

@@ -1,13 +1,16 @@
 import CartService from "../services/service.carts.js";
+import TicketService from "../services/service.tickets.js";
 
 const cartsService = new CartService
+const ticketService = new TicketService
 
 //crea un carrito
 export const createCart = async (req, res) => {
     try {        
-        const newCart = await cartsService.addCarts();                
+        const newCart = await cartsService.addCarts();
+        console.log(newCart)                
         if(newCart){
-            return res.status(200).json('se ha creado exitosamente un nuevo carrito');
+            return res.status(200).json(newCart);
         }else{
             return res.status(404).json(`No pudo crearse con exito un nuevo carrito`);
         }
@@ -110,4 +113,17 @@ export const addArrayInCart = async (req, res) => {
     } catch (error) {
         return res.status(500).json('Error al obtener el Carrito');
     }    
+}
+
+//confirmacion de compra
+export const confirmBuy = async(req, res) =>{
+    try {
+        const user = req.body
+        console.log("controlerCart", user )
+        const ticket = await ticketService.create(user)
+        return res.status(200).send('Hola desde el controlador')
+    } catch (error) {
+        return res.status(500).json('Error al mandar el usuario');
+    }
+    
 }

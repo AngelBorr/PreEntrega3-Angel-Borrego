@@ -15,15 +15,13 @@ export const failRegister = async (req, res) => {
 export const loginUser = async (req, res) => {
     if(!req.user){
         return res.status(400).send({status:'Error', error:'Credenciales Invalidas'})
-    }   
-    
+    }
     req.session.user = {
         name: `${req.user.firstName} ${req.user.lastName}`,
         email: req.user.email,
         age: req.user.age,
         role: req.user.role            
-    }   
-    //return res.status(200).send({status:'usuario autenticado', payload: req.user})
+    }
     return res.cookie('cookieToken', req.authInfo,{ httpOnly: true }).send({status:'usuario autenticado', message: 'cookie set', payload: req.authInfo})
 }
 

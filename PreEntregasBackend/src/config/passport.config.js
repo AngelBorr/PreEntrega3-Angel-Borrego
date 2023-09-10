@@ -46,9 +46,9 @@ const initializePassport = () => {
                         age,
                         password: createHash(password), 
                         birth_date,
-                        role
+                        role,
+                        cart: await cartService.addCarts()
                     };
-                    console.log('1', user)
                     const newUser = await usersService.createUser(user);
                     if(newUser){
                         return done(null, newUser)
@@ -68,8 +68,7 @@ const initializePassport = () => {
         async (username, password, done) =>{
             try {
                 //no incorpora el roll
-                const user = await usersService.getUsers( username );
-                console.log('user', user)
+                const user = await usersService.getUsers( username )
                 if (!user){
                     return done(null, false, {message:"Usuario incorrectos y/o inexistente"})
                 };

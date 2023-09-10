@@ -32,7 +32,7 @@ const DB_NAME = env.dbColecction;
 const DB_CLUSTER =  env.dbCluster
 
 //data session
-const secret = env.secret
+const secret = env.secret 
 
 const rutaMongo = `mongodb+srv://${USER_MONGO}:${PASS_MONGO}@${DB_CLUSTER}/${DB_NAME}?retryWrites=true&w=majority`;
 

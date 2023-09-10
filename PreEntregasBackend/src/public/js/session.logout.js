@@ -2,7 +2,7 @@ const sessionLogout = async (event) =>{
     await fetch('/api/sessions/logout', {
         method: 'POST',
         headers:{
-            'Autorization':`Bearer ${localStorage.getItem('token')}`
+            'Authorization':`Bearer ${localStorage.getItem('token')}`
         }                
     }).then(result=>{
         if(result.status===200){
