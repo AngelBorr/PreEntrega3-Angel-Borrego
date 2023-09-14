@@ -1,5 +1,5 @@
 import MyOwnRouter from './router.js';
-import { getViewCartById, getViewChat, getViewCurrent, getViewFormularyProducts, getViewHandlebarsProducts, getViewLoginUser, getViewProducts, getViewRegisterUser, getViewResetPass, privateAccess, publicAccess } from '../controllers/controller.views.js';
+import { getViewCartById, getViewChat, getViewCurrent, getViewFormularyProducts, getViewHandlebarsProducts, getViewLoginUser, getViewMocking, getViewProducts, getViewRegisterUser, getViewResetPass, privateAccess, publicAccess } from '../controllers/controller.views.js';
 
 export default class ViewRouter extends MyOwnRouter{
     init(){
@@ -12,6 +12,7 @@ export default class ViewRouter extends MyOwnRouter{
         this.get('/login', ['PUBLIC'], publicAccess, getViewLoginUser)
         this.get('/resetPassword', ['PUBLIC'], publicAccess, getViewResetPass)
         this.get('/current', ['ADMIN', 'USER'],privateAccess, getViewCurrent )
+        this.get('/mockingproducts', ['ADMIN', 'USER'],privateAccess, getViewMocking )
     }
 
 }

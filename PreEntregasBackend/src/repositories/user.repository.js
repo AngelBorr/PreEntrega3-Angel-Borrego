@@ -24,10 +24,9 @@ class UsersRepository{
     }
 
     //modificar user password
-    async updateUser(email, newpassword){
-        const user = await users.getUser(email); 
-        const updatePassword = newpassword;
-        const updatePass = await users.updateUser(user._id, {password: updatePassword})            
+    async updateUser(id, newpassword){
+        const user = await users.getUserId(id);        
+        const updatePass = await users.updateUser(user._id, newpassword)
         return updatePass
     }
 }

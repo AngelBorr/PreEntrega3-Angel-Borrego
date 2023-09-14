@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { response } from 'express';
 import ProductsRouter from './routes/products.router.js';
 import CartsRouter from './routes/carts.router.js';
 import handlerbars from 'express-handlebars';
@@ -15,14 +15,19 @@ import session from 'express-session';
 import passport from 'passport';
 import initializePassport from './config/passport.config.js';
 import env from './config.js'
+import errorHandler from './middlewares/errors/errors.index.js'
+import { addLogger } from './middlewares/logger/logger.js';
+import LoggerRouter from './routes/loggers.router.js';
 
 const viewRouter = new ViewRouter();
 const chatRouter = new ChatRouter();
 const productsRouter = new ProductsRouter();
 const cartsRouter = new CartsRouter();
 const sessionsRouter = new SessionsRouter();
+const loggerRouter = new LoggerRouter();
 
 const app = express();
+app.use(addLogger);
 
 //data MONGODB
 const PORT = env.port; 
@@ -65,7 +70,8 @@ app.use('/', viewRouter.getRouter());
 app.use('/api/products', productsRouter.getRouter());
 app.use('/api/carts', cartsRouter.getRouter());
 app.use('/api/chat', chatRouter.getRouter());
-app.use('/api/sessions', sessionsRouter.getRouter()); 
+app.use('/api/sessions', sessionsRouter.getRouter());
+app.use('/loggerTest', loggerRouter.getRouter())
 
 //server en puerto 8080
 const httpServer = app.listen(`${PORT}`, () => {
@@ -77,7 +83,7 @@ const httpServer = app.listen(`${PORT}`, () => {
 mongoose.connect(rutaMongo, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-}).then(() => console.log('conectado a mongo')).catch((err) => {console.error(err)});
+}).then(() => console.log('conectado a mongo')).catch((err) => {console.log(err)});
 
 //servidor con socket
 const io = new Server(httpServer)
@@ -89,4 +95,6 @@ io.on('connection', socket =>{
     updateProducts(io);
     chatSocket(socket, io)   
     
-}); 
+});
+
+app.use(errorHandler)

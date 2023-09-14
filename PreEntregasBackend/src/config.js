@@ -13,6 +13,7 @@ export default {
     gitHubSecret: process.env.CLIENTE_GITHUB_SECRET,
     dbCluster: process.env.DB_CLUSTER,
     persistence: process.env.PERSISTENCE,
+    entorno: process.env.NODE_ENV,
     paginate: {
         limit: process.env.LIMIT,
         page: process.env.PAGE

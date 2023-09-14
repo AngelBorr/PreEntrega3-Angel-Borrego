@@ -1,5 +1,7 @@
-import productsModel from "../dao/models/products.models.js";
 import ProductsRepository from "../repositories/product.repository.js";
+import CustomError from "./errors/customError.js";
+import EErrors from "./errors/enums.js";
+import { generateProductsErrorInfo } from "./errors/info.js";
 
 class ProductsService{    
     constructor(){
@@ -39,6 +41,16 @@ class ProductsService{
     //agrega new products a products
     async addProduct(bodyProduct){        
         try {
+            const { title, description, price, thumbnail, code, stock, status, category } = bodyProduct
+            if(!title || !description || !price || !thumbnail || !code || !stock || !status || !category){
+                req.logger.error('Se produjo un error al crear el producto')
+                CustomError.createError({
+                    name: 'Products Creation Error',
+                    cause: generateProductsErrorInfo({ title, description, price, thumbnail, code, stock, status, category }),
+                    code: EErrors.INVALID_TYPES_ERROR,
+                    message: 'Error trying to create a new Products'
+                });
+            } 
             const newProduct = await this.products.createProduct(bodyProduct)
             return newProduct; 
         } catch (error) {
@@ -52,7 +64,7 @@ class ProductsService{
         try {
             const existingProduct = await this.products.getProductById(id);
             if(!existingProduct){
-                throw new Error(`El producto que se desea actualizar no existe: ${error.message}`);
+                throw new Error(`El producto que se desea actualizar no existe: ${Error.message}`);
             }
             const updateProduct = await this.products.updateProduct(id,updateBodyProduct)
             return updateProduct

@@ -1,5 +1,9 @@
 import ProductsService from "../services/service.products.js";
 import CartService from "../services/service.carts.js";
+import { generateProduct } from "../utils.js";
+import CustomError from "../services/errors/customError.js";
+import { generateProductsMockingErrorInfo } from "../services/errors/info.js";
+import EErrors from "../services/errors/enums.js";
 
 const productsService = new ProductsService
 const cartsService = new CartService
@@ -7,11 +11,13 @@ const cartsService = new CartService
 //configuracion vistas publicas y privadas
 export const publicAccess = async (req, res, next) => {
     if (req.session.user) return res.redirect('/products');
+    req.logger.info(req.session.user)
     next();
 }
 
 export const privateAccess = async (req, res, next) => {
     if (!req.session.user) return res.redirect('/login');
+    req.logger.error(!req.session.user)
     next();
 }
 
@@ -19,9 +25,10 @@ export const privateAccess = async (req, res, next) => {
 export const getViewProducts = async (req, res) =>{
     try {        
         const {limit = 5, page = 1, sort='asc', category} = req.query;
-        const data = await productsService.getProducts(limit, page, sort, category);
-        let products = data.products
+        const data = await productsService.getProducts(limit, page, sort, category);        
+        let products = data.products       
         if(!data){
+            req.logger.fatal('El valor de data es: ' + data + ', en ControllersView')
             return res.status(404).render("El listado de productos esta vacio.");
         }else{
             res.status(200).render('products', {
@@ -37,6 +44,7 @@ export const getViewProducts = async (req, res) =>{
             })
         }        
     } catch (error) {
+        req.logger.error('Se produjo un error en ControllerView y no se renderizan los Productos')
         return res.status(500).render('Error al obtener los producto desde products.json');
     }    
 }
@@ -45,10 +53,13 @@ export const getViewProducts = async (req, res) =>{
 export const getViewCartById = async (req, res) =>{
     try {
         const idCart = req.params.cid
-        const cart = await cartsService.getCartById(idCart);
+        req.logger.debug('El id del carrito es: ' + idCart )        
+        const cart = await cartsService.getCartById(idCart);        
         if(!cart){
+            req.logger.warn('El carrito con el id ' + idCart + ' no existe')
             return res.status(404).render("El carrito esta vacio.");
         }else{
+            req.logger.info('El carrito con el id ' + idCart + ' se ha obtenido correctamente');
             res.status(200).render('cart', {
                 cart: cart,
                 style:"index.css",
@@ -57,6 +68,7 @@ export const getViewCartById = async (req, res) =>{
             })            
         }        
     } catch (error) {
+        req.logger.error('Se ha producido un error en la función getViewCartById: ' + error);
         return res.status(500).render('Error al obtener los producto desde products.json');
     }    
 }
@@ -65,11 +77,12 @@ export const getViewCartById = async (req, res) =>{
 export const getViewFormularyProducts = async (req, res) =>{    
     try {
         res.status(200).render('formAddProducts', {
-                style:"index.css",
-                styleBoostrap:"bootstrap.min.css",
-                title: "formAddProducts"
-            }); 
+            style:"index.css",
+            styleBoostrap:"bootstrap.min.css",
+            title: "formAddProducts"
+        }); 
     } catch (error) {
+        req.logger.error('Se produjo un error al renderizar ViewFomularyProducts')
         return res.status(500).render('Error al obtener los producto desde products.json');
     }    
 }
@@ -83,7 +96,8 @@ export const getViewHandlebarsProducts = async (req, res) => {
                 title: "realTimeProducts"
             });        
         
-    } catch (error) {
+    } catch (error) {        
+        req.logger.error('Se produjo un error al renderizar ViewRealTimeProducts')
         return res.status(500).render('Error al obtener los producto desde products.json');
     } 
 }
@@ -93,6 +107,8 @@ export const getViewChat = (req, res) => {
     try {
         res.status(200).render('chat')
     } catch (error) {
+        
+        req.logger.error('Se produjo un error al renderizar ViewChat')
         return res.status(500).render('Error al obtener los messages desde la base de datos');
     }
 }
@@ -106,6 +122,8 @@ export const getViewRegisterUser = async (req, res) => {
                 title: "RegisterUser"
             }); 
     } catch (error) {
+        
+        req.logger.error('Se produjo un error al renderizar ViewRegisterUser')
         return res.status(500).render('Error al renderizar el resgistro de usuarios');
     }
 }
@@ -120,6 +138,8 @@ export const getViewLoginUser = async (req, res) => {
                 imgSrc:'/img/github.png'
             }); 
     } catch (error) {
+        
+        req.logger.error('Se produjo un error al renderizar ViewLoginUser')
         return res.status(500).render('Error al renderizar el login');
     }
 }
@@ -133,6 +153,8 @@ export const getViewResetPass = async (req, res) => {
                 title: "resetPassword"
             }); 
     } catch (error) {
+        
+        req.logger.error('Se produjo un error al renderizar ViewResetPassword')
         return res.status(500).render('Error al renderizar resetPassword');
     }
 }
@@ -146,6 +168,43 @@ export const getViewCurrent = async (req, res) => {
                 title: "current"
             }); 
     } catch (error) {
+        
+        req.logger.error('Se produjo un error al renderizar ViewCurrent')
         return res.status(500).render('Error al renderizar resetPassword');
+    }
+}
+
+//vista Moking
+export const getViewMocking = async (req, res) => {
+    try {
+        let products = []
+        for (let i = 0; i < 100; i++){
+            const item = generateProduct()
+            const {title, price, category, stock, thumbnail, _id, code, description} = item
+            if(!title || !price || !category || !stock || !thumbnail || !_id || !code || !description){
+                CustomError.createError({
+                    name: 'Products Creation Error',
+                    cause: generateProductsMockingErrorInfo({title, price, category, stock, thumbnail, _id, code, description}),
+                    code: EErrors.INVALID_TYPES_ERROR,
+                    message: 'Error trying to create a new Products'
+                })
+                req.logger.error('Se produjo un error al crear el producto en Mocking')
+            }
+            products.push(item)            
+        }        
+        if(!products){            
+            req.logger.fatal('No se pudo acceder a products en ViewMocking')
+            return res.status(404).render("El listado de productos esta vacio.");
+        }else{
+            res.status(200).render('products', {
+                products: products,
+                style:"index.css",
+                styleBoostrap:"bootstrap.min.css",
+                title: "ProductsListMocking",                
+            })
+        }    
+    } catch (error) {        
+        req.logger.error('Se produjo un error al renderizar ViewMocking: ' + error.cause)
+        return res.status(500).render('Error al obtener los producto desde faker');
     }
 }

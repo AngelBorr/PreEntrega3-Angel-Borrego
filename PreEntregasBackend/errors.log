@@ -1,0 +1,60 @@
+http: Entorno: development - GET en /mockingproducts - Wed Sep 13 2023 17:56:54 GMT-0300 (hora estándar de Argentina)
+error: false
+error: Se produjo un error al renderizar ViewMocking: One or more properties were incomplete or not valid.
+    List of required properties:
+    * title : needs to be a String, received: undefined
+    * description : needs to be a String, received: The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J
+    * price : needs to be a String, received: undefined
+    * thumbnail : needs to be a String, received: Sin Imagen
+    * code : needs to be a String, received: vnZEo
+    * stock : needs to be a String, received: 35
+    * _id : needs to be a String, received: b1ea4d8a317f169e7498c4fa
+    * category : needs to be a String, received: Herramientas
+info: usando middleware de errores
+info: undefined {"view":{"defaultEngine":"handlebars","ext":".handlebars","name":"Error al obtener los producto desde faker","root":"C:\\Users\\Usuario\\Desktop\\Coder House\\Backend\\PreEntrega3-Angel Borrego\\PreEntregasBackend\\src/views"}}
+http: Entorno: development - GET en /mockingproducts - Wed Sep 13 2023 18:04:27 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /css/index.css - Wed Sep 13 2023 18:04:27 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Wed Sep 13 2023 18:04:27 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/products.js - Wed Sep 13 2023 18:04:27 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/session.logout.js - Wed Sep 13 2023 18:04:27 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css.map - Wed Sep 13 2023 18:04:28 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - POST en /api/sessions/logout - Wed Sep 13 2023 18:52:35 GMT-0300 (hora estándar de Argentina)
+info: Session Finalizada[object Object]
+http: Entorno: development - GET en /login - Wed Sep 13 2023 18:52:35 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Wed Sep 13 2023 18:52:35 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Wed Sep 13 2023 18:52:35 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/login.user.js - Wed Sep 13 2023 18:52:35 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css.map - Wed Sep 13 2023 18:52:35 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - POST en /api/sessions/login - Wed Sep 13 2023 18:52:45 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("64ee479c9c9ed51b503dec8b"),
+  firstName: 'oso',
+  lastName: 'arturo',
+  email: 'arturo@gmail.com',
+  age: 23,
+  password: '$2b$10$6K8zAsYR31gVG1L4y/TUfO5/Y8S7U7eVqfGwipoHnW8TTpL35EXwS',
+  birth_date: 2000-08-01T00:00:00.000Z,
+  role: 'admin',
+  __v: 0
+}
+http: Entorno: development - GET en /products - Wed Sep 13 2023 18:52:45 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /css/index.css - Wed Sep 13 2023 18:52:45 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Wed Sep 13 2023 18:52:45 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/products.js - Wed Sep 13 2023 18:52:45 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/session.logout.js - Wed Sep 13 2023 18:52:45 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css.map - Wed Sep 13 2023 18:52:45 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /loggerTest - Wed Sep 13 2023 18:53:15 GMT-0300 (hora estándar de Argentina)
+debug: debug
+http: http
+info: info
+warning: warning
+error: error
+http: Entorno: development - GET en /loggerTest - Wed Sep 13 2023 18:54:34 GMT-0300 (hora estándar de Argentina)
+debug: Esto es una prueba del Log debug
+http: Esto es una prueba del Log http
+info: Esto es una prueba del Log info
+warning: Esto es una prueba del Log warning
+error: Esto es una prueba del Log error
