@@ -44,3 +44,18 @@ export const generateTicketErrorInfo = ({code, purchase_datetime, amount, purcha
     * amount : needs to be a String, received: ${amount}
     * purchaser : needs to be a String, received: ${purchaser}`
 }
+
+export const generateResetPassErrorInfo = ({password, newPassword, confirmNewPassword}) => {
+    return `One or more properties were incomplete or not valid.
+    List of required properties:
+    * password : needs to be a String, received: ${password}
+    * newPassword : needs to be a String, received: ${newPassword}
+    * confirmNewPassword : needs to be a String, received: ${confirmNewPassword}`
+}
+
+export const generateDiferentPassError = ({newPassword, confirmNewPassword}) => {
+    return `One or more properties are incomplete or are different.
+    List of required properties:
+    * newPassword : needs to be a String, received: ${newPassword}
+    * confirmNewPassword : needs to be a String, received: ${confirmNewPassword}`
+}

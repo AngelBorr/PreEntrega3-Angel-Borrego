@@ -4,9 +4,12 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'
 import env from './config.js'
 import { faker } from '@faker-js/faker/locale/es_MX'
+import nodemailer from 'nodemailer'
 
 export const createHash = password => bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-export const isValidPassword = (user, password) => bcrypt.compareSync(password, user.password);
+export const isValidPassword = (user, password) => {    
+    return bcrypt.compareSync(password, user.password)
+};
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -19,6 +22,11 @@ export const PRIVATE_KEY = env.keyPrivate; //luego exportar desde .env
 
 export const generateToken = (user) => {
     const token = jwt.sign({user}, `${PRIVATE_KEY}`, {expiresIn: '24h'})
+    return token
+}
+
+export const generateTokenForEmail = (email) => {
+    const token = jwt.sign({email}, `${PRIVATE_KEY}`, {expiresIn: '1h'})
     return token
 }
 
@@ -45,3 +53,14 @@ export const generateProduct = () => {
 
     return product
 };
+
+const mailConfig = {
+    service: env.mailingService,
+    port: env.mailingPort,
+    auth: {
+        user: env.mailingUser,
+        pass: env.mailingPass,
+    },
+}
+
+export const transport = nodemailer.createTransport(mailConfig);

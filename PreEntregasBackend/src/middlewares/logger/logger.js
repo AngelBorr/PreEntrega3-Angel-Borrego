@@ -55,6 +55,11 @@ export const addLogger = (req, res, next) => {
                         winston.format.simple()
                     )
                 }),
+                new winston.transports.File({
+                    filename: './errors.log',
+                    level: 'error',
+                    format: winston.format.simple()
+                })
             ]
         })
         req.logger = logger

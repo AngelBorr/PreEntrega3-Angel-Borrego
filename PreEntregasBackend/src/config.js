@@ -17,5 +17,10 @@ export default {
     paginate: {
         limit: process.env.LIMIT,
         page: process.env.PAGE
-    }
+    },
+    mailingService: process.env.MAIL_SERVICE,
+    mailingPort: process.env.MAIL_PORT,
+    mailingUser: process.env.USER_MAIL,
+    mailingPass: process.env.MAIL_PASS,
+    baseUrl: process.env.BASE_URL
 }

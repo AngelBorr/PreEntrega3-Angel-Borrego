@@ -26,7 +26,7 @@ export const getViewProducts = async (req, res) =>{
     try {        
         const {limit = 5, page = 1, sort='asc', category} = req.query;
         const data = await productsService.getProducts(limit, page, sort, category);        
-        let products = data.products       
+        let products = data.products
         if(!data){
             req.logger.fatal('El valor de data es: ' + data + ', en ControllersView')
             return res.status(404).render("El listado de productos esta vacio.");
@@ -156,6 +156,20 @@ export const getViewResetPass = async (req, res) => {
         
         req.logger.error('Se produjo un error al renderizar ViewResetPassword')
         return res.status(500).render('Error al renderizar resetPassword');
+    }
+}
+
+export const getViewRestartPass = async (req, res) => {
+    try {
+        res.status(200).render('restartPassword', {
+                style:"index.css",
+                styleBoostrap:"bootstrap.min.css",
+                title: "restartPassword"
+            }); 
+    } catch (error) {
+        
+        req.logger.error('Se produjo un error al renderizar ViewRestartPassword')
+        return res.status(500).render('Error al renderizar restartPassword');
     }
 }
 

@@ -1,7 +1,7 @@
 import MyOwnRouter from './router.js';
 import { Router } from "express";
 import passport from "passport";
-import { failLogin, failRegister, gitHubCallBack, loginGitHub, loginUser, logoutSession, registerUser, resetPassword, usersCurrent } from "../controllers/controller.users.js";
+import { restartPassword, failLogin, failRegister, gitHubCallBack, loginGitHub, loginUser, logoutSession, registerUser, resetPassword, usersCurrent } from "../controllers/controller.users.js";
 import cookieParser from "cookie-parser";
 
 const router = Router();
@@ -24,6 +24,9 @@ export default class SessionsRouter extends MyOwnRouter{
 
         //ruta resetPassword
         this.put('/resetPassword', ['PUBLIC'], resetPassword)
+
+        //ruta restartPassword
+        this.put('/restartPassword', ['PUBLIC'], restartPassword)
 
         //rutas Github - VER LA POLITICA
         this.get('/github', ['PUBLIC'],passport.authenticate('github', { scope: ['user:email'] }), loginGitHub);

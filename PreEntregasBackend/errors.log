@@ -1,60 +1,593 @@
-http: Entorno: development - GET en /mockingproducts - Wed Sep 13 2023 17:56:54 GMT-0300 (hora estándar de Argentina)
-error: false
-error: Se produjo un error al renderizar ViewMocking: One or more properties were incomplete or not valid.
-    List of required properties:
-    * title : needs to be a String, received: undefined
-    * description : needs to be a String, received: The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J
-    * price : needs to be a String, received: undefined
-    * thumbnail : needs to be a String, received: Sin Imagen
-    * code : needs to be a String, received: vnZEo
-    * stock : needs to be a String, received: 35
-    * _id : needs to be a String, received: b1ea4d8a317f169e7498c4fa
-    * category : needs to be a String, received: Herramientas
-info: usando middleware de errores
-info: undefined {"view":{"defaultEngine":"handlebars","ext":".handlebars","name":"Error al obtener los producto desde faker","root":"C:\\Users\\Usuario\\Desktop\\Coder House\\Backend\\PreEntrega3-Angel Borrego\\PreEntregasBackend\\src/views"}}
-http: Entorno: development - GET en /mockingproducts - Wed Sep 13 2023 18:04:27 GMT-0300 (hora estándar de Argentina)
-error: false
-http: Entorno: development - GET en /css/index.css - Wed Sep 13 2023 18:04:27 GMT-0300 (hora estándar de Argentina)
-http: Entorno: development - GET en /css/bootstrap.min.css - Wed Sep 13 2023 18:04:27 GMT-0300 (hora estándar de Argentina)
-http: Entorno: development - GET en /js/products.js - Wed Sep 13 2023 18:04:27 GMT-0300 (hora estándar de Argentina)
-http: Entorno: development - GET en /js/session.logout.js - Wed Sep 13 2023 18:04:27 GMT-0300 (hora estándar de Argentina)
-http: Entorno: development - GET en /css/bootstrap.min.css.map - Wed Sep 13 2023 18:04:28 GMT-0300 (hora estándar de Argentina)
-http: Entorno: development - POST en /api/sessions/logout - Wed Sep 13 2023 18:52:35 GMT-0300 (hora estándar de Argentina)
-info: Session Finalizada[object Object]
-http: Entorno: development - GET en /login - Wed Sep 13 2023 18:52:35 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /login - Mon Sep 18 2023 21:44:13 GMT-0300 (hora estándar de Argentina)
 info: undefined
-http: Entorno: development - GET en /css/index.css - Wed Sep 13 2023 18:52:35 GMT-0300 (hora estándar de Argentina)
-http: Entorno: development - GET en /css/bootstrap.min.css - Wed Sep 13 2023 18:52:35 GMT-0300 (hora estándar de Argentina)
-http: Entorno: development - GET en /js/login.user.js - Wed Sep 13 2023 18:52:35 GMT-0300 (hora estándar de Argentina)
-http: Entorno: development - GET en /css/bootstrap.min.css.map - Wed Sep 13 2023 18:52:35 GMT-0300 (hora estándar de Argentina)
-http: Entorno: development - POST en /api/sessions/login - Wed Sep 13 2023 18:52:45 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/index.css - Mon Sep 18 2023 21:44:13 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Mon Sep 18 2023 21:44:13 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/login.user.js - Mon Sep 18 2023 21:44:13 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - POST en /api/sessions/login - Mon Sep 18 2023 21:44:20 GMT-0300 (hora estándar de Argentina)
 info: Session Iniciada, usuario: {
-  _id: new ObjectId("64ee479c9c9ed51b503dec8b"),
-  firstName: 'oso',
-  lastName: 'arturo',
-  email: 'arturo@gmail.com',
+  _id: new ObjectId("64f8a081c938ebcabf5c73eb"),
+  firstName: 'el',
+  lastName: 'panda',
+  email: 'panda@gmail.com',
   age: 23,
-  password: '$2b$10$6K8zAsYR31gVG1L4y/TUfO5/Y8S7U7eVqfGwipoHnW8TTpL35EXwS',
-  birth_date: 2000-08-01T00:00:00.000Z,
-  role: 'admin',
+  password: '$2b$10$N1KmH8HqyREBJ7mF.eUSketYBGP3DN6M0T9fqoPJ1t5vDoSRz06SC',
+  birth_date: 2000-09-01T00:00:00.000Z,
+  cart: new ObjectId("64f8a081c938ebcabf5c73e9"),
+  role: 'user',
   __v: 0
 }
-http: Entorno: development - GET en /products - Wed Sep 13 2023 18:52:45 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /products - Mon Sep 18 2023 21:44:21 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /products - Mon Sep 18 2023 21:49:19 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /login - Mon Sep 18 2023 21:49:56 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Mon Sep 18 2023 21:49:57 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Mon Sep 18 2023 21:49:57 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/login.user.js - Mon Sep 18 2023 21:49:57 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css.map - Mon Sep 18 2023 21:49:57 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - POST en /api/sessions/login - Mon Sep 18 2023 21:50:06 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("64f8a081c938ebcabf5c73eb"),
+  firstName: 'el',
+  lastName: 'panda',
+  email: 'panda@gmail.com',
+  age: 23,
+  password: '$2b$10$N1KmH8HqyREBJ7mF.eUSketYBGP3DN6M0T9fqoPJ1t5vDoSRz06SC',
+  birth_date: 2000-09-01T00:00:00.000Z,
+  cart: new ObjectId("64f8a081c938ebcabf5c73e9"),
+  role: 'user',
+  __v: 0
+}
+http: Entorno: development - GET en /products - Mon Sep 18 2023 21:50:06 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /login - Tue Sep 19 2023 12:08:27 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:08:27 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/login.user.js - Tue Sep 19 2023 12:08:27 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:08:27 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /favicon.ico - Tue Sep 19 2023 12:08:28 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /restartPassword - Tue Sep 19 2023 12:08:53 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:08:53 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:08:53 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/restartPass.user.js - Tue Sep 19 2023 12:08:53 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - POST en /api/sessions/login - Tue Sep 19 2023 12:09:27 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("64d3f4aab1895c05da8d988f"),
+  firstName: 'pepe',
+  lastName: 'argento',
+  email: 'pepe@gmail.com',
+  age: 40,
+  password: '$2b$10$/.7FgVxkV2U.9kgeprdkBuaEdJsmPVvCwi4JeL/2CbrkM7P32d/6e',
+  __v: 0
+}
+http: Entorno: development - GET en /products - Tue Sep 19 2023 12:09:27 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /login - Tue Sep 19 2023 12:12:18 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:12:18 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:12:18 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/login.user.js - Tue Sep 19 2023 12:12:18 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:14:47 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:14:47 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css.map - Tue Sep 19 2023 12:14:47 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - POST en /api/sessions/login - Tue Sep 19 2023 12:20:13 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("64d3f4aab1895c05da8d988f"),
+  firstName: 'pepe',
+  lastName: 'argento',
+  email: 'pepe@gmail.com',
+  age: 40,
+  password: '$2b$10$/.7FgVxkV2U.9kgeprdkBuaEdJsmPVvCwi4JeL/2CbrkM7P32d/6e',
+  __v: 0
+}
+http: Entorno: development - GET en /products - Tue Sep 19 2023 12:20:13 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /login - Tue Sep 19 2023 12:22:03 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:22:03 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:22:03 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/login.user.js - Tue Sep 19 2023 12:22:03 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /register - Tue Sep 19 2023 12:22:07 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:22:07 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/register.user.js - Tue Sep 19 2023 12:22:07 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:22:07 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - POST en /api/sessions/register - Tue Sep 19 2023 12:23:09 GMT-0300 (hora estándar de Argentina)
+info: El usuario se creo correctamente
+http: Entorno: development - GET en /login - Tue Sep 19 2023 12:23:10 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:23:10 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:23:10 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/login.user.js - Tue Sep 19 2023 12:23:10 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - POST en /api/sessions/login - Tue Sep 19 2023 12:24:23 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("6509bcdd77edab00a32511b0"),
+  firstName: 'pepe',
+  lastName: 'argento',
+  email: 'pepe@gmail.com',
+  age: 23,
+  password: '$2b$10$veyaUbjj0w2zvZudroytouqK8XZmOlYTYqeO.GnaI1MTFQW.Y6BGW',
+  birth_date: 2000-09-19T00:00:00.000Z,
+  cart: new ObjectId("6509bcdd77edab00a32511ae"),
+  role: 'user',
+  __v: 0
+}
+http: Entorno: development - GET en /products - Tue Sep 19 2023 12:24:24 GMT-0300 (hora estándar de Argentina)
 error: false
-http: Entorno: development - GET en /css/index.css - Wed Sep 13 2023 18:52:45 GMT-0300 (hora estándar de Argentina)
-http: Entorno: development - GET en /css/bootstrap.min.css - Wed Sep 13 2023 18:52:45 GMT-0300 (hora estándar de Argentina)
-http: Entorno: development - GET en /js/products.js - Wed Sep 13 2023 18:52:45 GMT-0300 (hora estándar de Argentina)
-http: Entorno: development - GET en /js/session.logout.js - Wed Sep 13 2023 18:52:45 GMT-0300 (hora estándar de Argentina)
-http: Entorno: development - GET en /css/bootstrap.min.css.map - Wed Sep 13 2023 18:52:45 GMT-0300 (hora estándar de Argentina)
-http: Entorno: development - GET en /loggerTest - Wed Sep 13 2023 18:53:15 GMT-0300 (hora estándar de Argentina)
-debug: debug
-http: http
-info: info
-warning: warning
-error: error
-http: Entorno: development - GET en /loggerTest - Wed Sep 13 2023 18:54:34 GMT-0300 (hora estándar de Argentina)
-debug: Esto es una prueba del Log debug
-http: Esto es una prueba del Log http
-info: Esto es una prueba del Log info
-warning: Esto es una prueba del Log warning
-error: Esto es una prueba del Log error
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:24:24 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:24:24 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/products.js - Tue Sep 19 2023 12:24:24 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/session.logout.js - Tue Sep 19 2023 12:24:24 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /api/sessions/current - Tue Sep 19 2023 12:25:04 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /carts/6509bcdd77edab00a32511ae - Tue Sep 19 2023 12:25:05 GMT-0300 (hora estándar de Argentina)
+error: false
+debug: El id del carrito es: 6509bcdd77edab00a32511ae
+info: El carrito con el id 6509bcdd77edab00a32511ae se ha obtenido correctamente
+http: Entorno: development - GET en /carts/6509bcdd77edab00a32511ae - Tue Sep 19 2023 12:25:05 GMT-0300 (hora estándar de Argentina)
+error: false
+debug: El id del carrito es: 6509bcdd77edab00a32511ae
+info: El carrito con el id 6509bcdd77edab00a32511ae se ha obtenido correctamente
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:25:05 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/cart.js - Tue Sep 19 2023 12:25:05 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:25:05 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /products - Tue Sep 19 2023 12:25:09 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /products - Tue Sep 19 2023 12:25:09 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:25:10 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:25:10 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/session.logout.js - Tue Sep 19 2023 12:25:10 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/products.js - Tue Sep 19 2023 12:25:10 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /api/sessions/current - Tue Sep 19 2023 12:25:13 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - POST en /api/carts/6509bcdd77edab00a32511ae/product/64a590ef8ba0148e350a0f4c - Tue Sep 19 2023 12:25:13 GMT-0300 (hora estándar de Argentina)
+debug: Se realiza la incorporacion del producto con el id: 64a590ef8ba0148e350a0f4c, al carrito con el id: 6509bcdd77edab00a32511ae
+info: Se agrego correctamente el productos con id: 64a590ef8ba0148e350a0f4c, al carrito con el id: 6509bcdd77edab00a32511ae
+http: Entorno: development - GET en /api/sessions/current - Tue Sep 19 2023 12:25:15 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /carts/6509bcdd77edab00a32511ae - Tue Sep 19 2023 12:25:16 GMT-0300 (hora estándar de Argentina)
+error: false
+debug: El id del carrito es: 6509bcdd77edab00a32511ae
+info: El carrito con el id 6509bcdd77edab00a32511ae se ha obtenido correctamente
+http: Entorno: development - GET en /carts/6509bcdd77edab00a32511ae - Tue Sep 19 2023 12:25:16 GMT-0300 (hora estándar de Argentina)
+error: false
+debug: El id del carrito es: 6509bcdd77edab00a32511ae
+info: El carrito con el id 6509bcdd77edab00a32511ae se ha obtenido correctamente
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:25:16 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:25:16 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/cart.js - Tue Sep 19 2023 12:25:16 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /products - Tue Sep 19 2023 12:25:21 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /products - Tue Sep 19 2023 12:25:21 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:25:21 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:25:21 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/products.js - Tue Sep 19 2023 12:25:21 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/session.logout.js - Tue Sep 19 2023 12:25:21 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /api/sessions/current - Tue Sep 19 2023 12:27:25 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /carts/6509bcdd77edab00a32511ae - Tue Sep 19 2023 12:27:26 GMT-0300 (hora estándar de Argentina)
+error: false
+debug: El id del carrito es: 6509bcdd77edab00a32511ae
+info: El carrito con el id 6509bcdd77edab00a32511ae se ha obtenido correctamente
+http: Entorno: development - GET en /carts/6509bcdd77edab00a32511ae - Tue Sep 19 2023 12:27:26 GMT-0300 (hora estándar de Argentina)
+error: false
+debug: El id del carrito es: 6509bcdd77edab00a32511ae
+info: El carrito con el id 6509bcdd77edab00a32511ae se ha obtenido correctamente
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:27:26 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:27:26 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/cart.js - Tue Sep 19 2023 12:27:26 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /products - Tue Sep 19 2023 12:27:32 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /products - Tue Sep 19 2023 12:27:32 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:27:32 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:27:32 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/products.js - Tue Sep 19 2023 12:27:32 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/session.logout.js - Tue Sep 19 2023 12:27:32 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /login - Tue Sep 19 2023 12:28:17 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /products - Tue Sep 19 2023 12:28:17 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:28:17 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:28:17 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/products.js - Tue Sep 19 2023 12:28:17 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/session.logout.js - Tue Sep 19 2023 12:28:17 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /products - Tue Sep 19 2023 12:28:22 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:28:22 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:28:22 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/products.js - Tue Sep 19 2023 12:28:22 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/session.logout.js - Tue Sep 19 2023 12:28:22 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /resetPassword - Tue Sep 19 2023 12:28:23 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /products - Tue Sep 19 2023 12:28:23 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:28:23 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:28:23 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/products.js - Tue Sep 19 2023 12:28:23 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/session.logout.js - Tue Sep 19 2023 12:28:23 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /restartPassword - Tue Sep 19 2023 12:28:39 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /products - Tue Sep 19 2023 12:28:39 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:28:40 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:28:40 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/products.js - Tue Sep 19 2023 12:28:40 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/session.logout.js - Tue Sep 19 2023 12:28:40 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /api/sessions/current - Tue Sep 19 2023 12:28:47 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /carts/6509bcdd77edab00a32511ae - Tue Sep 19 2023 12:28:47 GMT-0300 (hora estándar de Argentina)
+error: false
+debug: El id del carrito es: 6509bcdd77edab00a32511ae
+info: El carrito con el id 6509bcdd77edab00a32511ae se ha obtenido correctamente
+http: Entorno: development - GET en /carts/6509bcdd77edab00a32511ae - Tue Sep 19 2023 12:28:47 GMT-0300 (hora estándar de Argentina)
+error: false
+debug: El id del carrito es: 6509bcdd77edab00a32511ae
+info: El carrito con el id 6509bcdd77edab00a32511ae se ha obtenido correctamente
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:28:48 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/cart.js - Tue Sep 19 2023 12:28:48 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:28:48 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /products - Tue Sep 19 2023 12:28:50 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /products - Tue Sep 19 2023 12:28:50 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:28:51 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:28:51 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/products.js - Tue Sep 19 2023 12:28:51 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/session.logout.js - Tue Sep 19 2023 12:28:51 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - POST en /api/sessions/logout - Tue Sep 19 2023 12:29:07 GMT-0300 (hora estándar de Argentina)
+info: Session Finalizada[object Object]
+http: Entorno: development - GET en /login - Tue Sep 19 2023 12:29:07 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:29:07 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:29:07 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/login.user.js - Tue Sep 19 2023 12:29:07 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /resetPassword - Tue Sep 19 2023 12:29:16 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:29:16 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:29:16 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/resetPass.user.js - Tue Sep 19 2023 12:29:16 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 12:43:22 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - GET en /resetPassword - Tue Sep 19 2023 12:44:16 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 12:44:16 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 12:44:16 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/resetPass.user.js - Tue Sep 19 2023 12:44:16 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 12:44:28 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - GET en /resetPassword - Tue Sep 19 2023 13:04:32 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 13:04:32 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 13:04:32 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/resetPass.user.js - Tue Sep 19 2023 13:04:32 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 13:04:41 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - GET en /resetPassword - Tue Sep 19 2023 13:05:04 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 13:05:04 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 13:05:04 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/resetPass.user.js - Tue Sep 19 2023 13:05:04 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 13:05:13 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - GET en /resetPassword - Tue Sep 19 2023 13:06:09 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 13:06:09 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 13:06:09 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/resetPass.user.js - Tue Sep 19 2023 13:06:09 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 13:06:17 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - GET en /resetPassword - Tue Sep 19 2023 13:06:45 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 13:06:45 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 13:06:45 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/resetPass.user.js - Tue Sep 19 2023 13:06:45 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 13:06:59 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - GET en /resetPassword - Tue Sep 19 2023 13:13:34 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 13:13:34 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 13:13:34 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/resetPass.user.js - Tue Sep 19 2023 13:13:34 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 13:13:43 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 13:17:45 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 13:19:16 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 13:19:49 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - GET en /resetPassword - Tue Sep 19 2023 13:20:17 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 13:20:17 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 13:20:17 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/resetPass.user.js - Tue Sep 19 2023 13:20:17 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 13:20:27 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - GET en /resetPassword - Tue Sep 19 2023 13:21:38 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 13:21:39 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 13:21:39 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/resetPass.user.js - Tue Sep 19 2023 13:21:39 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 13:22:02 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - GET en /resetPassword - Tue Sep 19 2023 13:22:20 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 13:22:20 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 13:22:20 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/resetPass.user.js - Tue Sep 19 2023 13:22:20 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 13:22:31 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - GET en /resetPassword - Tue Sep 19 2023 13:26:31 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 13:26:31 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 13:26:31 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/resetPass.user.js - Tue Sep 19 2023 13:26:31 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 13:26:41 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 13:27:18 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - GET en /resetPassword - Tue Sep 19 2023 13:27:39 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 13:27:39 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 13:27:39 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/resetPass.user.js - Tue Sep 19 2023 13:27:39 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 13:27:53 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - GET en /resetPassword - Tue Sep 19 2023 13:28:46 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 13:28:46 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 13:28:46 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/resetPass.user.js - Tue Sep 19 2023 13:28:46 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 13:28:53 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:05:25 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:06:25 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:07:51 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:09:27 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:11:30 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - GET en /resetPassword - Tue Sep 19 2023 15:25:34 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 15:25:35 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 15:25:35 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/resetPass.user.js - Tue Sep 19 2023 15:25:35 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:25:41 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:26:23 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:27:30 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:28:16 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:29:51 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:30:15 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:32:36 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:34:21 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:35:29 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:36:44 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:37:04 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:38:46 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:39:20 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - GET en /resetPassword - Tue Sep 19 2023 15:40:22 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 15:40:22 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 15:40:22 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/resetPass.user.js - Tue Sep 19 2023 15:40:22 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:40:31 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - GET en /resetPassword - Tue Sep 19 2023 15:40:39 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 15:40:39 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 15:40:39 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/resetPass.user.js - Tue Sep 19 2023 15:40:39 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:40:48 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - GET en /resetPassword - Tue Sep 19 2023 15:47:06 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 15:47:06 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 15:47:06 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/resetPass.user.js - Tue Sep 19 2023 15:47:06 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:47:25 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - PUT en /api/sessions/resetPassword - Tue Sep 19 2023 15:48:32 GMT-0300 (hora estándar de Argentina)
+debug: Se solicita cambio de pass del usuario: pepe@gmail.com
+http: Entorno: development - GET en /login - Tue Sep 19 2023 15:48:32 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 15:48:32 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 15:48:32 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/login.user.js - Tue Sep 19 2023 15:48:32 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - POST en /api/sessions/login - Tue Sep 19 2023 15:48:42 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("6509bcdd77edab00a32511b0"),
+  firstName: 'pepe',
+  lastName: 'argento',
+  email: 'pepe@gmail.com',
+  age: 23,
+  password: '$2b$10$0rDSExVlWDFlvIWu4IXYZepDeWQacTrCcFvHycYzkDRVwBokg5TfO',
+  birth_date: 2000-09-19T00:00:00.000Z,
+  cart: new ObjectId("6509bcdd77edab00a32511ae"),
+  role: 'user',
+  __v: 0
+}
+http: Entorno: development - GET en /products - Tue Sep 19 2023 15:48:42 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 15:48:43 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 15:48:43 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/products.js - Tue Sep 19 2023 15:48:43 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/session.logout.js - Tue Sep 19 2023 15:48:43 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /api/sessions/current - Tue Sep 19 2023 15:49:22 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /carts/6509bcdd77edab00a32511ae - Tue Sep 19 2023 15:49:22 GMT-0300 (hora estándar de Argentina)
+error: false
+debug: El id del carrito es: 6509bcdd77edab00a32511ae
+info: El carrito con el id 6509bcdd77edab00a32511ae se ha obtenido correctamente
+http: Entorno: development - GET en /carts/6509bcdd77edab00a32511ae - Tue Sep 19 2023 15:49:22 GMT-0300 (hora estándar de Argentina)
+error: false
+debug: El id del carrito es: 6509bcdd77edab00a32511ae
+info: El carrito con el id 6509bcdd77edab00a32511ae se ha obtenido correctamente
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 15:49:22 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 15:49:22 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/cart.js - Tue Sep 19 2023 15:49:22 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /products - Tue Sep 19 2023 15:49:25 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /products - Tue Sep 19 2023 15:49:25 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 15:49:25 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 15:49:25 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/products.js - Tue Sep 19 2023 15:49:25 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/session.logout.js - Tue Sep 19 2023 15:49:25 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /api/sessions/current - Tue Sep 19 2023 16:59:33 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /carts/6509bcdd77edab00a32511ae - Tue Sep 19 2023 16:59:33 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /login - Tue Sep 19 2023 16:59:33 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /carts/6509bcdd77edab00a32511ae - Tue Sep 19 2023 16:59:33 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /login - Tue Sep 19 2023 16:59:33 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 16:59:33 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 16:59:33 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/login.user.js - Tue Sep 19 2023 16:59:33 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - POST en /api/sessions/login - Tue Sep 19 2023 16:59:36 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("6509bcdd77edab00a32511b0"),
+  firstName: 'pepe',
+  lastName: 'argento',
+  email: 'pepe@gmail.com',
+  age: 23,
+  password: '$2b$10$0rDSExVlWDFlvIWu4IXYZepDeWQacTrCcFvHycYzkDRVwBokg5TfO',
+  birth_date: 2000-09-19T00:00:00.000Z,
+  cart: new ObjectId("6509bcdd77edab00a32511ae"),
+  role: 'user',
+  __v: 0
+}
+http: Entorno: development - GET en /products - Tue Sep 19 2023 16:59:36 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 16:59:37 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 16:59:37 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/products.js - Tue Sep 19 2023 16:59:37 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/session.logout.js - Tue Sep 19 2023 16:59:37 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /api/sessions/current - Tue Sep 19 2023 16:59:40 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /carts/6509bcdd77edab00a32511ae - Tue Sep 19 2023 16:59:40 GMT-0300 (hora estándar de Argentina)
+error: false
+debug: El id del carrito es: 6509bcdd77edab00a32511ae
+info: El carrito con el id 6509bcdd77edab00a32511ae se ha obtenido correctamente
+http: Entorno: development - GET en /carts/6509bcdd77edab00a32511ae - Tue Sep 19 2023 16:59:40 GMT-0300 (hora estándar de Argentina)
+error: false
+debug: El id del carrito es: 6509bcdd77edab00a32511ae
+info: El carrito con el id 6509bcdd77edab00a32511ae se ha obtenido correctamente
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 16:59:41 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 16:59:41 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/cart.js - Tue Sep 19 2023 16:59:41 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /products - Tue Sep 19 2023 16:59:42 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /products - Tue Sep 19 2023 16:59:42 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 16:59:42 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 16:59:42 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/products.js - Tue Sep 19 2023 16:59:42 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/session.logout.js - Tue Sep 19 2023 16:59:42 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - POST en /api/sessions/logout - Tue Sep 19 2023 17:13:57 GMT-0300 (hora estándar de Argentina)
+info: Session Finalizada[object Object]
+http: Entorno: development - GET en /login - Tue Sep 19 2023 17:13:58 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 17:13:58 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 17:13:58 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/login.user.js - Tue Sep 19 2023 17:13:58 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /register - Tue Sep 19 2023 17:14:00 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 17:14:00 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 17:14:00 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/register.user.js - Tue Sep 19 2023 17:14:00 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /restartPassword - Tue Sep 19 2023 17:14:05 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 17:14:05 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 17:14:05 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/restartPass.user.js - Tue Sep 19 2023 17:14:05 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/restartPassword - Tue Sep 19 2023 17:15:32 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/restartPassword - Tue Sep 19 2023 17:17:01 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /restartPassword - Tue Sep 19 2023 17:21:08 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 17:21:08 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 17:21:08 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/restartPass.user.js - Tue Sep 19 2023 17:21:08 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 17:21:13 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 17:21:13 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css.map - Tue Sep 19 2023 17:21:13 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/restartPassword - Tue Sep 19 2023 17:21:15 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/restartPassword - Tue Sep 19 2023 17:22:55 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /restartPassword - Tue Sep 19 2023 17:23:18 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 17:23:19 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 17:23:19 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/restartPass.user.js - Tue Sep 19 2023 17:23:19 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css.map - Tue Sep 19 2023 17:23:19 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/restartPassword - Tue Sep 19 2023 17:23:24 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /restartPassword - Tue Sep 19 2023 17:30:43 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 17:30:43 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 17:30:43 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/restartPass.user.js - Tue Sep 19 2023 17:30:43 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css.map - Tue Sep 19 2023 17:30:43 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/restartPassword - Tue Sep 19 2023 17:30:47 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/restartPassword - Tue Sep 19 2023 17:31:39 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /restartPassword - Tue Sep 19 2023 17:31:54 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 17:31:54 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 17:31:54 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/restartPass.user.js - Tue Sep 19 2023 17:31:54 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css.map - Tue Sep 19 2023 17:31:54 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/restartPassword - Tue Sep 19 2023 17:32:00 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /restartPassword - Tue Sep 19 2023 17:40:35 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 17:40:35 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 17:40:35 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/restartPass.user.js - Tue Sep 19 2023 17:40:35 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css.map - Tue Sep 19 2023 17:40:35 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/restartPassword - Tue Sep 19 2023 17:40:42 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /restartPassword - Tue Sep 19 2023 17:41:55 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 17:41:55 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 17:41:55 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/restartPass.user.js - Tue Sep 19 2023 17:41:55 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css.map - Tue Sep 19 2023 17:41:55 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/restartPassword - Tue Sep 19 2023 17:41:59 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/restartPassword - Tue Sep 19 2023 17:42:22 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /restartPassword - Tue Sep 19 2023 17:42:37 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 17:42:37 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 17:42:37 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/restartPass.user.js - Tue Sep 19 2023 17:42:37 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css.map - Tue Sep 19 2023 17:42:37 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/restartPassword - Tue Sep 19 2023 17:42:42 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/restartPassword - Tue Sep 19 2023 17:43:50 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /restartPassword - Tue Sep 19 2023 17:44:28 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 17:44:28 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 17:44:28 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/restartPass.user.js - Tue Sep 19 2023 17:44:28 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css.map - Tue Sep 19 2023 17:44:28 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/restartPassword - Tue Sep 19 2023 17:44:42 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /restartPassword - Tue Sep 19 2023 17:45:30 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 17:45:30 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 17:45:30 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/restartPass.user.js - Tue Sep 19 2023 17:45:30 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css.map - Tue Sep 19 2023 17:45:30 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/restartPassword - Tue Sep 19 2023 17:45:35 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /restartPassword - Tue Sep 19 2023 17:47:57 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 17:47:57 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 17:47:57 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/restartPass.user.js - Tue Sep 19 2023 17:47:57 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css.map - Tue Sep 19 2023 17:47:57 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/restartPassword - Tue Sep 19 2023 17:48:01 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /restartPassword - Tue Sep 19 2023 17:50:03 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Sep 19 2023 17:50:04 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 19 2023 17:50:04 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/restartPass.user.js - Tue Sep 19 2023 17:50:04 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css.map - Tue Sep 19 2023 17:50:04 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - PUT en /api/sessions/restartPassword - Tue Sep 19 2023 17:50:07 GMT-0300 (hora estándar de Argentina)

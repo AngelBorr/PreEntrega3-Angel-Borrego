@@ -1,12 +1,13 @@
 import UsersRepository from "../repositories/user.repository.js";
-import { createHash } from "../utils.js";
+import { createHash, isValidPassword } from "../utils.js";
 import CustomError from "./errors/customError.js";
 import EErrors from "./errors/enums.js";
 import { generateUserErrorInfo } from "./errors/info.js";
+import bcrypt from 'bcrypt';
 
 class UsersService{    
     constructor(){
-        this.users = new UsersRepository
+        this.users = new UsersRepository 
     }
 
     //retorna el usuario
@@ -61,11 +62,11 @@ class UsersService{
     }
 
     //modificar user password
-    async updateUser(email, newpassword){
+    async updateUser(email, newPassword){
         try {
             
-            if(!email || !newpassword){
-                const password = newpassword
+            if(!email || !newPassword){
+                const password = newPassword
                 console.log('error')
                 CustomError.createError({
                     name: 'user Creation Error',
@@ -77,17 +78,23 @@ class UsersService{
             const user = await this.users.getUsers(email)
             if(!user){
                 throw new Error(`No se ha encontrado Usuario resgistrado con este E-mail:(${email}), verifique que los datos ingresados sean los correctos y vuelve a intentarlo`);
-            }else{
-                //actualizar contraseña en base de datos
-                const updatePassword = createHash(newpassword)
-                const updatePass = await this.users.updateUser(user._id, {password: updatePassword})
-                return updatePass
-            }
-            
+            }else{                
+                const comparation = isValidPassword(user, newPassword)
+                console.log('comparation', comparation)
+                if(comparation === true){
+                    req.logger.error('No se puede utilizar la misma contraseña, verifique los datos')
+                    throw new Error(`No se puede cambiar la pass ya que es la misma que se encuentra en la base de datos, verifique que los datos ingresados sean los correctos y vuelve a intentarlo`);
+                }else{
+                    const updatePassword = createHash(newPassword)
+                    const updatePass = await this.users.updateUser(user._id, {password: updatePassword})
+                    return updatePass
+                }
+            }            
         } catch (error) {
             throw new Error(`Error al actualizar la contraseña: ${error.message}`);
         }
     }
+
 }
 
 export default UsersService

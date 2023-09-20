@@ -59,7 +59,7 @@ app.use(session({
 //configuracion passport
 initializePassport();
 app.use(passport.initialize());
-app.use(passport.session()); 
+app.use(passport.session())
 
 //configuracion express
 app.use(express.json());

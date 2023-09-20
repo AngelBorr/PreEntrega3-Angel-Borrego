@@ -1,9 +1,12 @@
 import UsersService from "../services/service.users.js";
 import UserDTO from "../dto/user.dto.js";
-import { generateUserErrorInfo } from "../services/errors/info.js";
+import { generateDiferentPassError, generateResetPassErrorInfo, generateUserErrorInfo } from "../services/errors/info.js";
 import EErrors from "../services/errors/enums.js";
-import CustomError from "../services/errors/customError.js";
+import CustomError from "../services/errors/customError.js"
+import MailingService from '../services/service.mailing.js'
+import { generateToken, transport } from "../utils.js";
 
+const mailingService = new MailingService
 const usersService = new UsersService
 
 export const registerUser = async (req, res) => {
@@ -67,16 +70,55 @@ export const logoutSession = async (req, res) => {
 //se cambia en la proxima entrega
 export const resetPassword = async (req, res) => {
     try {
-        const {email, newpassword} = req.body
-        const user = await usersService.getUsers(email); 
+        //reemplazar email por query
+        const {email, password, newpassword, confirmNewPassword} = req.body
+        req.logger.debug(`Se solicita cambio de pass del usuario: ${email}`)
+        if(!password || !newpassword || !confirmNewPassword){
+            req.logger.error('Se produjo un error al verificar las credenciales verifique y vuelva a intentarlo')
+            CustomError.createError({
+                name: 'User ResetPass Creation Error',
+                cause: generateResetPassErrorInfo({password, newpassword, confirmNewPassword}),
+                code: EErrors.INVALID_TYPES_ERROR,
+                message: 'Error in the credentials User Verify only'
+            });
+            return res.status(400).send("Se produjo un error al verificar los datos ingresados, vuelva a intentarlo")
+        }
+        if(newpassword !== confirmNewPassword){
+            console.log('newPass distinta que confirm')
+            req.logger.error('Se produjo un error al verificar las nuevas credenciales, vuelva a intentarlo')
+            CustomError.createError({
+                name: 'User diferent Pass Creation Error',
+                cause: generateDiferentPassError({newpassword, confirmNewPassword}),
+                code: EErrors.INVALID_TYPES_ERROR,
+                message: 'Error diferent credentials, Verify only'
+            });
+            return res.status(400).send("Se produjo un error al verificar las nuevas credenciales, vuelva a intentarlo")
+        }
+        const user = await usersService.getUsers(email)
         if (!user){
+            req.logger.fatal('Usuario incorrectos y/o inexistente')
             return res.status(404).send("Usuario incorrectos y/o inexistente")
-        };
-        //modificar el manager
-        const result = await usersService.updateUser(email, newpassword);
+        }        
+        const result = await usersService.updateUser(email, newpassword)
         if (result) res.status(200).send('contraseña restaurada exitosamente')
     } catch (error) {
         return res.status(500).send('Se produjo un error al que obtener los datos para restaurar la contraseña', error.message)
+    }
+    
+}
+
+export const restartPassword = async (req, res) => {
+    try {
+        const {email} = req.body
+        console.log(email)
+        const sendMail = await mailingService.createEmail(email)
+        console.log('controller', sendMail) 
+        if(sendMail){
+            console.log('El mail fue enviado')
+            res.status(200).send('se realizo exitosamente el envio')
+        }        
+    } catch (error) {
+        return res.status(500).send(`Se produjo un error al que obtener los datos para restaurar la contraseña, ${error.message}`)
     }
     
 }
