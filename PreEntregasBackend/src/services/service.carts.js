@@ -1,6 +1,8 @@
 import CartsRepository from "../repositories/cart.repository.js";
 import ProductsRepository from '../repositories/product.repository.js'
+import UsersService from '../services/service.users.js'
 
+const userService = new UsersService
 const manager = new ProductsRepository
 
 class CartService {
@@ -57,25 +59,33 @@ class CartService {
         }
     }
     //agregar productos al carrito y suma el quantity
-    async addProductCart(cartId, productId) {
+    async addProductCart(user, cartId, productId) {
         try {
-            const product = await manager.getProductById(productId);
+            const product = await manager.getProductById(productId)
             if (!product) {
                 throw new Error(
                 `Se produjo un error al cargar el producto con el id: ${productId}, verifique su existencia`
                 );
             }
-            let cart = await this.carts.getCartById(cartId);
+            const userRegister = await userService.getUsers(user.email)            
+            let cart = await this.carts.getCartById(cartId)            
             if (!cart) {
                 throw new Error(
                 `El carrito con el id: (${cartId}) no existe, verifique los datos ingresados`
-                );
-            } else {
+                )
+            }
+            
+            if(userRegister._id = product.owner){
+                throw new Error(
+                    `No es permitido la incorporacion del Producto con el id: ${productId}, al carrito con el id: (${cartId})`
+                    )
+            }else {
                 cart = await this.carts.addToCart(cartId, productId);
                 await cart.save();
                 return cart;
             }
         } catch (error) {
+            console.log(error)
             throw new Error(
                 `Se produjo un error al cargar el productos en el carrito con el id: ${idCart}`,
                 error.message

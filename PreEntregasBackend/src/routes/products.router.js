@@ -4,18 +4,18 @@ import { createDataProduct, deleteDataProduct, getDataProductById, getDataProduc
 export default class ProductsRouter extends MyOwnRouter{
     init(){
         //debera traer todos los products
-        this.get('/', ['ADMIN', 'USER'], getDataProducts);
+        this.get('/', ['ADMIN', 'USER', 'PREMIUM'], getDataProducts);
         // debera traer solamente el producto solicitado con el id del producto
-        this.get('/:pid', ['ADMIN', 'USER'], getDataProductById);
+        this.get('/:pid', ['ADMIN', 'USER', 'PREMIUM'], getDataProductById);
 
         //ahora la ruta post recibe el producto desde formAddProducts.handlebars
-        this.post('/', ['ADMIN'], createDataProduct);
+        this.post('/', ['ADMIN', 'PREMIUM'], createDataProduct);
 
         // la ruta put debera actualizar las propiedades del productos con los campos dados desde el body
-        this.put('/:pid', ['ADMIN'], updateDataProduct);
+        this.put('/:pid', ['ADMIN', 'PREMIUM'], updateDataProduct);
 
         //debera eliminar el producto con el id indicado
-        this.delete('/:pid', ['ADMIN'], deleteDataProduct);
+        this.delete('/:pid', ['ADMIN', 'PREMIUM'], deleteDataProduct);
     }
 }
 

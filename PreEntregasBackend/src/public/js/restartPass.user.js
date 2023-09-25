@@ -12,9 +12,8 @@ formRestartPass.addEventListener('submit', (event) =>{
             'Content-Type':'application/json'
         }
     }).then(result=>{
-        console.log(result.status)
-        /* if(result.status===200){
+        if(result.status===200){
             window.location.replace('/login');
-        } */
+        }
     })
 })

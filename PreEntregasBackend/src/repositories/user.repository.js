@@ -29,6 +29,12 @@ class UsersRepository{
         const updatePass = await users.updateUser(user._id, newpassword)
         return updatePass
     }
+
+    //modifica user role
+    /* async roleUpdate(id, newRole){
+        const updateRole = await users.roleUpdate(id, newRole)
+        return updateRole
+    } */
 }
 
 export default UsersRepository

@@ -28,7 +28,6 @@ const addProductInCart = async (event) => {
 
 const redirecToCartPage = async (event) => {
     const token = localStorage.getItem('token')
-    console.log('token', token)
     const getUser = await fetch('/api/sessions/current', {
         method: 'GET',
         headers: {

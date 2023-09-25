@@ -4,7 +4,8 @@ import { generateDiferentPassError, generateResetPassErrorInfo, generateUserErro
 import EErrors from "../services/errors/enums.js";
 import CustomError from "../services/errors/customError.js"
 import MailingService from '../services/service.mailing.js'
-import { generateToken, transport } from "../utils.js";
+import { PRIVATE_KEY, generateToken, transport } from "../utils.js";
+import jwt from 'jsonwebtoken'
 
 const mailingService = new MailingService
 const usersService = new UsersService
@@ -68,21 +69,19 @@ export const logoutSession = async (req, res) => {
 }
 
 //se cambia en la proxima entrega
-export const resetPassword = async (req, res) => {
+export const resetPassword = async (req, res) => { 
     try {
-        //reemplazar email por query
-        const {email, password, newpassword, confirmNewPassword} = req.body
-        req.logger.debug(`Se solicita cambio de pass del usuario: ${email}`)
-        if(!password || !newpassword || !confirmNewPassword){
+        const {token, newpassword, confirmNewPassword} = req.body        
+        if(!token || !newpassword || !confirmNewPassword){
             req.logger.error('Se produjo un error al verificar las credenciales verifique y vuelva a intentarlo')
             CustomError.createError({
                 name: 'User ResetPass Creation Error',
-                cause: generateResetPassErrorInfo({password, newpassword, confirmNewPassword}),
+                cause: generateResetPassErrorInfo({token, newpassword, confirmNewPassword}),
                 code: EErrors.INVALID_TYPES_ERROR,
                 message: 'Error in the credentials User Verify only'
             });
             return res.status(400).send("Se produjo un error al verificar los datos ingresados, vuelva a intentarlo")
-        }
+        }        
         if(newpassword !== confirmNewPassword){
             console.log('newPass distinta que confirm')
             req.logger.error('Se produjo un error al verificar las nuevas credenciales, vuelva a intentarlo')
@@ -93,16 +92,19 @@ export const resetPassword = async (req, res) => {
                 message: 'Error diferent credentials, Verify only'
             });
             return res.status(400).send("Se produjo un error al verificar las nuevas credenciales, vuelva a intentarlo")
-        }
-        const user = await usersService.getUsers(email)
-        if (!user){
-            req.logger.fatal('Usuario incorrectos y/o inexistente')
-            return res.status(404).send("Usuario incorrectos y/o inexistente")
         }        
+        const user = jwt.verify(token, PRIVATE_KEY)
+        if (!user){
+            req.logger.error('Usuario incorrectos y/o inexistente')
+            return res.status(400).send("Usuario incorrectos y/o inexistente")
+        }
+        const email = user.email
+        req.logger.debug(`Se solicita cambio de pass del usuario: ${email}`)
         const result = await usersService.updateUser(email, newpassword)
         if (result) res.status(200).send('contraseña restaurada exitosamente')
     } catch (error) {
-        return res.status(500).send('Se produjo un error al que obtener los datos para restaurar la contraseña', error.message)
+        req.logger.fatal(error)
+        return res.status(500).send(`Se produjo un error al que obtener los datos para restaurar la contraseña, ${error.message}`)
     }
     
 }
@@ -110,13 +112,18 @@ export const resetPassword = async (req, res) => {
 export const restartPassword = async (req, res) => {
     try {
         const {email} = req.body
-        console.log(email)
-        const sendMail = await mailingService.createEmail(email)
-        console.log('controller', sendMail) 
-        if(sendMail){
-            console.log('El mail fue enviado')
-            res.status(200).send('se realizo exitosamente el envio')
-        }        
+        req.logger.debug(email)
+        const user = await usersService.getUsers(email)
+        req.logger.debug(user)
+        if(user){
+            const sendMail = await mailingService.createEmail(email)
+            if(sendMail){
+                req.logger.info('El mail fue enviado')
+                return res.status(200).send('se realizo exitosamente el envio del Email')
+            } 
+        }else{
+            res.status(400).send(`Usuario no valido para el email: ${email}`)
+        }
     } catch (error) {
         return res.status(500).send(`Se produjo un error al que obtener los datos para restaurar la contraseña, ${error.message}`)
     }
@@ -140,4 +147,26 @@ export const gitHubCallBack = async (req, res) => {
 export const usersCurrent = async (req, res, next) => {    
     const user = new UserDTO(req.user)    
     res.send(user);    
+}
+
+//update role user
+export const updateRole = async (req, res) => {    
+    try {
+        const userId = req.params
+        const id = userId.id
+        req.logger.debug(`Se solicita cambiar el role del usuario con el id: ${id}`)        
+        const updateRole = req.body
+        const updateUser = await usersService.updateRole(id, updateRole)
+        if(updateRole){
+            req.logger.info(`Role del usuario con id: ${id}, cambiado exitosamente`)
+            res.status(200).send('Role cambiado exitosamente')
+        }else{
+            req.logger.error(`Usuario no valido para el id: ${id}`)
+            res.status(400).send(`Usuario no valido para el id: ${id}`)
+        }        
+    } catch (error) {
+        req.logger.fatal(`Se produjo un error al que obtener los datos para restaurar cambian el role, ${error.message}`)
+        return res.status(500).send(`Se produjo un error al que obtener los datos para restaurar cambian el role, ${error.message}`)
+    }
+    
 }

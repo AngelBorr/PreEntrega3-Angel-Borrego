@@ -2,8 +2,7 @@ import UsersRepository from "../repositories/user.repository.js";
 import { createHash, isValidPassword } from "../utils.js";
 import CustomError from "./errors/customError.js";
 import EErrors from "./errors/enums.js";
-import { generateUserErrorInfo } from "./errors/info.js";
-import bcrypt from 'bcrypt';
+import { generateUpdateRoleErrorInfo, generateUserErrorInfo } from "./errors/info.js";
 
 class UsersService{    
     constructor(){
@@ -21,7 +20,7 @@ class UsersService{
                     code: EErrors.INVALID_TYPES_ERROR,
                     message: 'Error trying to create a new user'
                 });
-            }    
+            }
             const user = await this.users.getUsers(email);
             return user;
         } catch (error) {
@@ -92,6 +91,32 @@ class UsersService{
             }            
         } catch (error) {
             throw new Error(`Error al actualizar la contraseña: ${error.message}`);
+        }
+    }
+
+    //modificar el role de los user
+    async updateRole(id, newRole){
+        try {
+            const idUser = id
+            const roleUpdate = newRole
+            if(!idUser || !roleUpdate){
+                console.log('error')
+                CustomError.createError({
+                    name: 'user Creation Error',
+                    cause: generateUpdateRoleErrorInfo({idUser, roleUpdate}),
+                    code: EErrors.INVALID_TYPES_ERROR,
+                    message: 'Error trying to update role for user'
+                });
+            } 
+            const user = await this.users.getUserById(idUser)
+            if(!user){
+                req.logger.error(`No existe usuario con este id: ${idUser}`)
+                throw new Error(`No se ha encontrado Usuario resgistrado con este id:(${idUser}), verifique que los datos ingresados sean los correctos y vuelve a intentarlo`);
+            }
+            const userUpdate = await this.users.updateUser(idUser, newRole)
+            return userUpdate
+        } catch (error) {
+            throw new Error(`Error al actualizar role: ${error.message}`);
         }
     }
 

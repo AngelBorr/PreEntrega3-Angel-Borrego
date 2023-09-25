@@ -1,41 +1,26 @@
-import { generateTokenForEmail } from "../utils.js";
+import { generateTokenForEmail, transport } from "../utils.js";
 import env from '../config.js'
-import nodemailer from 'nodemailer'
-
-const mailConfig = {
-    service: 'gmail',
-    port: 587,
-    auth: {
-        user: 'angelborre@gmail.com',
-        pass: 'aewgfntvjucwmnxb',
-    },
-}
-const transport = nodemailer.createTransport(mailConfig);
 
 class MailingService{
     async createEmail(email){
         try {
-            console.log('mailService', email)
-            const token = generateTokenForEmail(email)
-            console.log('token', token)
+            const token = generateTokenForEmail(email)            
             const result = await transport.sendMail({
-                from: `EcommerceBackend <'angelborre@gmail.com'>`,
+                from: `EcommerceBackend <${env.mailingUser}>`,
                 to: email,
                 subject: 'Recuperar pass',
                 html: `<h1>Para recuperar tu pass, haz click en el boton de abajo</h1>
                 <hr>
-                <a href="http://localhost:8080/api/session/resetPassword/${token}">CLICK AQUI</a>
+                <a href="${env.baseUrl}${env.port}/resetPassword/${token}">CLICK AQUI</a>
                 `,                
             })
-            console.log(result)
             if(result){
                 return result
             }else{
-                console.log('todavia estas aca!')
+                throw new Error(`Error al intentar mandar el email de recuperacion de pass al usuario: ${email}`);
             }
-        } catch (e) {
-            console.log(e)
-            res.json({ error: e });
+        } catch (error) {
+            throw new Error(`No se puede mandar el email de recuperacion de pass al usuario: ${email}, erro: ${error}`);
         }
     }    
 }

@@ -46,15 +46,16 @@ export const addProductToCart = async (req, res) => {
     try {
         const idCart = req.params.cid;
         const idProduct = req.params.pid;
+        const user = req.user
         req.logger.debug(`Se realiza la incorporacion del producto con el id: ${idProduct}, al carrito con el id: ${idCart}`)
-        const newProductInCart = await cartsService.addProductCart(idCart, idProduct);
+        const newProductInCart = await cartsService.addProductCart(user, idCart, idProduct);
         if(newProductInCart){
             req.logger.info(`Se agrego correctamente el productos con id: ${idProduct}, al carrito con el id: ${idCart}`)
             return res.status(200).json(`Producto con el id: (${idProduct}), agregado con exito`);
         }else{
             req.logger.error(`Se produjo un error al intentar insertar el producto con el id: ${idProduct}, en el carrito con el id: ${idCart}`)
             return res.status(404).json('Carrito o producto no encontrado verifique los datos ingresados');
-        }        
+        }    
     } catch (error) {
         req.logger.fatal('Se produjo un error al intentar agregar un producto al carrito')
         return res.status(500).json('Error al agregar producto al carrito');

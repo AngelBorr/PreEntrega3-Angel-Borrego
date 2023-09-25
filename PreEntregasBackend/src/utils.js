@@ -25,11 +25,6 @@ export const generateToken = (user) => {
     return token
 }
 
-export const generateTokenForEmail = (email) => {
-    const token = jwt.sign({email}, `${PRIVATE_KEY}`, {expiresIn: '1h'})
-    return token
-}
-
 export const cookieExtractor = (req) => {
     let token = null;
     if (req && req.cookies) {
@@ -38,6 +33,8 @@ export const cookieExtractor = (req) => {
     }
     return token;
 };
+
+//config mocking de products
 
 export const generateProduct = () => {
     const product = {
@@ -54,6 +51,12 @@ export const generateProduct = () => {
     return product
 };
 
+//config nodemailer
+export const generateTokenForEmail = (email) => {
+    const token = jwt.sign({email}, `${PRIVATE_KEY}`, {expiresIn: '1h'})
+    return token
+}
+
 const mailConfig = {
     service: env.mailingService,
     port: env.mailingPort,
@@ -61,6 +64,9 @@ const mailConfig = {
         user: env.mailingUser,
         pass: env.mailingPass,
     },
+    tls: {
+        rejectUnauthorized: false
+    }
 }
 
 export const transport = nodemailer.createTransport(mailConfig);

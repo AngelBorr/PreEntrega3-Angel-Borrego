@@ -2,7 +2,9 @@ import ProductsRepository from "../repositories/product.repository.js";
 import CustomError from "./errors/customError.js";
 import EErrors from "./errors/enums.js";
 import { generateProductsErrorInfo } from "./errors/info.js";
+import UsersService from '../services/service.users.js'
 
+const userService = new UsersService
 class ProductsService{    
     constructor(){
         this.products = new ProductsRepository
@@ -39,9 +41,9 @@ class ProductsService{
     }
 
     //agrega new products a products
-    async addProduct(bodyProduct){        
+    async addProduct(req){        
         try {
-            const { title, description, price, thumbnail, code, stock, status, category } = bodyProduct
+            const { title, description, price, thumbnail, code, stock, status, category } = req.body            
             if(!title || !description || !price || !thumbnail || !code || !stock || !status || !category){
                 req.logger.error('Se produjo un error al crear el producto')
                 CustomError.createError({
@@ -50,13 +52,21 @@ class ProductsService{
                     code: EErrors.INVALID_TYPES_ERROR,
                     message: 'Error trying to create a new Products'
                 });
-            } 
-            const newProduct = await this.products.createProduct(bodyProduct)
-            return newProduct; 
+            }
+            const user = await userService.getUsers(req.user.email)
+            if(!user){
+                user._id = 'admin'
+                return user._id
+            }
+            const productData = {
+                ...req.body,
+                owner: user._id
+            }
+            const newProduct = await this.products.createProduct(productData)
+            return newProduct
         } catch (error) {
-            console.log('error al crear un nuevo producto '+ error)
-        }                 
-        
+            throw new Error(`error al crear un nuevo producto: ${error.message}`)            
+        }
     }
 
     //update products
@@ -66,12 +76,19 @@ class ProductsService{
             if(!existingProduct){
                 throw new Error(`El producto que se desea actualizar no existe: ${Error.message}`);
             }
-            const updateProduct = await this.products.updateProduct(id,updateBodyProduct)
-            return updateProduct
+            const user = await userService.getUserById(existingProduct.owner)
+            if(user.role === 'admin' || existingProduct.owner === 'admin'){
+                const updateProduct = await this.products.updateProduct(id,updateBodyProduct)
+                return updateProduct
+            }else if(user._id === existingProduct.owner && user.role === 'premium'){
+                const updateProduct = await this.products.updateProduct(id,updateBodyProduct)
+                return updateProduct
+            }else{
+                throw new Error(`El role establecido no permite la accion que deseas realizar`);
+            }            
         } catch (error) {
             throw new Error(`Error al actualizar el producto: ${error.message}`);
-        }
-        
+        }        
     }
 
     //delete products
@@ -79,11 +96,18 @@ class ProductsService{
         try {
             const existingProduct = await this.products.getProductById(id);
             if(!existingProduct){
-                throw new Error(`El producto que se desea eliminar no existe: ${error.message}`);
+                throw new Error(`El producto que se desea eliminar no existe: ${Error.message}`);
             }
-            const productDelete = await this.products.deleteProduct(id);
-            return productDelete;
-                        
+            const user = await userService.getUserById(existingProduct.owner)
+            if(user.role === 'admin' || existingProduct.owner === 'admin'){
+                const productDelete = await this.products.deleteProduct(id);
+                return productDelete
+            }else if(user._id === existingProduct.owner && user.role === 'premium'){
+                const productDelete = await this.products.deleteProduct(id);
+                return productDelete
+            }else{
+                throw new Error(`El role establecido no permite la accion que deseas realizar`);
+            }
         } catch (error) {
             throw new Error(`Error al eliminar el producto: ${error}`);
         }

@@ -1,7 +1,7 @@
 import MyOwnRouter from './router.js';
 import { Router } from "express";
 import passport from "passport";
-import { restartPassword, failLogin, failRegister, gitHubCallBack, loginGitHub, loginUser, logoutSession, registerUser, resetPassword, usersCurrent } from "../controllers/controller.users.js";
+import { restartPassword, failLogin, failRegister, gitHubCallBack, loginGitHub, loginUser, logoutSession, registerUser, resetPassword, usersCurrent, updateRole } from "../controllers/controller.users.js";
 import cookieParser from "cookie-parser";
 
 const router = Router();
@@ -20,7 +20,7 @@ export default class SessionsRouter extends MyOwnRouter{
         this.get('/failLogin', ['PUBLIC'], failLogin)
 
         //ruta logout elimina la session
-        this.post('/logout', ['ADMIN', 'USER'], logoutSession)
+        this.post('/logout', ['ADMIN', 'USER', 'PREMIUM'], logoutSession)
 
         //ruta resetPassword
         this.put('/resetPassword', ['PUBLIC'], resetPassword)
@@ -34,6 +34,9 @@ export default class SessionsRouter extends MyOwnRouter{
         this.get('/githubcallback', ['PUBLIC'],passport.authenticate('github', { failureRedirect: '/login' }), gitHubCallBack);
 
         //ruta current
-        this.get('/current', ['ADMIN', 'USER'], usersCurrent)
+        this.get('/current', ['ADMIN', 'USER', 'PREMIUM'], usersCurrent)
+
+        //ruta premium/:id
+        this.put('/premium/:id', ['ADMIN', 'USER', 'PREMIUM'], updateRole)
     }
 }

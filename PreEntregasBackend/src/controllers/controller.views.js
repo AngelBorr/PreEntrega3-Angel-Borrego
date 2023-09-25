@@ -222,3 +222,18 @@ export const getViewMocking = async (req, res) => {
         return res.status(500).render('Error al obtener los producto desde faker');
     }
 }
+
+//vista Premium/:id
+export const getViewPremiumRole = async (req, res) => {
+    try {
+        res.status(200).render('premiumUpdateRole', {
+                style:"index.css",
+                styleBoostrap:"bootstrap.min.css",
+                title: "Update Role"
+            }); 
+    } catch (error) {
+        
+        req.logger.error('Se produjo un error al renderizar PremiumRole')
+        return res.status(500).render('Error al renderizar PremiumRole');
+    }
+}

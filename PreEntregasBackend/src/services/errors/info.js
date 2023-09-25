@@ -45,10 +45,10 @@ export const generateTicketErrorInfo = ({code, purchase_datetime, amount, purcha
     * purchaser : needs to be a String, received: ${purchaser}`
 }
 
-export const generateResetPassErrorInfo = ({password, newPassword, confirmNewPassword}) => {
+export const generateResetPassErrorInfo = ({token, newPassword, confirmNewPassword}) => {
     return `One or more properties were incomplete or not valid.
     List of required properties:
-    * password : needs to be a String, received: ${password}
+    * token : needs to be a String, received: ${token}
     * newPassword : needs to be a String, received: ${newPassword}
     * confirmNewPassword : needs to be a String, received: ${confirmNewPassword}`
 }
@@ -58,4 +58,10 @@ export const generateDiferentPassError = ({newPassword, confirmNewPassword}) => 
     List of required properties:
     * newPassword : needs to be a String, received: ${newPassword}
     * confirmNewPassword : needs to be a String, received: ${confirmNewPassword}`
+}
+export const generateUpdateRoleErrorInfo = ({id, updateRole}) => {
+    return `One or more properties are incomplete or are different.
+    List of required properties:
+    * id : needs to be a String, received: ${id}
+    * updateRole : needs to be a String, received: ${updateRole}`
 }

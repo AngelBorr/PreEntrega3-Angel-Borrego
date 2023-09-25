@@ -4,6 +4,6 @@ import { addMessageChat, getMessageChat } from '../controllers/controller.chat.j
 export default class ChatRouter extends MyOwnRouter{
     init(){
         this.get('/', ['PUBLIC'], getMessageChat);
-        this.post('/', ['USER'], addMessageChat)
+        this.post('/', ['USER', 'PREMIUM'], addMessageChat)
     }
 }

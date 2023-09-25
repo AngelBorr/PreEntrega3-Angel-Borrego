@@ -36,9 +36,7 @@ export const getDataProductById = async (req, res) => {
 //crea un nuevo producto
 export const createDataProduct = async (req, res) => {   
     try {        
-        const bodyProduct = req.body
-        req.legger.debug(`se solicita crear un nuevo producto con los siguientes datos: ${bodyProduct}`)
-        const newProduct = await productsService.addProduct(bodyProduct)                
+        const newProduct = await productsService.addProduct(req)                
         if (newProduct) {
             req.logger.info(`Se ha creado exitosamente el producto: ${newProduct}`)
             updateProducts(req.app.get('io'));
