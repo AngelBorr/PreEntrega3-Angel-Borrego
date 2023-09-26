@@ -18,6 +18,8 @@ paths:
         "500":
           description: No se ha podido traer los productos de la base de datos
     post:
+      security:
+        - bearerAuth: []
       summary: Crea un producto
       tags:
         - Products
@@ -48,6 +50,8 @@ paths:
 
   /api/products/{:pid}/:
     get:
+      security:
+        - bearerAuth: []
       summary: Obtiene el Producto por su Id
       tags:
         - Products
@@ -78,6 +82,8 @@ paths:
         "500":
           description: Error al intentar traer el producto solicitado
     put:
+      security:
+        - bearerAuth: []
       summary: Actualiza un producto por su id
       tags:
         - Products
@@ -108,6 +114,8 @@ paths:
         "500":
           description: Error al intentar actualizar el producto solicitado
     delete:
+      security:
+        - bearerAuth: []
       summary: Elimina el Producto por su Id
       tags:
         - Products
