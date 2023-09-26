@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken'
 import env from './config.js'
 import { faker } from '@faker-js/faker/locale/es_MX'
 import nodemailer from 'nodemailer'
+import swaggerJsdoc from 'swagger-jsdoc'
 
 export const createHash = password => bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 export const isValidPassword = (user, password) => {    
@@ -70,3 +71,17 @@ const mailConfig = {
 }
 
 export const transport = nodemailer.createTransport(mailConfig);
+
+//configuracion swagger
+const swaggerOptions ={
+    definition:{
+        openapi: '3.0.1',
+        info: {
+            title: 'Documentacion del poder y del saber',
+            description: 'API pensada para clase de Swagger'
+        }
+    },
+    apis:[`${__dirname}/docs/**/*.yaml`]
+}
+
+export const specs = swaggerJsdoc(swaggerOptions)

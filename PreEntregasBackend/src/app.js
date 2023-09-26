@@ -2,7 +2,7 @@ import express, { response } from 'express';
 import ProductsRouter from './routes/products.router.js';
 import CartsRouter from './routes/carts.router.js';
 import handlerbars from 'express-handlebars';
-import __dirname from './utils.js'
+import __dirname, { specs } from './utils.js'
 import ViewRouter from './routes/views.router.js';
 import { Server } from 'socket.io';
 import { chatSocket, updateProducts } from './public/js/socket.js';
@@ -18,6 +18,7 @@ import env from './config.js'
 import errorHandler from './middlewares/errors/errors.index.js'
 import { addLogger } from './middlewares/logger/logger.js';
 import LoggerRouter from './routes/loggers.router.js';
+import swaggerUiExpress from 'swagger-ui-express'
 
 const viewRouter = new ViewRouter();
 const chatRouter = new ChatRouter();
@@ -46,6 +47,10 @@ app.engine('handlebars', handlerbars.engine());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
 app.use(express.static(__dirname + '/public'));
+
+//config swagger
+app.use('/apidocs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs))
+
 //configuracion Session
 app.use(session({
     store: new MongoStore({

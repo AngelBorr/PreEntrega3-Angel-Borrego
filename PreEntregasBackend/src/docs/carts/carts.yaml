@@ -1,0 +1,361 @@
+paths:
+  /api/carts/:
+    post:
+      summary: Crea un carrito
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Se ha creado correctamente el carrito en el usuario
+          content:
+            application/json:
+              schema:
+                type: Objetc
+                items:
+                  $ref: "#components/schemas/Carts"
+        "400":
+          description: No se ha podido crear el carrito correctamente
+        "500":
+          description: Error al intentar crear el carrito
+
+  /api/carts/{:cid}/: 
+    get:
+      summary: Obtiene el Carrito por su Id
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: Id del carrito a buscar
+          required: true
+          schema:
+            $type: Number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/cid"
+      responses:
+        "200":
+          description: El Carrito fue obtenidos satisfactoriamente de la base de datos
+          content:
+            application/json:
+              schema:
+                type: objetc
+                items:
+                  $ref: "#components/schemas/Carts"
+        "400":
+          description: No se ha podido traer el carrito indicado de la base de datos, verifique los datos ingresados
+        "500":
+          description: Error al intentar traer el carrito solicitado
+    put:
+      summary: Actualiza el carrito por su id
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: Id del Carrito a actualizar
+          required: true
+          schema:
+            $type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/updateCart"
+      responses:
+        "200":
+          description: El Carrito fue actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                type: objetc
+                items:
+                  $ref: "#components/schemas/Carts"
+        "400":
+          description: No se ha podido actualizar el carrito indicado de la base de datos, verifique los datos ingresados
+        "500":
+          description: Error al intentar actualizar el carrito solicitado
+    delete:
+      summary: Elimina el carrito por su Id
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: Id del carrito a eliminar
+          required: true
+          schema:
+            $type: Number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/cid"
+      responses:
+        "200":
+          description: El carrito fue eliminado exitosamente de la base de datos
+          content:
+            application/json:
+              schema:
+                type: objetc
+                items:
+                  $ref: "#components/schemas/Carts/example"
+        "400":
+          description: No se ha podido eliminar el carrito indicado de la base de datos, verifique los datos ingresados
+        "500":
+          description: Error al intentar eliminar el carrito solicitado
+  /api/carts/{:cid}/product/{:pid}/:
+    post:
+      summary: Agrega productos al carrito
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: Id del carrito a buscar
+          required: true
+          schema:
+            $type: Number
+            items:
+              $ref: "#components/schemas/Carts/requestBodies/cid/example"
+        - name: pid
+          in: path
+          description: Id del producto a agregar al carrito
+          required: true
+          schema:
+            $type: Number
+            items:
+              $ref: "#components/schemas/Carts/requestBodies/pid/example/"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+              cid:
+                $ref: "#components/schemas/Carts/requestBodies/cid/example/"
+              pid:
+                $ref: "#components/schemas/Carts/requestBodies/pid/example/"
+              required:
+                - cid
+                - pid
+      responses:
+        "200":
+          description: 'Producto con el id: (ObjectId("647fa8c9e46dbc5a20385038")), agregado con exito'
+          content:
+            application/json:
+              schema:
+                type: objetc
+                items:
+                  $ref: "#components/schemas/Carts"
+        "400":
+          description: 'Carrito o producto no encontrado verifique los datos ingresados'
+        "500":
+          description: 'Error al agregar producto al carrito'
+    put:
+      summary: Actualiza la quantity del producto en el carrito
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: Id del carrito a buscar
+          required: true
+          schema:
+            $type: Number
+        - name: pid
+          in: path
+          description: Id del producto a agregar al carrito
+          required: true
+          schema:
+            $type: Number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+              cid:
+                $ref: '#/components/schemas/cid'
+              pid:
+                $ref: '#/components/schemas/pid'
+              required:
+                - cid
+                - pid
+      responses:
+        "200":
+          description: 'se ha actualizado correctamente el quantity del producto con id: (ObjectId("647fa8c9e46dbc5a20320630")), del carrito con el id: ${ObjectId("647fa8c9e46dbc5a20301235")}'
+          content:
+            application/json:
+              schema:
+                type: objetc
+                items:
+                  $ref: "#components/schemas/Carts"
+        "400":
+          description: 'Carrito o producto no encontrado verifique los datos ingresados'
+        "500":
+          description: 'Error al intentar actualizar la quantity de un producto del carrito'
+    delete:
+      summary: Elimina el producto del carrito
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: Id del carrito a buscar
+          required: true
+          schema:
+            $type: Number
+        - name: pid
+          in: path
+          description: Id del producto a agregar al carrito
+          required: true
+          schema:
+            $type: Number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+              cid:
+                $ref: '#/components/schemas/cid'
+              pid:
+                $ref: '#/components/schemas/pid'
+              required:
+                - cid
+                - pid
+      responses:
+        "200":
+          description: 'se ha eliminado correctamente el producto con id: (ObjectId("647fa8c9e46dbc5a20320181")), del carrito con el id: (ObjectId("647fa8c9e46dbc5a20301235"))'
+          content:
+            application/json:
+              schema:
+                type: objetc
+                items:
+                  $ref: "#components/schemas/Carts/example"
+        "400":
+          description: 'Carrito o producto no encontrado verifique los datos ingresados'
+        "500":
+          description: 'Error al borrar el producto del carrito'
+  /api/carts/:cid/purchase/:
+    post:
+      summary: Confirmacion de compra del carrito
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: Id del carrito a eliminar
+          required: true
+          schema:
+            $type: Number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/cid"
+      responses:
+        "200":
+          description: 'La creacion del ticket fue exitosa'
+          content:
+            application/json:
+              schema:
+                type: objetc
+                items:
+                  $ref: "#components/schemas/Carts"
+        "500":
+          description: 'Se ha producido un error en la creacion del ticket del usuario: (ObjectId("647fa8c9e46dbc5a20385038"))'
+
+components:
+  schemas:
+    Carts: 
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Id autogenerado de MongoDB.
+        products: 
+          type: Array
+          product: 
+            $ref: "#components/schemas/Products"
+          quantity:
+            type: Number
+            description: cantidad del mismo producto          
+      example: 
+        {
+          _id: ObjectId("647fa8c9e46dbc5a20320181"),
+          products: 
+            [
+              {
+                {
+                  _id: ObjectId("647fa8c9e46dbc5a20301235"),
+                  title: remera,
+                  description: algodon 100%, colores = blanco, negro y azul, talles = S, M, L, XL,
+                  price: $ 1500,
+                  thumbnail: archivo png,
+                  code: R-630,
+                  stock: 20,
+                  status: true,
+                  category: indumentaria,
+                  owner: ObjectId("647fa8c9e46dbc5a20320630") 
+                },
+                quantity: 1
+              }
+            ]
+        }
+  requestBodies:
+    cid:
+      type: ObjectId
+      example:
+        _id: ObjectId("647fa8c9e46dbc5a20388570")
+    pid:
+      type: ObjectId
+      example:
+        _id: ObjectId("647fa8c9e46dbc5a20385038")
+    updateCart:
+      type: object
+      properties:
+        _id: 
+          type: ObjectId
+          description: Id autogenerado de MongoDB.
+        products:
+          type: Array
+          description: array de productos
+        product:
+          type: Odject
+          $ref: "#components/schemas/Products"
+        quantity:
+          type: Number
+          description: cantidad del mismo producto        
+      example:
+        {
+          _id: ObjectId("647fa8c9e46dbc5a20320181"),
+          products: 
+            [
+              {
+                {
+                  _id: ObjectId("647fa8c9e46dbc5a20301235"),
+                  title: remera,
+                  description: algodon 100%, colores = blanco, negro y azul, talles = S, M, L, XL,
+                  price: $ 1500,
+                  thumbnail: archivo png,
+                  code: R-630,
+                  stock: 20,
+                  status: true,
+                  category: indumentaria,
+                  owner: ObjectId("647fa8c9e46dbc5a20320630") 
+                },
+                quantity: 1
+              }
+            ]
+        }

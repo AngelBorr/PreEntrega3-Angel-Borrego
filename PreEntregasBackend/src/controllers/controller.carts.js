@@ -13,7 +13,7 @@ export const createCart = async (req, res) => {
             return res.status(200).json(newCart);
         }else{
             req.logger.error('No pudo crearse existosamente el carrito nuevo')
-            return res.status(404).json(`No pudo crearse con exito un nuevo carrito`);
+            return res.status(404).json(`No pudo crearse con exito un nuevo carrito`)
         }
         
     } catch (error) {

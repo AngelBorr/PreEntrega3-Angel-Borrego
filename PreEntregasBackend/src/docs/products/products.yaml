@@ -1,0 +1,231 @@
+paths:
+  /api/products/:
+    get:
+      security:
+        - bearerAuth: []
+      summary: Obtiene todos los Productos
+      tags:
+        - Products
+      responses:
+        "200":
+          description: Los Productos fueron obtenidos satisfactoriamente de la base de datos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#components/schemas/Products"
+        "500":
+          description: No se ha podido traer los productos de la base de datos
+    post:
+      summary: Crea un producto
+      tags:
+        - Products
+      parameters:
+        - title: title
+          description: descripcion del producto
+          price: precio producto
+          thumbnail: foto del producto
+          code: codigo unico
+          stock: cantidad disponible de unidades
+          status: true o false
+          category: categoria del producto
+          owner: id del creador del producto
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: El producto fue creado satisfactoriamente y guardado en la base de datos
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Products"
+        "400":
+          description: El producto no pudo crearse exitosamente
+        "500":
+          description: Error interno del servidor al intentar crear un nuevo producto
+
+  /api/products/{:pid}/:
+    get:
+      summary: Obtiene el Producto por su Id
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          description: Id del producto a buscar
+          required: true
+          schema:
+            $type: Number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/pid"
+      responses:
+        "200":
+          description: El Producto fueron obtenidos satisfactoriamente de la base de datos
+          content:
+            application/json:
+              schema:
+                type: objetc
+                items:
+                  $ref: "#components/schemas/Products"
+        "400":
+          description: No se ha podido traer el producto indicado de la base de datos, verifique los datos ingresados
+        "500":
+          description: Error al intentar traer el producto solicitado
+    put:
+      summary: Actualiza un producto por su id
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          description: Id del Producto a actualizar
+          required: true
+          schema:
+            $type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/updateProduct"
+      responses:
+        "200":
+          description: El Producto fue actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                type: objetc
+                items:
+                  $ref: "#components/schemas/Products"
+        "400":
+          description: No se ha podido actualizar el producto indicado de la base de datos, verifique los datos ingresados
+        "500":
+          description: Error al intentar actualizar el producto solicitado
+    delete:
+      summary: Elimina el Producto por su Id
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          description: Id del producto a eliminar
+          required: true
+          schema:
+            $type: Number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/pid"
+      responses:
+        "200":
+          description: El Producto fue eliminado exitosamente de la base de datos
+          content:
+            application/json:
+              schema:
+                type: objetc
+                items:
+                  $ref: "#components/schemas/Products/example"
+        "400":
+          description: No se ha podido eliminar el producto indicado de la base de datos, verifique los datos ingresados
+        "500":
+          description: Error al intentar eliminar el producto solicitado
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Products: 
+      type: object
+      properties:
+        _id: 
+          type: ObjectId
+          description: Id autogenerado de MongoDB.
+        title: 
+          type: String
+          description: Nombre del producto
+        description:
+          type: String
+          description: descripcion de producto
+        price:
+          type: String
+          description: Precio del producto
+        thumbnail:
+          type: File
+          description: fotos del producto
+        code:
+          type: string
+          description: codigo unico del producto
+        stock:
+          type: Number
+          description: cantidad disponible del producto
+        status:
+          type: Boolean
+          description: true o false
+        category:
+          type: string
+          description: categoria a la cual pertenece el producto
+        owner:
+          type: ObjectId
+          description: id autogenerado por mongo del usuario que crea el producto
+      example: 
+        _id: ObjectId("647fa8c9e46dbc5a20320181")
+        title: remera
+        description: algodon 100%, colores = blanco, negro y azul, talles = S, M, L, XL
+        price: $ 1500
+        thumbnail: archivo png
+        code: R-630
+        stock: 20
+        status: true
+        category: indumentaria
+        owner: ObjectId("647fa8c9e46dbc5a20320630")        
+  requestBodies:
+    pid:
+      type: ObjectId
+      example:
+        _id: ObjectId("647fa8c9e46dbc5a20382560")
+    updateProduct:
+      type: object
+      properties:
+        title: 
+          type: String
+          description: Nombre del producto
+        description:
+          type: String
+          description: descripcion de producto
+        price:
+          type: String
+          description: Precio del producto
+        thumbnail:
+          type: File
+          description: fotos del producto
+        code:
+          type: string
+          description: codigo unico del producto
+        stock:
+          type: Number
+          description: cantidad disponible del producto
+        status:
+          type: Boolean
+          description: true o false
+        category:
+          type: string
+          description: categoria a la cual pertenece el producto
+      example:
+        title: buso
+        description: algodon 100%, colores = blanco, negro y azul, talles = S, M, L, XL
+        price: $ 3000
+        thumbnail: archivo png
+        code: R-635
+        stock: 10
+        status: true
+        category: indumentaria
