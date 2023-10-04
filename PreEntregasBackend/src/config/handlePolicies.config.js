@@ -5,7 +5,7 @@ const handlePolicies = policies => async (req, res, next) => {
     if(policies[0] === 'PUBLIC') return next()
 
     if(req.headers.authorization){
-        const authHeader = req.headers.authorization
+        const authHeader = req.headers.authorization        
         const token = authHeader.split(' ')[1] 
         let user = jwt.verify(token, PRIVATE_KEY)
         const userRole = user.user.role
@@ -15,8 +15,8 @@ const handlePolicies = policies => async (req, res, next) => {
 
     }else if(req.headers.cookie){
         const authHeader = req.headers.cookie
-        const token = authHeader.split('=')[1].slice(0, -13);        
-        let user = jwt.verify(token, PRIVATE_KEY)        
+        const token = authHeader.split('=')[1].slice(0, -13);
+        let user = jwt.verify(token, PRIVATE_KEY)
         const userRole = user.user.role        
         if(!policies.includes(userRole.toUpperCase())) return res.status(403).send({ status: "error", error: "Unauthorized" })
         req.user = user.user;

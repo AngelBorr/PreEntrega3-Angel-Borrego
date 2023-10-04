@@ -354,3 +354,291 @@ info: undefined
 http: Entorno: development - GET en /css/index.css - Tue Sep 26 2023 16:06:58 GMT-0300 (hora estándar de Argentina)
 http: Entorno: development - GET en /css/bootstrap.min.css - Tue Sep 26 2023 16:06:58 GMT-0300 (hora estándar de Argentina)
 http: Entorno: development - GET en /js/login.user.js - Tue Sep 26 2023 16:06:58 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 19:27:41 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 19:32:53 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("650ca9c233717282979aa06c"),
+  firstName: 'Angel',
+  lastName: 'Borrego',
+  email: 'angel_borr@hotmail.com',
+  age: 23,
+  password: '$2b$10$VeBSzUjog4U/iP3SArgHwuZX3SvYKBKlAWiG1ty.bWLDS21G9y61W',
+  birth_date: 2000-09-21T00:00:00.000Z,
+  cart: new ObjectId("650ca9c233717282979aa06a"),
+  role: 'premium',
+  __v: 0
+}
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 19:54:47 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("650ca9c233717282979aa06c"),
+  firstName: 'Angel',
+  lastName: 'Borrego',
+  email: 'angel_borr@hotmail.com',
+  age: 23,
+  password: '$2b$10$VeBSzUjog4U/iP3SArgHwuZX3SvYKBKlAWiG1ty.bWLDS21G9y61W',
+  birth_date: 2000-09-21T00:00:00.000Z,
+  cart: new ObjectId("650ca9c233717282979aa06a"),
+  role: 'premium',
+  __v: 0
+}
+http: Entorno: development - POST en /api/sessions/register - Tue Oct 03 2023 19:54:47 GMT-0300 (hora estándar de Argentina)
+info: El usuario se creo correctamente
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 19:58:38 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("650ca9c233717282979aa06c"),
+  firstName: 'Angel',
+  lastName: 'Borrego',
+  email: 'angel_borr@hotmail.com',
+  age: 23,
+  password: '$2b$10$VeBSzUjog4U/iP3SArgHwuZX3SvYKBKlAWiG1ty.bWLDS21G9y61W',
+  birth_date: 2000-09-21T00:00:00.000Z,
+  cart: new ObjectId("650ca9c233717282979aa06a"),
+  role: 'premium',
+  __v: 0
+}
+http: Entorno: development - POST en /api/sessions/register - Tue Oct 03 2023 19:58:39 GMT-0300 (hora estándar de Argentina)
+info: El usuario se creo correctamente
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 20:05:16 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("650ca9c233717282979aa06c"),
+  firstName: 'Angel',
+  lastName: 'Borrego',
+  email: 'angel_borr@hotmail.com',
+  age: 23,
+  password: '$2b$10$VeBSzUjog4U/iP3SArgHwuZX3SvYKBKlAWiG1ty.bWLDS21G9y61W',
+  birth_date: 2000-09-21T00:00:00.000Z,
+  cart: new ObjectId("650ca9c233717282979aa06a"),
+  role: 'premium',
+  __v: 0
+}
+http: Entorno: development - POST en /api/sessions/register - Tue Oct 03 2023 20:05:16 GMT-0300 (hora estándar de Argentina)
+info: El usuario se creo correctamente
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 20:07:23 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("650ca9c233717282979aa06c"),
+  firstName: 'Angel',
+  lastName: 'Borrego',
+  email: 'angel_borr@hotmail.com',
+  age: 23,
+  password: '$2b$10$VeBSzUjog4U/iP3SArgHwuZX3SvYKBKlAWiG1ty.bWLDS21G9y61W',
+  birth_date: 2000-09-21T00:00:00.000Z,
+  cart: new ObjectId("650ca9c233717282979aa06a"),
+  role: 'premium',
+  __v: 0
+}
+http: Entorno: development - POST en /api/sessions/register - Tue Oct 03 2023 20:07:23 GMT-0300 (hora estándar de Argentina)
+info: El usuario se creo correctamente
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 20:12:22 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("650ca9c233717282979aa06c"),
+  firstName: 'Angel',
+  lastName: 'Borrego',
+  email: 'angel_borr@hotmail.com',
+  age: 23,
+  password: '$2b$10$VeBSzUjog4U/iP3SArgHwuZX3SvYKBKlAWiG1ty.bWLDS21G9y61W',
+  birth_date: 2000-09-21T00:00:00.000Z,
+  cart: new ObjectId("650ca9c233717282979aa06a"),
+  role: 'premium',
+  __v: 0
+}
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 20:29:30 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("650ca9c233717282979aa06c"),
+  firstName: 'Angel',
+  lastName: 'Borrego',
+  email: 'angel_borr@hotmail.com',
+  age: 23,
+  password: '$2b$10$VeBSzUjog4U/iP3SArgHwuZX3SvYKBKlAWiG1ty.bWLDS21G9y61W',
+  birth_date: 2000-09-21T00:00:00.000Z,
+  cart: new ObjectId("650ca9c233717282979aa06a"),
+  role: 'premium',
+  __v: 0
+}
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 22:43:34 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("650ca9c233717282979aa06c"),
+  firstName: 'Angel',
+  lastName: 'Borrego',
+  email: 'angel_borr@hotmail.com',
+  age: 23,
+  password: '$2b$10$VeBSzUjog4U/iP3SArgHwuZX3SvYKBKlAWiG1ty.bWLDS21G9y61W',
+  birth_date: 2000-09-21T00:00:00.000Z,
+  cart: new ObjectId("650ca9c233717282979aa06a"),
+  role: 'premium',
+  __v: 0
+}
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 22:56:47 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("650ca9c233717282979aa06c"),
+  firstName: 'Angel',
+  lastName: 'Borrego',
+  email: 'angel_borr@hotmail.com',
+  age: 23,
+  password: '$2b$10$VeBSzUjog4U/iP3SArgHwuZX3SvYKBKlAWiG1ty.bWLDS21G9y61W',
+  birth_date: 2000-09-21T00:00:00.000Z,
+  cart: new ObjectId("650ca9c233717282979aa06a"),
+  role: 'premium',
+  __v: 0
+}
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 22:59:06 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("650ca9c233717282979aa06c"),
+  firstName: 'Angel',
+  lastName: 'Borrego',
+  email: 'angel_borr@hotmail.com',
+  age: 23,
+  password: '$2b$10$VeBSzUjog4U/iP3SArgHwuZX3SvYKBKlAWiG1ty.bWLDS21G9y61W',
+  birth_date: 2000-09-21T00:00:00.000Z,
+  cart: new ObjectId("650ca9c233717282979aa06a"),
+  role: 'premium',
+  __v: 0
+}
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 22:59:51 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("650ca9c233717282979aa06c"),
+  firstName: 'Angel',
+  lastName: 'Borrego',
+  email: 'angel_borr@hotmail.com',
+  age: 23,
+  password: '$2b$10$VeBSzUjog4U/iP3SArgHwuZX3SvYKBKlAWiG1ty.bWLDS21G9y61W',
+  birth_date: 2000-09-21T00:00:00.000Z,
+  cart: new ObjectId("650ca9c233717282979aa06a"),
+  role: 'premium',
+  __v: 0
+}
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 23:02:09 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("650ca9c233717282979aa06c"),
+  firstName: 'Angel',
+  lastName: 'Borrego',
+  email: 'angel_borr@hotmail.com',
+  age: 23,
+  password: '$2b$10$VeBSzUjog4U/iP3SArgHwuZX3SvYKBKlAWiG1ty.bWLDS21G9y61W',
+  birth_date: 2000-09-21T00:00:00.000Z,
+  cart: new ObjectId("650ca9c233717282979aa06a"),
+  role: 'premium',
+  __v: 0
+}
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 23:02:54 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("650ca9c233717282979aa06c"),
+  firstName: 'Angel',
+  lastName: 'Borrego',
+  email: 'angel_borr@hotmail.com',
+  age: 23,
+  password: '$2b$10$VeBSzUjog4U/iP3SArgHwuZX3SvYKBKlAWiG1ty.bWLDS21G9y61W',
+  birth_date: 2000-09-21T00:00:00.000Z,
+  cart: new ObjectId("650ca9c233717282979aa06a"),
+  role: 'premium',
+  __v: 0
+}
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 23:06:10 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("650ca9c233717282979aa06c"),
+  firstName: 'Angel',
+  lastName: 'Borrego',
+  email: 'angel_borr@hotmail.com',
+  age: 23,
+  password: '$2b$10$VeBSzUjog4U/iP3SArgHwuZX3SvYKBKlAWiG1ty.bWLDS21G9y61W',
+  birth_date: 2000-09-21T00:00:00.000Z,
+  cart: new ObjectId("650ca9c233717282979aa06a"),
+  role: 'premium',
+  __v: 0
+}
+http: Entorno: development - GET en /login - Tue Oct 03 2023 23:21:23 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Oct 03 2023 23:21:23 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/login.user.js - Tue Oct 03 2023 23:21:23 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Oct 03 2023 23:21:23 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /favicon.ico - Tue Oct 03 2023 23:21:25 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 23:21:29 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("650ca9c233717282979aa06c"),
+  firstName: 'Angel',
+  lastName: 'Borrego',
+  email: 'angel_borr@hotmail.com',
+  age: 23,
+  password: '$2b$10$VeBSzUjog4U/iP3SArgHwuZX3SvYKBKlAWiG1ty.bWLDS21G9y61W',
+  birth_date: 2000-09-21T00:00:00.000Z,
+  cart: new ObjectId("650ca9c233717282979aa06a"),
+  role: 'premium',
+  __v: 0
+}
+http: Entorno: development - GET en /products - Tue Oct 03 2023 23:21:29 GMT-0300 (hora estándar de Argentina)
+error: false
+http: Entorno: development - GET en /css/index.css - Tue Oct 03 2023 23:21:29 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/products.js - Tue Oct 03 2023 23:21:29 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Oct 03 2023 23:21:29 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/session.logout.js - Tue Oct 03 2023 23:21:29 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 23:25:59 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("650ca9c233717282979aa06c"),
+  firstName: 'Angel',
+  lastName: 'Borrego',
+  email: 'angel_borr@hotmail.com',
+  age: 23,
+  password: '$2b$10$VeBSzUjog4U/iP3SArgHwuZX3SvYKBKlAWiG1ty.bWLDS21G9y61W',
+  birth_date: 2000-09-21T00:00:00.000Z,
+  cart: new ObjectId("650ca9c233717282979aa06a"),
+  role: 'premium',
+  __v: 0
+}
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 23:29:10 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("650ca9c233717282979aa06c"),
+  firstName: 'Angel',
+  lastName: 'Borrego',
+  email: 'angel_borr@hotmail.com',
+  age: 23,
+  password: '$2b$10$VeBSzUjog4U/iP3SArgHwuZX3SvYKBKlAWiG1ty.bWLDS21G9y61W',
+  birth_date: 2000-09-21T00:00:00.000Z,
+  cart: new ObjectId("650ca9c233717282979aa06a"),
+  role: 'premium',
+  __v: 0
+}
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 23:31:47 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("650ca9c233717282979aa06c"),
+  firstName: 'Angel',
+  lastName: 'Borrego',
+  email: 'angel_borr@hotmail.com',
+  age: 23,
+  password: '$2b$10$VeBSzUjog4U/iP3SArgHwuZX3SvYKBKlAWiG1ty.bWLDS21G9y61W',
+  birth_date: 2000-09-21T00:00:00.000Z,
+  cart: new ObjectId("650ca9c233717282979aa06a"),
+  role: 'premium',
+  __v: 0
+}
+http: Entorno: development - POST en /api/sessions/logout - Tue Oct 03 2023 23:32:39 GMT-0300 (hora estándar de Argentina)
+info: Session Finalizada[object Object]
+http: Entorno: development - GET en /login - Tue Oct 03 2023 23:32:39 GMT-0300 (hora estándar de Argentina)
+info: undefined
+http: Entorno: development - GET en /css/index.css - Tue Oct 03 2023 23:32:39 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /css/bootstrap.min.css - Tue Oct 03 2023 23:32:39 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - GET en /js/login.user.js - Tue Oct 03 2023 23:32:39 GMT-0300 (hora estándar de Argentina)
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 23:32:56 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("650ca9c233717282979aa06c"),
+  firstName: 'Angel',
+  lastName: 'Borrego',
+  email: 'angel_borr@hotmail.com',
+  age: 23,
+  password: '$2b$10$VeBSzUjog4U/iP3SArgHwuZX3SvYKBKlAWiG1ty.bWLDS21G9y61W',
+  birth_date: 2000-09-21T00:00:00.000Z,
+  cart: new ObjectId("650ca9c233717282979aa06a"),
+  role: 'premium',
+  __v: 0
+}
+http: Entorno: development - POST en /api/sessions/login - Tue Oct 03 2023 23:35:40 GMT-0300 (hora estándar de Argentina)
+info: Session Iniciada, usuario: {
+  _id: new ObjectId("650ca9c233717282979aa06c"),
+  firstName: 'Angel',
+  lastName: 'Borrego',
+  email: 'angel_borr@hotmail.com',
+  age: 23,
+  password: '$2b$10$VeBSzUjog4U/iP3SArgHwuZX3SvYKBKlAWiG1ty.bWLDS21G9y61W',
+  birth_date: 2000-09-21T00:00:00.000Z,
+  cart: new ObjectId("650ca9c233717282979aa06a"),
+  role: 'premium',
+  __v: 0
+}

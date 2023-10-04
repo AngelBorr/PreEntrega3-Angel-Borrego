@@ -109,6 +109,7 @@ class ProductsService{
                 throw new Error(`El role establecido no permite la accion que deseas realizar`);
             }
         } catch (error) {
+            console.log(error)
             throw new Error(`Error al eliminar el producto: ${error}`);
         }
     }

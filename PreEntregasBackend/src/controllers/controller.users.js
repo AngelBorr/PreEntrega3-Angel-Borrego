@@ -11,8 +11,8 @@ const mailingService = new MailingService
 const usersService = new UsersService
 
 export const registerUser = async (req, res) => {
-    req.logger.info('El usuario se creo correctamente')
-    return res.status(200).send({status: 'success', message:'Usuario registrado'})    
+    req.logger.info('El usuario se creo correctamente')    
+    return res.status(200).send({status: 'success', message:'Usuario registrado', payload: req.user})
 }
 
 export const failRegister = async (req, res) => {

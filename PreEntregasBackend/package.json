@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./src/app.js",
     "start:dev": "cross-env NODE_ENV=development nodemon ./src/app.js",
-    "start:prod": "cross-env NODE_ENV=production nodemon ./src/app.js"
+    "start:prod": "cross-env NODE_ENV=production nodemon ./src/app.js",
+    "star:test": "mocha src/test/**/*.test.js --exit"
   },
   "keywords": [],
   "author": "",
@@ -39,5 +40,10 @@
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
     "winston": "^3.10.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.8",
+    "mocha": "^10.2.0",
+    "supertest": "^6.3.3"
   }
 }
