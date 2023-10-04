@@ -32,18 +32,16 @@ describe('Testing Funcional con supertest', () => {
             expect(cookieResult).to.be.ok
             cookie = {
                 name: cookieResult.split('=')[0],
-                value: cookieResult.split('=')[1],
+                value: cookieResult.split('=')[1].slice(0) + '1234567',
                 cookieCompleta: cookieResult
             }
             expect(cookie.name).to.be.ok.and.eql('cookieToken')
             expect(cookie.value).to.be.ok
         })
-        /* it('El endpoint GET /api/sessions/current debe recibir la cookie del usuario y desestructurarla', async function(){
-            console.log(cookie)
-            const {_body} = await requester.get('/api/sessions/current').set('cookie', [`${cookie.cookieCompleta}`/*`${cookie.name}=${cookie.value}`])
-            console.log(_body.payload)
-            expect(_body.payload.email).to.be.eql('angel_borr@hotmail.com')
-        }) */
+        it('El endpoint GET /api/sessions/current debe recibir la cookie del usuario y desestructurarla', async function(){
+            const {_body} = await requester.get('/api/sessions/current').set('cookie', [`${cookie.name}=${cookie.value}`])
+            expect(_body.email).to.be.eql('angel_borr@hotmail.com')
+        })
         
     })
 })

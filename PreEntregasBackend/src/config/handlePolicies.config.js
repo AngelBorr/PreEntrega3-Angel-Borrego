@@ -14,7 +14,7 @@ const handlePolicies = policies => async (req, res, next) => {
         next();
 
     }else if(req.headers.cookie){
-        const authHeader = req.headers.cookie
+        const authHeader = req.headers.cookie 
         const token = authHeader.split('=')[1].slice(0, -13);
         let user = jwt.verify(token, PRIVATE_KEY)
         const userRole = user.user.role        
