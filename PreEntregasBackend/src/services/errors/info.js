@@ -65,3 +65,10 @@ export const generateUpdateRoleErrorInfo = ({id, updateRole}) => {
     * id : needs to be a String, received: ${id}
     * updateRole : needs to be a String, received: ${updateRole}`
 }
+export const generateUpdateRoleUserErrorInfo = ({identification, adress, statusBank}) => {
+    return `One or more properties are incomplete or are different.
+    List of required properties:
+    * identification : needs to be a String, received: ${identification}
+    * adress : needs to be a String, received: ${adress}
+    * statusBank : needs to be a String, received: ${statusBank}`
+}

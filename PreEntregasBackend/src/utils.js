@@ -6,6 +6,8 @@ import env from './config.js'
 import { faker } from '@faker-js/faker/locale/es_MX'
 import nodemailer from 'nodemailer'
 import swaggerJsdoc from 'swagger-jsdoc'
+import path from 'path';
+import multer from  'multer'
 
 export const createHash = password => bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 export const isValidPassword = (user, password) => {    
@@ -85,3 +87,31 @@ const swaggerOptions ={
 }
 
 export const specs = swaggerJsdoc(swaggerOptions)
+
+//configuracion multer
+const storage = multer.diskStorage({
+    destination:function(req,file,cb){
+        switch (file.fieldname) {
+            case 'documents':
+                cb(null, path.join(`${__dirname}/dao/uploads/documents`))
+                break;
+            case 'profiles':
+                cb(null, path.join(`${__dirname}/dao/uploads/profiles`))
+                break;
+            case 'products':
+                cb(null, path.join(`${__dirname}/dao/uploads/products`))
+                break;
+            default:
+                cb(null, path.join(`${__dirname}/dao/uploads/other`))
+                break;
+        }
+    },
+    filename:function(req,file,cb){
+        cb(null,`${Date.now()}-${file.originalname}`)
+    }
+})
+
+export const uploader = multer({storage,onError:function(err,next){
+    console.log(err);
+    next();
+}});

@@ -3,6 +3,7 @@ import { Router } from "express";
 import passport from "passport";
 import { restartPassword, failLogin, failRegister, gitHubCallBack, loginGitHub, loginUser, logoutSession, registerUser, resetPassword, usersCurrent, updateRole } from "../controllers/controller.users.js";
 import cookieParser from "cookie-parser";
+import { setLastConnection, setLastDesconnection } from '../middlewares/setLastConnection.js';
 
 const router = Router();
 router.use(cookieParser());
@@ -15,12 +16,12 @@ export default class SessionsRouter extends MyOwnRouter{
         this.get('/failRegister', ['PUBLIC'], failRegister)
 
         //ruta loginSA
-        this.post('/login', ['PUBLIC'], passport.authenticate('login', {failureRedirect:'/api/sessions/failLogin'}) , loginUser)
+        this.post('/login', ['PUBLIC'], passport.authenticate('login', {failureRedirect:'/api/sessions/failLogin'}), setLastConnection, loginUser)
 
         this.get('/failLogin', ['PUBLIC'], failLogin)
 
         //ruta logout elimina la session
-        this.post('/logout', ['ADMIN', 'USER', 'PREMIUM'], logoutSession)
+        this.post('/logout', ['ADMIN', 'USER', 'PREMIUM'], setLastDesconnection, logoutSession)
 
         //ruta resetPassword
         this.put('/resetPassword', ['PUBLIC'], resetPassword)
@@ -35,8 +36,6 @@ export default class SessionsRouter extends MyOwnRouter{
 
         //ruta current
         this.get('/current', ['ADMIN', 'USER', 'PREMIUM'], usersCurrent)
-
-        //ruta premium/:id
-        this.put('/premium/:id', ['ADMIN', 'USER', 'PREMIUM'], updateRole)
+        
     }
 }

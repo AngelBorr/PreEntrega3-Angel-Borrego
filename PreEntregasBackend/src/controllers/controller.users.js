@@ -68,7 +68,6 @@ export const logoutSession = async (req, res) => {
     
 }
 
-//se cambia en la proxima entrega
 export const resetPassword = async (req, res) => { 
     try {
         const {token, newpassword, confirmNewPassword} = req.body        
@@ -169,4 +168,24 @@ export const updateRole = async (req, res) => {
         return res.status(500).send(`Se produjo un error al que obtener los datos para restaurar cambian el role, ${error.message}`)
     }
     
+}
+
+//agregar documentos a user
+export const addDocumentsToUser = async (req, res)=>{
+    try {
+        const { uid } = req.params
+        const files = req.files
+        const addDocuments = await usersService.addDodumentUser(uid, files)
+        if(addDocuments){
+            req.logger.info(`Documentos agregado con exito al usuario con id: ${uid}`)
+            res.status(200).send('Documentos agregados exitosamente')
+        }else{
+            req.logger.error(`Error al cargar los documentos en el usuario con el id: ${uid}`)
+            res.status(400).send(`Error al cargar los documentos en el usuario con el id: ${uid}`)
+        }
+    } catch (error) {
+        req.logger.fatal(`Se produjo un error al que obtener los documentos para insertarlos en el usuario, ${error.message}`)
+        return res.status(500).send(`Se produjo un error al que obtener los documentos para insertarlos en el usuario, ${error.message}`)
+    }
+
 }

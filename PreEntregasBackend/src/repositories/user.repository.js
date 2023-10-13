@@ -30,11 +30,11 @@ class UsersRepository{
         return updatePass
     }
 
-    //modifica user role
-    /* async roleUpdate(id, newRole){
-        const updateRole = await users.roleUpdate(id, newRole)
-        return updateRole
-    } */
+    //agrega documentos a user
+    async updateDocumentsUser(id, files){
+        const updateDocument = await users.documentUpdate(id, files)
+        return updateDocument
+    }
 }
 
 export default UsersRepository

@@ -8,7 +8,7 @@ const updateRoleUser = async (event) => {
         const user = {};
         dataUser.forEach((value, key) => user[key] = value);
         console.log(user)
-        const router = await fetch(`/api/sessions/premium/${idUser}`, {
+        const router = await fetch(`/api/users/premium/${idUser}`, {
             method: 'PUT',
             body:JSON.stringify(user),
             headers: {

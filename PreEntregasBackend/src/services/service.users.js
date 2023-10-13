@@ -2,7 +2,7 @@ import UsersRepository from "../repositories/user.repository.js";
 import { createHash, isValidPassword } from "../utils.js";
 import CustomError from "./errors/customError.js";
 import EErrors from "./errors/enums.js";
-import { generateUpdateRoleErrorInfo, generateUserErrorInfo } from "./errors/info.js";
+import { generateUpdateRoleErrorInfo, generateUpdateRoleUserErrorInfo, generateUserErrorInfo } from "./errors/info.js";
 
 class UsersService{    
     constructor(){
@@ -113,10 +113,65 @@ class UsersService{
                 req.logger.error(`No existe usuario con este id: ${idUser}`)
                 throw new Error(`No se ha encontrado Usuario resgistrado con este id:(${idUser}), verifique que los datos ingresados sean los correctos y vuelve a intentarlo`);
             }
-            const userUpdate = await this.users.updateUser(idUser, newRole)
-            return userUpdate
+            if(user.role === 'user'){
+                const identification = await user.documents.some((e) => e.name === 'identification')
+                const adress = await user.documents.some((e) => e.name === 'adress')
+                const statusBank = await user.documents.some((e) => e.name === 'statusBank')
+                if(identification === false || adress === false || statusBank === false){
+                    console.log('error')
+                    CustomError.createError({
+                        name: 'user Creation Error',
+                        cause: generateUpdateRoleUserErrorInfo({identification, adress, statusBank}),
+                        code: EErrors.INVALID_TYPES_ERROR,
+                        message: 'Error in documents to update role for user'
+                    });
+                }
+                const userUpdate = await this.users.updateUser(idUser, newRole)
+                return userUpdate
+            }else{
+                const userUpdate = await this.users.updateUser(idUser, newRole)
+                return userUpdate
+            }
+            
         } catch (error) {
             throw new Error(`Error al actualizar role: ${error.message}`);
+        }
+    }
+
+    async addDodumentUser(id, files){
+        try {
+            const user = await this.users.getUserById(id)
+            if(!user) {
+                req.logger.error('Usuario no encontrado')
+                throw new Error(`No se ha encontrado Usuario registrado, verifique que los datos ingresados sean los correctos y vuelve a intentarlo`)
+            }
+            if(!files){
+                req.logger.error('Archivos no encontrado')
+                throw new Error(`No se ha encontrado archivos para guardar en el usuario solicitado, verifique que los archivos ingresados se carguen correctamente y vuelve a intentarlo`)
+            }
+            const document = user.documents
+            const newDocuments = [
+                ...document,
+                ...files.map(file => ({ name: file.originalname, reference: file.path }))
+            ]            
+            const updateDocumentUser = await this.users.updateUser(id, {documents: newDocuments})
+            if(!updateDocumentUser){
+                req.logger.warning(`Error al realizar la operacion de agregar documentos al usuario con el id: ${id}`)
+                throw new Error('Error al realizar la operacion de agregar documentos al usuario')
+            }
+            return updateDocumentUser
+        }catch(error){
+            req.logger.error(`Error al agregar los dumentos al usuario: ${error.message}`)
+            throw new Error(`Error al agregar los dumentos al usuario: ${error.message}`);
+        }
+    }
+
+    async setLastConnection(user) {
+        try {
+            const id = user._id
+            return await this.users.updateUser(id, { last_connection: new Date() });
+        } catch (error) {
+            console.log(error.message);
         }
     }
 

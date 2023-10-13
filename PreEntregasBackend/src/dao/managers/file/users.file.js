@@ -55,6 +55,29 @@ class UsersManagerFile{
         }
     }
 
+    //agrega document al usuario
+    async documentUpdate(id, files){
+        const data = await fs.promises.readFile(this.pathUsers, 'utf8');
+        const dataJson = JSON.parse(data)
+        const user = dataJson.find(user => user.id === id)
+        if(user){
+            const document = user.documents
+            const newDocuments = [
+                ...document,
+                ...files.map(file => ({ name: file.originalname, reference: file.path }))
+            ]
+            Object.assign(user, newDocuments)
+            const updatedUsers = JSON.stringify(users, null, 2);
+            await fs.promises.writeFile(this.pathUsers, updatedUsers, 'utf8')
+            return user
+        }else{
+            return user
+        }
+
+        
+        return await this.userModel.updateOne(user._id, { documents: newDocuments });
+    }
+
 }
 
 export default UsersManagerFile

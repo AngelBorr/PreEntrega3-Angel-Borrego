@@ -29,7 +29,7 @@ class UsersManager{
         const idMongoUser = {_id:id}
         const updatePass = await this.userModel.updateOne(idMongoUser, bodyUpdate)
         return updatePass
-    }
+    }    
 }
 
 export default UsersManager
