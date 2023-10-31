@@ -189,3 +189,31 @@ export const addDocumentsToUser = async (req, res)=>{
     }
 
 }
+
+//trae a todos los usuarios
+export const getUsers = async (req, res) => {
+    try {
+        req.logger.info('Se solicitan a todos los usuarios')
+        const users = await usersService.getAllUsers()
+        return users
+    } catch (error) {
+        req.logger.fatal(`Se produjo un error al intentar obtener a todos los usuario, ${error.message}`)
+        return res.status(500).send(`Se produjo un error al intentar obtener a todos los usuario, ${error.message}`)
+    }
+}
+
+//elimina al usuario por su id
+export const deleteUser = async (req, res) => {
+    try {
+        const id = req.body.id
+        const userDelete = await usersService.deleteUserById(id)
+        if(userDelete.deletedCount === 1){
+            return res.status(200).send('Usuario eliminado exitosamente')
+        }else{
+            return res.status(400).send("No se pudo eliminar el usuario")
+        }
+    } catch (error) {
+        req.logger.fatal(`Se produjo un error al intentar borrar al usuario solicitado, ${error.message}`)
+        return res.status(500).send(`Se produjo un error al intentar borrar al usuario solicitado, ${error.message}`)
+    }
+}

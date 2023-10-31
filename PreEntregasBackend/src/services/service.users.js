@@ -3,10 +3,28 @@ import { createHash, isValidPassword } from "../utils.js";
 import CustomError from "./errors/customError.js";
 import EErrors from "./errors/enums.js";
 import { generateUpdateRoleErrorInfo, generateUpdateRoleUserErrorInfo, generateUserErrorInfo } from "./errors/info.js";
+import UserDTO from "../dto/user.dto.js";
+import MailingService from "./service.mailing.js";
+
+const mailingService = new MailingService
 
 class UsersService{    
     constructor(){
         this.users = new UsersRepository 
+    }
+
+    async getAllUsers(){
+        try {
+            const users = await this.users.getAllUsers()
+            if(!users){
+                throw new Error('No se han encontrado Usuarios')
+            }else{
+                const usersDTO = users.map(user => new UserDTO(user))
+                return usersDTO;
+            }
+        } catch (error) {
+            
+        }
     }
 
     //retorna el usuario
@@ -171,6 +189,31 @@ class UsersService{
             const id = user._id
             return await this.users.updateUser(id, { last_connection: new Date() });
         } catch (error) {
+            console.log(error.message);
+        }
+    }
+
+    async deleteUserById(id){
+        try {
+            const userId = id
+            const user = await this.users.getUserById(userId)
+            if (!user) {
+                throw new Error("El usuario no existe")
+            }else{
+                //se envia un correo al usuario informando la eliminacion de su cuenta por inactividad
+                const sendMail = await mailingService.createEmailDeleteUserToInactivity(user)
+                if(sendMail){
+                    const deletedUser = await this.users.deleteUser(userId)
+                    if(!deletedUser){
+                        throw new Error('No se pudo eliminar el usuario')
+                    }else{
+                        return deletedUser;
+                    }
+                }else{
+                    throw new Error('Ocurrio un error en el envio del correo electronico para notificar al usuario que su cuenta ha sido eliminada')
+                }                
+            }
+        } catch (error) {            
             console.log(error.message);
         }
     }

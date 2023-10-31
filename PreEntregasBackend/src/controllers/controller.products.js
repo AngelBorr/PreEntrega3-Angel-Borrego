@@ -74,7 +74,7 @@ export const deleteDataProduct = async (req, res) => {
     try {
         const { pid } = req.params
         req.logger.debug(`Se solicita borrar el producto con el id: ${pid}`)
-        const productDelete = await productsService.deleteProduct(pid)
+        const productDelete = await productsService.deleteProduct(req)
         if (productDelete) {
             req.logger.info('Producto eliminado correctamente')
             updateProducts(req.app.get('io'));

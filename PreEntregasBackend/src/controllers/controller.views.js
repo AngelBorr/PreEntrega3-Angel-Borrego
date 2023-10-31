@@ -4,7 +4,9 @@ import { generateProduct } from "../utils.js";
 import CustomError from "../services/errors/customError.js";
 import { generateProductsMockingErrorInfo } from "../services/errors/info.js";
 import EErrors from "../services/errors/enums.js";
+import UsersService from '../services/service.users.js'
 
+const userService = new UsersService
 const productsService = new ProductsService
 const cartsService = new CartService
 
@@ -236,4 +238,58 @@ export const getViewPremiumRole = async (req, res) => {
         req.logger.error('Se produjo un error al renderizar PremiumRole')
         return res.status(500).render('Error al renderizar PremiumRole');
     }
+}
+
+export const getViewUsers = async (req, res) => {
+    try {
+        const users = await userService.getAllUsers()
+        if (!users) {
+            req.logger.fatal('No hay usuarios para mostrar')
+            return res.status(404).render("El listado de usuarios esta vacio.");
+        }else{
+            //antes de rendizar users verifica si hay usuarios cuya conexion tiene una diferencia de 48hs los elimine
+            for (let i = 0; i < users.length; i++) {
+                if (users[i].last_connection === undefined || users[i].last_connection && (new Date() - new Date(users[i].last_connection)) > 172800000) {
+                    await userService.deleteUserById(users[i]._id);
+                }
+                res.status(200).render('usersList', {
+                    style:"index.css",
+                    styleBoostrap:"bootstrap.min.css",
+                    title: 'Users List',
+                    users: users
+                }); 
+            } 
+            
+        }
+        
+    } catch (error) {        
+        req.logger.error('Se produjo un error al renderizar UsersList')
+        return res.status(500).render('Error al renderizar UsersList');
+    }
+}
+
+export const getViewAdminProducts = async (req, res) =>{
+    try {        
+        const {limit = 5, page = 1, sort='asc', category} = req.query;
+        const data = await productsService.getProducts(limit, page, sort, category);        
+        let products = data.products
+        if(!data){
+            req.logger.fatal('El valor de data es: ' + data + ', en ControllersView')
+            return res.status(404).render("El listado de productos esta vacio.");
+        }else{
+            res.status(200).render('adminProducts', {
+                products: products,
+                style:"index.css",
+                styleBoostrap:"bootstrap.min.css",
+                title: "ProductsList",
+                hasPrevPage: data.hasPrevPage,
+                hasNextPage: data.hasNextPage,
+                prevPage: data.prevPage,
+                nextPage: data.nextPage
+            })
+        }        
+    } catch (error) {
+        req.logger.error('Se produjo un error en ControllerView y no se renderizan los Productos')
+        return res.status(500).render('Error al obtener los producto desde products.json');
+    }    
 }

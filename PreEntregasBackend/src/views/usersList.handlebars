@@ -1,0 +1,49 @@
+<div class="containerProducts">
+    <h2>Listado de Usuarios</h2>
+    <button class='btnVolver btn btn-primary'>Volver</button>
+    <br>
+    <br>
+    <table class='table table-striped'>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>first_name</th>
+                <th>last_name</th>
+                <th>email</th>
+                <th>role</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users}}
+            <tr>
+                <td>{{this._id}}</td>
+                <td>{{this.first_name}}</td>
+                <td>{{this.last_name}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.role}}</td>
+                <td>
+                    <button class="btnDeleteUser btn btn-danger" data-id={{this._id}}  onClick= >Eliminar</button>
+                </td>    
+                <td>
+                    <button class="btnChangeRole btn btn-success" data-id={{this._id}}  onClick= >Cambiar rol</button>
+                </td>                    
+                
+
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    {{!-- <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            {{#if hasPrevPage}}
+                <li class="page-item"><a class="page-link" href="/products?page={{prevPage}}">Anterior</a></li>
+            {{/if}}
+            {{#if hasNextPage}}
+                <li class="page-item"><a class="page-link" href="/products?page={{nextPage}}">Siguiente</a></li>
+            {{/if}}
+        </ul>
+    </nav> --}}
+</div>
+
+<script src="/js/users.js"></script>

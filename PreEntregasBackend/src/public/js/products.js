@@ -48,6 +48,34 @@ const redirecToCartPage = async (event) => {
     })
 }
 
+const redirecUsersList = async (event) => {
+    const token = localStorage.getItem('token')
+    const getUser = await fetch('/api/sessions/current', {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+    }).then(result => {
+        if(result.status === 200){
+            window.location.replace('/usersList')
+        } 
+    })
+}
+
+const redirecAdminProductsPage = async (event) => {
+    const token = localStorage.getItem('token')
+    const getUser = await fetch('/api/sessions/current', {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+    }).then(result => {
+        if(result.status === 200){
+            window.location.replace('/adminProducts')
+        } 
+    })
+}
+
 const btnAddProducts = document.querySelectorAll('.btnAddProduct');
 btnAddProducts.forEach(btn => {
     btn.addEventListener('click', addProductInCart);
@@ -55,3 +83,9 @@ btnAddProducts.forEach(btn => {
 
 const btnCarrito = document.querySelector('.btnCart')
 btnCarrito.addEventListener('click', redirecToCartPage)
+
+const btnUsers = document.querySelector('.btnUsers')
+btnUsers.addEventListener('click', redirecUsersList)
+
+const btnAdminProducts = document.querySelector('.btnAdminProducts')
+btnAdminProducts.addEventListener('click', redirecAdminProductsPage)

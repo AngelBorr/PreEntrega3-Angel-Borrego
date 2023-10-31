@@ -5,6 +5,11 @@ class UsersManager{
     constructor(){
         this.userModel = userModel
     }
+    //trae a todos los usuarios
+    async getAllUsers(){
+        const users = await this.userModel.find().lean() 
+        return users
+    }
 
     //trae al usuario por su email
     async getUser(email){
@@ -29,7 +34,13 @@ class UsersManager{
         const idMongoUser = {_id:id}
         const updatePass = await this.userModel.updateOne(idMongoUser, bodyUpdate)
         return updatePass
-    }    
+    }
+    
+    //eliminar un usuario
+    async deleteUser(id){
+        const delUser =  await this.userModel.deleteOne({_id:id})
+        return delUser
+    }
 }
 
 export default UsersManager

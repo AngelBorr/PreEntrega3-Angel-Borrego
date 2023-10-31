@@ -5,6 +5,12 @@ class UsersManagerFile{
         this.users = []
         this.pathUsers = './assets/users.json'
     }
+    
+    async getAllUsers(){
+        const data = await fs.promises.readFile(this.pathUsers, 'utf8');
+        const users = JSON.parse(data)
+        return users
+    }
 
     async getUser(email){
         const data = await fs.promises.readFile(this.pathUsers, 'utf8');
@@ -76,6 +82,20 @@ class UsersManagerFile{
 
         
         return await this.userModel.updateOne(user._id, { documents: newDocuments });
+    }
+
+    //eliminamos al usuario
+    async deleteUser(id){
+        const data = await fs.promises.readFile(this.pathUsers, 'utf8');
+        const index = data.findIndex(user => user.id === id)
+        if(index !== -1){
+            data.splice(index, 1)
+            this.pathUsers = data
+            await fs.promises.writeFile(this.pathUsers, JSON.stringify(this.pathUsers, null, 2))
+            return this.pathUsers
+        }else{
+            return index
+        }
     }
 
 }

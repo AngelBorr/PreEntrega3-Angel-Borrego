@@ -3,7 +3,9 @@ import CustomError from "./errors/customError.js";
 import EErrors from "./errors/enums.js";
 import { generateProductsErrorInfo } from "./errors/info.js";
 import UsersService from '../services/service.users.js'
+import MailingService from '../services/service.mailing.js'
 
+const mailingService = new MailingService
 const userService = new UsersService
 class ProductsService{    
     constructor(){
@@ -92,22 +94,37 @@ class ProductsService{
     }
 
     //delete products
-    async deleteProduct(id) {                
+    async deleteProduct(req) {                
         try {
-            const existingProduct = await this.products.getProductById(id);
+            const id = req.params.pid            
+            const existingProduct = await this.products.getProductById(id)
             if(!existingProduct){
                 throw new Error(`El producto que se desea eliminar no existe: ${Error.message}`);
             }
-            const user = await userService.getUserById(existingProduct.owner)
-            if(user.role === 'admin' || existingProduct.owner === 'admin'){
-                const productDelete = await this.products.deleteProduct(id);
-                return productDelete
-            }else if(user._id === existingProduct.owner && user.role === 'premium'){
-                const productDelete = await this.products.deleteProduct(id);
-                return productDelete
+            //usuario solicitante que role tiene?
+            const requestingUser = req.user
+            if(requestingUser.role === 'admin'){
+                const user = await userService.getUserById(existingProduct.owner)
+                if(user.role === 'premium'){
+                    const sendMail = await mailingService.createEmailOfDeleteProduct(user, existingProduct)
+                    if(sendMail){
+                        const productDelete = await this.products.deleteProduct(id)
+                        return productDelete
+                    }
+                }else{
+                    const productDelete = await this.products.deleteProduct(id);
+                    return productDelete
+                }                
+            }else if (requestingUser.role === 'premium'){
+                if(requestingUser._id === existingProduct.owner){
+                    const productDelete = await this.products.deleteProduct(id)
+                    return productDelete
+                }else{
+                    throw new Error(`El role establecido no permite la accion que deseas realizar`);
+                }                
             }else{
                 throw new Error(`El role establecido no permite la accion que deseas realizar`);
-            }
+            }            
         } catch (error) {
             console.log(error)
             throw new Error(`Error al eliminar el producto: ${error}`);

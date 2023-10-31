@@ -1,11 +1,10 @@
 <div class="containerProducts">
-    <h1>Bienvenido: {{user.name}}</h1>
-    <h3>Rol: {{user.role}}</h3>
-    <button class='btnLogout btn btn-danger'>Logout</button>
-    <button class='btnCart btn btn-info'>Carrito</button>
-    <button class='btnUsers btn btn-secondary'>Users</button>
-    <button class='btnAdminProducts btn btn-dark'>AdminProducts</button>
+    
     <h2>Lista de Productos</h2>
+    <button class='btnVolver btn btn-primary'>Volver</button>
+    <button class='btnCreateProductsPage btn btn-success'>Crear Producto</button>
+    <br>
+    <br>
     <table class='table table-striped'>
         <thead>
             <tr>
@@ -28,7 +27,7 @@
                 <td>{{this.code}}</td>
                 <td>{{this.stock}}</td>
                 <td>{{this.category}}</td>
-                <td><button class="btnAddProduct btn btn-success" data-id={{this._id}}  onClick= >Agregar al carrito</button></td>
+                <td><button class="btnDeleteroduct btn btn-danger" data-id={{this._id}}  onClick= >Eliminar</button></td>
             </tr>
             {{/each}}
         </tbody>
@@ -37,10 +36,10 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             {{#if hasPrevPage}}
-                <li class="page-item"><a class="page-link" href="/products?page={{prevPage}}">Anterior</a></li>
+                <li class="page-item"><a class="page-link" href="/adminProducts?page={{prevPage}}">Anterior</a></li>
             {{/if}}
             {{#if hasNextPage}}
-                <li class="page-item"><a class="page-link" href="/products?page={{nextPage}}">Siguiente</a></li>
+                <li class="page-item"><a class="page-link" href="/adminProducts?page={{nextPage}}">Siguiente</a></li>
             {{/if}}
         </ul>
     </nav>   
@@ -50,7 +49,4 @@
 
 </div>
 
-<script src="/js/products.js"></script>
-<script src="/js/session.logout.js"></script>
-
-
+<script src="/js/adminProductPage.js"></script>
