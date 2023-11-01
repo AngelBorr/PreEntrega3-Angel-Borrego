@@ -20,6 +20,8 @@ import { addLogger } from './middlewares/logger/logger.js';
 import LoggerRouter from './routes/loggers.router.js';
 import swaggerUiExpress from 'swagger-ui-express'
 import UsersRouter from './routes/users.router.js'
+import PaymentsRouter from './routes/payments.router.js'
+import cors from 'cors'
 
 const viewRouter = new ViewRouter();
 const chatRouter = new ChatRouter();
@@ -28,9 +30,11 @@ const cartsRouter = new CartsRouter();
 const sessionsRouter = new SessionsRouter();
 const loggerRouter = new LoggerRouter();
 const usersRouter = new UsersRouter();
+const paymentsRouter = new PaymentsRouter();
 
 const app = express();
 app.use(addLogger);
+app.use(cors())
 
 //data MONGODB
 const PORT = env.port; 
@@ -80,6 +84,7 @@ app.use('/api/chat', chatRouter.getRouter());
 app.use('/api/sessions', sessionsRouter.getRouter());
 app.use('/api/users', usersRouter.getRouter() )
 app.use('/loggerTest', loggerRouter.getRouter())
+app.use('/api/payments', paymentsRouter.getRouter())
 
 //server en puerto 8080
 const httpServer = app.listen(`${PORT}`, () => {

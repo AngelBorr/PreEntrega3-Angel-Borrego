@@ -22,5 +22,8 @@ export default {
     mailingPort: process.env.MAIL_PORT,
     mailingUser: process.env.USER_MAIL,
     mailingPass: process.env.MAIL_PASS,
-    baseUrl: process.env.BASE_URL
+    baseUrl: process.env.BASE_URL,
+    tokenMp: process.env.MP_ACCESS_TOKEN
+    
+
 }

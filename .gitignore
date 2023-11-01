@@ -2,3 +2,4 @@
 .env
 /PreEntregasBackend/src/dao/othersManagers
 /PreEntregasBackend/src/config/othersPassport
+ngrok.exe

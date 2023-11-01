@@ -29,7 +29,7 @@ class MyOwnRouter{
     }
 
     post(path, policies, ...callbacks) {
-        this.router.post(path, /*handlePolicies(policies), /*this.generateCustomResponses,*/ this.applyCallbacks(callbacks));
+        this.router.post(path, handlePolicies(policies), /*this.generateCustomResponses,*/ this.applyCallbacks(callbacks));
     }
 
     put(path, policies, ...callbacks) {

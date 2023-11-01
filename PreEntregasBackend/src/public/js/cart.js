@@ -41,6 +41,20 @@ const redirectToProductsPage = async (event) => {
     })
 }
 
+const redirectToMercadoPago = async (event) => {
+    const token = localStorage.getItem('token')
+    const response = await fetch('/api/payments/create-order', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+    })
+    const data = await response.json()
+    if(data){
+        window.location.replace(`${data.init_point}`)
+    } 
+}
+
 const comfirmBuy = async (event) => {
     const token = localStorage.getItem('token')
     const getUser = await fetch('/api/sessions/current', {
@@ -80,3 +94,6 @@ btnSeguirComprando.addEventListener('click', redirectToProductsPage)
 
 const btncomprar = document.querySelector('.btnComprar')
 btncomprar.addEventListener('click', comfirmBuy)
+
+const btnComprar = document.querySelector('.btnComprar')
+btnComprar.addEventListener('click', redirectToMercadoPago )

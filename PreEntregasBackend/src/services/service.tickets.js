@@ -13,8 +13,8 @@ class TicketService{
 
     async create(bodyTicket){
         try {
-            const user = bodyTicket
-            const cart = await cartService.getCartById(user.cart)            
+            const user = bodyTicket          
+            const cart = await cartService.getCartById(user.cart)         
             const amount = cart.total
             const generateRandomNumber = () => {
                 const randomNumber = Math.floor(Math.random() * 100000) + 1
@@ -52,7 +52,6 @@ class TicketService{
             }else{
                 await cartService.emptyCart(cart._id)
             }
-            
             return dataTicket
         } catch (error) {
             throw new Error("Se produjo un error al crear el Ticket");
